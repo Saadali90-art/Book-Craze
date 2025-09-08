@@ -43,6 +43,7 @@ const pricingPlans = [
     title: "Basic",
     subtext: "Perfect for casual readers who want essential features.",
     price: "$5 / month",
+    priceId: "price_1S4uWW37JgEO03DsKhOIiNrp",
     advantages: [
       "Access to free stories",
       "Join community discussions",
@@ -56,6 +57,7 @@ const pricingPlans = [
     title: "Advanced",
     subtext: "Best for passionate readers who want the experience.",
     price: "$15 / month",
+    priceId: "price_1S4uXQ37JgEO03Dst6mCxQTD",
     advantages: [
       "Everything in Basic plan",
       "Ad-free reading experience",

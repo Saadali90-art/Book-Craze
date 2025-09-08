@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 
-const stripeCheckout = async (req, res) => {
+const cartCheckout = async (req, res) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   let data = req.body;
 
@@ -31,4 +31,4 @@ const stripeCheckout = async (req, res) => {
   }
 };
 
-export default stripeCheckout;
+export default cartCheckout;

@@ -3,7 +3,7 @@ import checkmark from "../../../../assets/Mission/checkmark.svg";
 import checkWhite from "../../../../assets/Mission/checkWhite.svg";
 import background from "../../../../assets/Mission/background.png";
 
-const PricingCards = ({ item, index }) => {
+const PricingCards = ({ item, index, handleSubsribe }) => {
   return (
     <div
       className="min-w-[350px] max-[417px]:min-w-[300px] max-[325px]:min-w-[280px] min-h-[500px] rounded-2xl flex flex-col mx-auto shadow-[0px_0px_33px_5px_rgba(0,0,0,0.2)]"
@@ -42,7 +42,8 @@ const PricingCards = ({ item, index }) => {
       {/* =========== GET BUTTON  */}
 
       <button
-        className="w-[80%] py-[10px] mx-auto rounded-lg font-[700] active:brightness-75"
+        onClick={() => handleSubsribe(item.priceId)}
+        className="w-[80%] py-[10px] mx-auto rounded-lg font-[700] active:brightness-75 cursor-pointer"
         style={{
           background: index === 1 ? "white" : `url(${background})`,
           color: index === 0 ? "white" : "#22C0D9",

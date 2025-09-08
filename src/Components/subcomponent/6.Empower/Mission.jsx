@@ -5,8 +5,15 @@ import { missionData, pricingPlans } from "./subcomponent/db.js";
 import MissionCards from "./subcomponent/MissionCards";
 import PricingCards from "./subcomponent/PricingCards";
 import Footer from "../1.Home/Footer.jsx";
+import More from "../../Requests/MoreDetails/More.js";
 
 const Mission = () => {
+  const handleSubsribe = async (priceId) => {
+    let result = await More({ id: priceId }, "plan-session");
+
+    window.location.href = result.url;
+  };
+
   return (
     <div>
       {/* ======================= NAVIGATION BAR ========================== */}
@@ -81,7 +88,12 @@ const Mission = () => {
           >
             <div className="w-full flex max-[894px]:flex-col max-[894px]:gap-y-[40px] mx-auto justify-center gap-x-[40px]">
               {pricingPlans.map((item, index) => (
-                <PricingCards item={item} key={index} index={index} />
+                <PricingCards
+                  item={item}
+                  key={index}
+                  index={index}
+                  handleSubsribe={handleSubsribe}
+                />
               ))}
             </div>
           </div>
