@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router-dom";
 import "../animation.css";
 import SignInData from "./Requests/Home Requests/SignInData.js";
@@ -6,6 +7,7 @@ import cartsData from "./Requests/Cart/CartInfo.js";
 import removeItem from "./Requests/Cart/RemoveCartItem.js";
 import Navigation from "./subcomponent/Cart/Navigation.jsx";
 import CartList from "./subcomponent/Cart/CartList.jsx";
+import MoreDetail from "./Requests/MoreDetails/More.js";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -22,6 +24,7 @@ const Cart = () => {
     let data = [...new Map(info.map((item) => [item.title, item])).values()];
     setCartItems(data);
     setFilteredArray(data);
+    handlePrices();
   };
 
   // =================== ENTRING CARTS DATA IN DB ========================
@@ -41,7 +44,6 @@ const Cart = () => {
 
   useEffect(() => {
     getCarts("cartitems");
-    handlePrices();
   }, []);
 
   useEffect(() => {
@@ -95,6 +97,22 @@ const Cart = () => {
     );
   };
 
+  const makePayment = async () => {
+    const stripe = await loadStripe(
+      import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+    );
+
+    let responseInfo = await MoreDetail(filteredArray, "checkout-session");
+
+    const result = stripe.redirectToCheckout({
+      sessionId: responseInfo.id,
+    });
+
+    if (result.error) {
+      console.log(result.error);
+    }
+  };
+
   return (
     <main className="w-[100%] overflow-hidden">
       <Navigation search={search} setSearch={setSearch} />
@@ -126,7 +144,7 @@ const Cart = () => {
         {/* ====================== Total Section ============================ */}
 
         <div className="grow h-[2px] mt-[20px] bg-gray-200"></div>
-        <section className="w-full min-h-[70px] max-[696px]:mt-[10px] flex max-[696px]:flex-col gap-x-[30px] max-[696px]:gap-y-[15px] items-center justify-between ">
+        <section className="w-full min-h-[60px] max-[696px]:mt-[10px] flex max-[696px]:flex-col gap-x-[30px] max-[696px]:gap-y-[15px] items-center justify-between ">
           <div className="flex items-center max-[656px]:flex-col gap-x-[10px]">
             <p
               style={{ fontFamily: "Montserrat, sans-serif" }}
@@ -136,13 +154,23 @@ const Cart = () => {
             </p>
             <input
               type="text"
-              className="bg-[#F1F1F1] rounded-sm w-[250px] h-[30px] px-[5px] py-[3px] outline-none  "
+              className="bg-[#F1F1F1] rounded-sm w-[250px] h-[30px] px-[5px] py-[3px] outline-none"
             />
           </div>
           <div style={{ fontFamily: "Montserrat, sans-serif" }}>
             <p className="text-[16px] font-[600]">Total Cost : $ {totalCost}</p>
           </div>
         </section>
+        <div className="flex w-full justify-end max-[696px]:justify-center max-[696px]:mt-[10px]">
+          <button
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="bg-blue-500 px-[23px] cursor-pointer rounded-sm py-[3px] text-white font-[500] text-[16px] active:brightness-70 border-[1px] border-transparent hover:border-blue-500 hover:bg-white hover:text-blue-500 hover:font-[500] transition-colors ease duration-500"
+            disabled={totalCost === 0}
+            onClick={makePayment}
+          >
+            Checkout
+          </button>
+        </div>
       </section>
     </main>
   );

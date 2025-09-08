@@ -23,6 +23,7 @@ import Items from "../controller/Cart Items/CartItems.js";
 import upload from "../multer/multer.js";
 import removeCartItem from "../controller/Cart Items/RemoveItem.js";
 import likeComment from "../controller/Comments/LikeComment.js";
+import stripeCheckout from "../controller/Stripe Checkout/stripeCheckout.js";
 
 let router = express.Router();
 
@@ -82,5 +83,7 @@ router.get("/cartitems", Items);
 router.delete("/removeitem", removeCartItem);
 
 router.post("/likes", likeComment);
+
+router.post("/checkout-session", stripeCheckout);
 
 export default router;

@@ -16,6 +16,7 @@ app.use(express.json());
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
+
 connectDB(db_url);
 app.use("/", router);
 

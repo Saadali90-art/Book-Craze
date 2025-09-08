@@ -60,7 +60,7 @@ const Footer = () => {
         <div className="grow bg-white h-[1px] "></div>
         <div className="flex justify-center">
           {" "}
-          <p className="  text-white font-[400] py-[20px] max-[627px]:text-center max-[631px]:text-sm">
+          <p className="  text-white font-[400] py-[20px] max-[627px]:text-center max-[631px]:text-[sm] text-[14px]">
             All stories and content are protected. Unauthorized reproduction is
             prohibited.
           </p>

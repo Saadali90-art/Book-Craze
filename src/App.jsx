@@ -12,6 +12,8 @@ import Empower from "./Components/Empower";
 import SearchedData from "./Components/SearchedData";
 import Categories from "./Components/Categories";
 import MyAccount from "./Components/MyAccount";
+import Success from "./Components/Payments/Success";
+import Cancel from "./Components/Payments/Cancel";
 
 const App = () => {
   return (
@@ -66,6 +68,10 @@ const App = () => {
         <Route path="/search/:id?" element={<SearchedData />}></Route>
 
         <Route path="/category/:id" element={<Categories />}></Route>
+
+        <Route path="/success" element={<Success />}></Route>
+
+        <Route path="/cancel" element={<Cancel />}></Route>
       </Routes>
     </Router>
   );
