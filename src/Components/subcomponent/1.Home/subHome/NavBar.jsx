@@ -7,6 +7,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import { PiSignOut } from "react-icons/pi";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 
 const NavBar = ({
   setSideBar,
@@ -19,7 +20,17 @@ const NavBar = ({
   setshowpop,
   deletepopup,
 }) => {
+  const [middleButtons, setMiddleButtons] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("tokenuserin")) {
+      setMiddleButtons(true);
+    } else {
+      setMiddleButtons(false);
+    }
+  }, [userInfo]);
 
   return (
     <>
@@ -56,7 +67,7 @@ const NavBar = ({
         >
           <div
             style={{
-              display: localStorage.getItem("tokenuserin") ? "visible" : "none",
+              display: middleButtons ? "block" : "none",
             }}
           >
             <button
@@ -145,9 +156,9 @@ const NavBar = ({
         {/* ================ Delete Pop Up =========================== */}
 
         {showpop && (
-          <div className="w-[100%] h-screen absolute z-50 top-0  flex items-center justify-center ">
-            <div className="w-[600px] h-[110px] bg-white rounded-lg relative border-[2px] border-gray-400">
-              <p className="mx-[15px] my-[15px] font-[500]">
+          <div className="w-[100%] h-screen absolute z-50 top-0  flex items-center justify-center">
+            <div className="w-[600px] h-[110px] bg-white rounded-lg relative ">
+              <p className="mx-[15px] my-[15px] font-[500] mb-[10px]">
                 Do you want to delete your account and books?
               </p>
 

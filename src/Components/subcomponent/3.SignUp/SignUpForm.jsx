@@ -11,6 +11,7 @@ const SignUpForm = ({ handlesubmit, showpass, setshowpass }) => {
         onSubmit={handlesubmit}
       >
         <input
+          required
           type="text"
           placeholder="Enter Your Name"
           name="name"
@@ -18,12 +19,14 @@ const SignUpForm = ({ handlesubmit, showpass, setshowpass }) => {
           className=" bg-black/10 px-[15px] py-[5px] rounded-2xl outline-none my-[10px]  text-[15px]  select-none max-[369px]:text-[12px] max-[369px]:text-[#4d4d4d] mt-[15px]  "
         />
         <input
+          required
           type="email"
           placeholder="Email Address"
           name="email"
           className=" bg-black/10 px-[15px] py-[5px] rounded-2xl outline-none my-[10px]  text-[15px]  select-none max-[369px]:text-[12px] max-[369px]:text-[#4d4d4d]"
         />
         <input
+          required
           type={showpass ? "text" : "password"}
           placeholder="Password"
           name="password"
@@ -39,12 +42,14 @@ const SignUpForm = ({ handlesubmit, showpass, setshowpass }) => {
         </button>
 
         <input
+          required
           type={showpass ? "text" : "password"}
           name="confirm"
           placeholder="Confirm Password"
           className=" bg-black/10 px-[15px] py-[5px] rounded-2xl outline-none my-[10px]  text-[15px] select-none max-[369px]:text-[12px] max-[369px]:text-[#4d4d4d]"
         />
         <input
+          required
           type="text"
           placeholder="Phone Number"
           name="phone"

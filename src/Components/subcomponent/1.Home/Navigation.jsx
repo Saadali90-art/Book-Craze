@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import SignInData from "../../Requests/Home Requests/SignInData.js";
 import newBooks from "../../Requests/Home Requests/NewBooks.js";
 import SideBar from "./subHome/SideBar.jsx";
 import NavBar from "./subHome/NavBar.jsx";
 import SearchData from "./subHome/SearchData.jsx";
+import MoreDetail from "../../Requests/MoreDetails/More.js";
+import { ShowPopContext } from "../../../App.jsx";
 
 const Navigation = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -14,14 +16,21 @@ const Navigation = () => {
   const [titles, setTitles] = useState([]);
   const [searchInfo, setSearchInfo] = useState("");
   const [suggestion, setSuggestion] = useState(false);
-  const [showpop, setshowpop] = useState(false);
   const [suggestArr, setSuggestArr] = useState([]);
+
+  const { showpop, setshowpop } = useContext(ShowPopContext);
 
   const navigate = useNavigate();
 
   // ======================= GETTING THE USER INFORMATION FOR SIGN UP ==========================
 
   useEffect(() => {
+    const googleLogIn = async (query) => {
+      let result = await MoreDetail({ id: query }, "googlelogin");
+      localStorage.setItem("tokenuserin", result.token);
+      setUserInfo(result.message);
+    };
+
     const fetchData = async (link, link2) => {
       let data = await SignInData(link);
       setUserInfo(data);
@@ -29,7 +38,13 @@ const Navigation = () => {
       setTitles(titles);
     };
 
-    fetchData("signindata", "titles");
+    const query = window.location.href.split("?")[1];
+
+    if (query && query.length > 0) {
+      googleLogIn(query);
+    } else {
+      fetchData("signindata", "titles");
+    }
   }, []);
 
   const handleSearch = (e) => {
@@ -56,6 +71,11 @@ const Navigation = () => {
 
   const handlesignout = () => {
     localStorage.removeItem("tokenuserin");
+
+    let data = window.location.href.split("?")[1];
+    if (data !== null || data !== undefined || data.length > 0) {
+      navigate("/");
+    }
     location.reload();
   };
 
@@ -69,6 +89,7 @@ const Navigation = () => {
     <nav className="w-[100%] bg-white  fixed top-0 z-20">
       <div
         style={{
+          backgroundColor: showpop ? "#e6e5e5" : "white",
           opacity: search ? 0 : 1,
           transform: search ? "translateX(-1350px)" : "translateX(0px)",
           transition: "transform 500ms ease, opacity 300ms ease",

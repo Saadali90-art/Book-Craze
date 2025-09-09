@@ -1,7 +1,7 @@
 import React from "react";
-import facebook from "../../../assets/SignUp/facebook.png";
-import youtube from "../../../assets/SignUp/youtube.png";
-import instagram from "../../../assets/SignUp/instagram.png";
+import facebook from "../../../assets/Footer/facebook.png";
+import youtube from "../../../assets/Footer/youtube.png";
+import instagram from "../../../assets/Footer/instagram.png";
 
 const Footer = () => {
   return (

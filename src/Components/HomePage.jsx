@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import "../animation.css";
 import Carousel from "./subcomponent/1.Home/Carousel";
 import Navigation from "./subcomponent/1.Home/Navigation";
@@ -11,12 +11,14 @@ import { fanficTags, novelinfo } from "./db/data.js";
 import Footer from "./subcomponent/1.Home/Footer.jsx";
 import FanFic from "./subcomponent/1.Home/FanFic.jsx";
 import PopularTags from "./subcomponent/1.Home/PopularTags.jsx";
+import { ShowPopContext } from "../App.jsx";
 
 const HomePage = () => {
   const [fanfic, setFanfic] = useState("");
   const [popularTags, setPopularTags] = useState([]);
   const navigate = useNavigate();
   const [newArrival, setNewArrival] = useState([]);
+  const { showpop } = useContext(ShowPopContext);
 
   // =================================== NEW ARRIVALS ===================================
 
@@ -76,7 +78,10 @@ const HomePage = () => {
 
   return (
     <main
+      className="min-h-[500px]"
       style={{
+        width: "100%",
+        backgroundColor: showpop ? "#e6e5e5" : "white",
         fontFamily: "Open Sans, sans-serif",
         userSelect: "none",
       }}
@@ -86,7 +91,7 @@ const HomePage = () => {
       {/* ================= BANNER SECTION =======================  */}
 
       <div className="w-full mx-auto">
-        <div className="container w-[70%] min-h-[360px] max-[1170px]:w-[80%] max-[924px]:w-[90%] mx-auto mt-[80px] max-[776px]:mt-[60px] flex max-[776px]:flex-col justify-between ">
+        <div className="container w-[70%] min-h-[360px] max-[1170px]:w-[80%] max-[924px]:w-[90%] mx-auto pt-[80px] max-[776px]:pt-[60px] flex max-[776px]:flex-col justify-between ">
           <Carousel />
 
           <WebNovels data={novelinfo} />

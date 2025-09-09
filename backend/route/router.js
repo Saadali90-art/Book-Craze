@@ -25,6 +25,9 @@ import removeCartItem from "../controller/Cart Items/RemoveItem.js";
 import likeComment from "../controller/Comments/LikeComment.js";
 import cartCheckout from "../controller/Stripe Checkout/stripeCheckout.js";
 import planCheckout from "../controller/Stripe Checkout/planCheckout.js";
+import passport from "passport";
+import googleUser from "../controller/UserInfo/googleUser.js";
+import googleLogin from "../controller/UserInfo/GoogleLogin.js";
 
 let router = express.Router();
 
@@ -88,5 +91,22 @@ router.post("/likes", likeComment);
 router.post("/checkout-session", cartCheckout);
 
 router.post("/plan-session", planCheckout);
+
+router.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/signup" }),
+  (req, res) => {
+    const userId = req.user.userId;
+
+    res.redirect(`http://localhost:5173/?${userId}`);
+  }
+);
+
+router.post("/googlelogin", googleLogin);
 
 export default router;

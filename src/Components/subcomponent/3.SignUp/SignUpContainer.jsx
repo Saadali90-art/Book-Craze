@@ -3,8 +3,7 @@ import "../../../animation.css";
 import bgimg from "../../../assets/Login/bgimg.jpg";
 import { Link } from "react-router-dom";
 import SignUpForm from "./SignUpForm";
-import facebook from "../../../assets/SignUp/facebook.png";
-import instagram from "../../../assets/SignUp/instagram.png";
+import google from "../../../assets/SignUp/google.jpeg";
 
 const SignUpContainer = ({
   handlesubmit,
@@ -14,6 +13,10 @@ const SignUpContainer = ({
   shake,
   animateArr,
 }) => {
+  const handleGoogle = async () => {
+    window.location.href = "http://127.0.0.1:8000/auth/google";
+  };
+
   return (
     <>
       {/* ================================= SIGN UP CONTAINER ================================== */}
@@ -88,30 +91,20 @@ const SignUpContainer = ({
 
           {/* ===================== MORE SIGN UP OPTIONS ======================================== */}
 
-          <div className="w-[90%] mx-auto my-auto flex justify-between ">
-            <img
-              className="w-[35px] h-[35px] p-[1px] rounded-[50%]"
-              src="https://img.icons8.com/?size=512&id=4hR4Ih04Je2t&format=png"
-              alt="Google Icon"
-            />
-
-            <img
-              className="w-[35px] h-[35px] p-[1px] rounded-[50%]"
-              src={facebook}
-              alt="Facebook Icon"
-            />
-
-            <img
-              className="w-[35px] h-[35px] p-[1px] rounded-[50%]"
-              src="https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png"
-              alt="Github Icon"
-            />
-
-            <img
-              className="w-[35px] h-[35px] p-[1px] rounded-[50%]"
-              src={instagram}
-              alt="Instagram Icon"
-            />
+          <div className="w-[100%] mx-auto my-auto flex justify-between ">
+            <button
+              onClick={handleGoogle}
+              className="w-[70%] mx-auto px-[1px] py-[5px] cursor-pointer border-[2px] border-gray-300 hover:border-gray-600 rounded-[30px] flex flex-row gap-x-[20px] items-center justify-center"
+            >
+              <img
+                className="w-[25px] h-[25px] rounded-[50%]"
+                src={google}
+                alt="Google Icon"
+              />
+              <p className="text-[15px] font-[500] mb-[2px]">
+                Sign in with Google
+              </p>
+            </button>
           </div>
         </div>
       </div>
