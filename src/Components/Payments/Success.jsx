@@ -36,7 +36,7 @@ const Success = () => {
         <div className="flex flex-col items-center mt-[10px] justify-center ">
           <button
             onClick={() => navigate("/")}
-            className="bg-[#1ab9d1] px-[10px] py-[7px] font-[500] rounded-sm text-white text-[14px] cursor-pointer  "
+            className="bg-[#1ab9d1] px-[10px] py-[7px] font-[500] rounded-sm text-white text-[14px] cursor-pointer  active:brightness-75"
           >
             Go To HomePage
           </button>

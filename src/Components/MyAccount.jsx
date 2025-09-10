@@ -40,7 +40,7 @@ const MyAccount = () => {
       setAccountInfo(datainfo);
     };
 
-    fetchData("myaccount");
+    fetchData("account/myaccount");
   }, []);
 
   // ====================== GETTING THE USER PUBLISHED BOOKS =====================
@@ -56,7 +56,7 @@ const MyAccount = () => {
       }
     };
 
-    fetchData("user/dashboard");
+    fetchData("book/dashboard");
   }, []);
 
   // ============================= FOR LOADING DOTS ===============================
@@ -104,7 +104,7 @@ const MyAccount = () => {
 
     try {
       if (formEntry !== null) {
-        const info = await accountData("changeinfo", formEntry);
+        const info = await accountData("account/changeinfo", formEntry);
 
         if ((updateInfo?.name ?? accountInfo.name) !== accountInfo.name) {
           if (info.token) {

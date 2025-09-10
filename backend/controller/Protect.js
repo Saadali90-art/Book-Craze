@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import jsonwebtoken from "jsonwebtoken";
-import SignModel from "../../Model/SignInModel.js";
+import SignModel from "../Model/SignInModel.js";
 
 const ProtectedPages = async (req, res) => {
   let token = req.headers.token;

@@ -14,6 +14,7 @@ import Categories from "./Components/Categories";
 import MyAccount from "./Components/MyAccount";
 import Success from "./Components/Payments/Success";
 import Cancel from "./Components/Payments/Cancel";
+import ScrollToTop from "./Components/ScrollToTop";
 export const ShowPopContext = createContext();
 
 const App = ({ children }) => {
@@ -22,6 +23,7 @@ const App = ({ children }) => {
   return (
     <ShowPopContext.Provider value={{ showpop, setshowpop }}>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/login" element={<Login />}></Route>

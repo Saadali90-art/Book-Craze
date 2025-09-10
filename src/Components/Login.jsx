@@ -24,7 +24,7 @@ const Login = () => {
     };
 
     try {
-      LogDataSend(dataobj, "login", navigate, setlogerror);
+      LogDataSend(dataobj, "user/login", navigate, setlogerror);
     } catch (error) {
       console.log("Can Not Give Data To Log Data ", error.messsage);
     }

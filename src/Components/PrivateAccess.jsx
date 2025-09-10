@@ -17,7 +17,10 @@ const PrivateAccess = ({ children }) => {
         return;
       }
 
-      let result = await fetch("http://127.0.0.1:8000/protect", reqOpt);
+      let result = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}protect`,
+        reqOpt
+      );
       let response = await result.json();
       setisAuth(response.userVerf);
     };

@@ -18,7 +18,7 @@ const Carousel = () => {
       setWeeklyTop(data);
     };
 
-    fetchData("weeklytop");
+    fetchData("topbooks/weeklytop");
   }, []);
 
   // ======================== GETTING THE WIDTH OF THE DIV ===============================

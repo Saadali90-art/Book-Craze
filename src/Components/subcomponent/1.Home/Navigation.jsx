@@ -43,7 +43,7 @@ const Navigation = () => {
     if (query && query.length > 0) {
       googleLogIn(query);
     } else {
-      fetchData("signindata", "titles");
+      fetchData("user/signindata", "book/titles");
     }
   }, []);
 

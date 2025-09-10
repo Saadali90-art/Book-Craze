@@ -7,7 +7,10 @@ const sendData = async (data, link, seterror, navigate) => {
     headers: { tokenuser: token },
   };
 
-  let result = await fetch(`http://127.0.0.1:8000/${link}`, reqOpt);
+  let result = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}${link}`,
+    reqOpt
+  );
 
   if (!result.ok) {
     let response = await result.json();

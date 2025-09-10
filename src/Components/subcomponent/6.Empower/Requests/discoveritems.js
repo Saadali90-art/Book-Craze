@@ -6,6 +6,7 @@ const discoveritems = async (link) => {
 
   let result = await fetch(`http://127.0.0.1:8000/${link}`, reqopt);
   let response = await result.json();
+  response = response.sort((a, b) => b.views - a.views);
 
   return response;
 };

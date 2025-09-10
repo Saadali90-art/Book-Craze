@@ -1,4 +1,4 @@
-import Publish from "../Model/PublishModel.js";
+import Publish from "../../Model/PublishModel.js";
 
 const alsolike = async (req, res) => {
   let { category } = req.body;

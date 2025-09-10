@@ -1,7 +1,6 @@
-import React from "react";
-import facebook from "../../../assets/Footer/facebook.png";
-import youtube from "../../../assets/Footer/youtube.png";
-import instagram from "../../../assets/Footer/instagram.png";
+import { BsWhatsapp } from "react-icons/bs";
+import { FaLinkedinIn } from "react-icons/fa6";
+import mail from "../../../assets/Footer/mail.svg";
 
 const Footer = () => {
   return (
@@ -35,31 +34,35 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-x-[15px] items-center max-[786px]:gap-x-[5px] max-[627px]:gap-x-[20px]">
-            <a href="https://www.facebook.com/profile.php?id=100088682175561">
-              <img
-                src={facebook}
-                alt=""
+            <a
+              href="https://wa.me/923015392272?text=Hello%20I%20want%20to%20know%20more%20about%20your%20services"
+              target="_blank"
+            >
+              <BsWhatsapp
+                color="#2bc600"
                 className="w-[30px] h-[30px] max-[786px]:w-[20px] max-[786px]:h-[20px] max-[627px]:w-[30px] max-[627px]:h-[30px]"
               />
             </a>
-            <a href="https://youtube.com/@islamictalimat09876?si=L3l5ljyMETU-4xjh">
-              <img
-                src={youtube}
-                alt=""
+            <a href="https://www.linkedin.com/in/saad-ali-b15413356?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+              <FaLinkedinIn
+                color="#2B7FFF"
                 className="w-[30px] h-[30px] max-[786px]:w-[20px] max-[786px]:h-[20px] max-[627px]:w-[30px] max-[627px]:h-[30px]"
               />
             </a>
-
-            <img
-              src={instagram}
-              alt=""
-              className="w-[30px] h-[30px] max-[786px]:w-[20px] max-[786px]:h-[20px] max-[627px]:w-[30px] max-[627px]:h-[30px]"
-            />
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=saadali97109@gmail.com"
+              target="_blank"
+            >
+              <img
+                src={mail}
+                alt=""
+                className="w-[45px] h-[45px] max-[786px]:w-[20px] max-[786px]:h-[20px] max-[627px]:w-[30px] max-[627px]:h-[30px]"
+              />
+            </a>
           </div>
         </div>
         <div className="grow bg-white h-[1px] "></div>
         <div className="flex justify-center">
-          {" "}
           <p className="  text-white font-[400] py-[20px] max-[627px]:text-center max-[631px]:text-[sm] text-[14px]">
             All stories and content are protected. Unauthorized reproduction is
             prohibited.

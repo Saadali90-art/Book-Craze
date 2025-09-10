@@ -12,7 +12,7 @@ const TopPicks = ({ handlemore }) => {
       setMonthlyPicks(data);
     };
 
-    fetchData("monthlypicks");
+    fetchData("topbooks/monthlypicks");
   }, []);
 
   return (

@@ -35,15 +35,15 @@ const Cart = () => {
     };
 
     if (incomingData !== "Only Show") {
-      fetchData("cart", incomingData);
-      getCarts("cartitems");
+      fetchData("cart/saveitems", incomingData);
+      getCarts("cart/cartitems");
     }
   }, [incomingData]);
 
   // ================ GETTING CARTS ITEMS ----------------------
 
   useEffect(() => {
-    getCarts("cartitems");
+    getCarts("cart/cartitems");
   }, []);
 
   useEffect(() => {
@@ -85,8 +85,8 @@ const Cart = () => {
 
   const handleDeleteItem = async (index) => {
     let data = cartItems[index];
-    let info = await removeItem("removeitem", data);
-    getCarts("cartitems");
+    let info = await removeItem("cart/removeitem", data);
+    getCarts("cart/cartitems");
   };
 
   const handleSearch = () => {
@@ -102,7 +102,7 @@ const Cart = () => {
       import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
     );
 
-    let responseInfo = await MoreDetail(filteredArray, "checkout-session");
+    let responseInfo = await MoreDetail(filteredArray, "payment/cartcheckout");
 
     const result = stripe.redirectToCheckout({
       sessionId: responseInfo.id,

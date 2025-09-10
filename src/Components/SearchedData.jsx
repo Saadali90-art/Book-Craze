@@ -17,7 +17,7 @@ const SearchedData = () => {
       setTotalData(data);
     };
 
-    fetchData("searches");
+    fetchData("book/searches");
   }, []);
 
   const handlechange = (e) => {

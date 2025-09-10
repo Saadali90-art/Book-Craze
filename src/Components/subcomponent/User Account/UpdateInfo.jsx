@@ -53,6 +53,7 @@ const UpdateInfo = ({
             <p className="text-[17px] py-[7px] font-[600]">Email Address</p>
             <input
               required
+              readOnly
               value={updateInfo?.email ?? accountInfo.email}
               onChange={(e) =>
                 setUpdateInfo({

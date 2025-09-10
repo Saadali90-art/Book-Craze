@@ -35,21 +35,23 @@ const storage = multer.diskStorage({
     cb(null, folder);
   },
   filename: (req, file, cb) => {
-    let folder = path.join("uploads", req.body.name);
     let fileInfo;
     let extname = path.extname(file.originalname);
 
     // === if the file is coverimage then first create the name and then run the function to delete the previous function
 
     if (file.fieldname === "coverImage") {
+      let folder = path.join("uploads", req.body.name);
       fileInfo = "cover" + extname;
       clearFiles(folder, path.parse(fileInfo).name);
     } else if (file.fieldname === "profileImage") {
+      let folder = path.join("uploads", req.body.name);
       fileInfo = "profile" + extname;
       clearFiles(folder, path.parse(fileInfo).name);
+    } else if (file.fieldname === "bookImage") {
+      fileInfo = Date.now() + path.extname(file.originalname);
     } else {
-      fileInfo = Date.now() + extname;
-      clearFiles(folder, path.parse(fileInfo).name);
+      fileInfo = "profile" + extname;
     }
 
     cb(null, fileInfo);

@@ -6,7 +6,10 @@ const cartsData = async (link, dataobj) => {
     body: JSON.stringify(dataobj),
     headers: { "Content-Type": "application/json", tokeninfo: token },
   };
-  let result = await fetch(`http://127.0.0.1:8000/${link}`, reqopt);
+  let result = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}${link}`,
+    reqopt
+  );
   if (result.ok) {
     let response = await result.json();
     return response;

@@ -19,7 +19,7 @@ const Categories = () => {
       );
     };
 
-    fetchData({ category: id }, "category");
+    fetchData({ category: id }, "book/category");
   }, []);
 
   // ================== POPULAR DATA WITH MOST VIEWS =====================
@@ -42,19 +42,19 @@ const Categories = () => {
     <main className="w-full">
       <Navigation />
 
-      <div className="w-full h-[130px] bg-gray-200 mt-[70px] mb-[20px] relative">
+      <div className="w-full h-[130px] max-[678px]:h-[118px] bg-gray-200 mt-[70px] max-[813px]:mt-[50px] mb-[20px] relative">
         {/* ======================== TOP SECTION OF CATEGORIES INFO ======================== */}
 
         <h1
           style={{ fontFamily: "Archivo, sans-serif" }}
-          className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-[30px] font-[600] py-[10px] pb-[34px]"
+          className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-[30px] max-[678px]:text-[25px] font-[600] py-[10px] pb-[34px]"
         >
           {id}
         </h1>
 
         <div
           style={{ fontFamily: "Archivo, sans-serif" }}
-          className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-[23px] font-[500] flex flex-row gap-x-[20px] "
+          className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-[23px] max-[678px]:text-[19px] max-[678px]:mt-[ font-[500] flex flex-row gap-x-[20px] "
         >
           <button
             className="cursor-pointer"
@@ -94,10 +94,10 @@ const Categories = () => {
           ) : (
             // =================================== IF DATA IS PRESENT ==========================
 
-            <div className="flex flex-wrap gap-x-[15px] gap-y-[20px]  max-[936px]:justify-center">
+            <div className="flex flex-wrap gap-x-[15px] gap-y-[20px]  max-[937px]:justify-center">
               {categoryData.map((item, index) => (
                 <div
-                  className="w-[49%] max-[936px]:w-[90%] max-[751px]:w-[100%] h-[160px] flex gap-x-[20px] cursor-pointer"
+                  className="w-[49%] max-[937px]:w-[100%] h-[160px] flex gap-x-[20px] cursor-pointer"
                   key={index}
                   onClick={() =>
                     navigate("/user/dashboard/more", {
@@ -105,17 +105,17 @@ const Categories = () => {
                     })
                   }
                 >
-                  <div className="w-[30%] max-[936px]:w-[20%] max-[662px]:w-[25%] max-[542px]:min-w-[30%] max-[453px]:min-w-[35%] max-[375px]:min-w-[40%] h-full rounded-lg overflow-hidden">
+                  <div className="w-[30%] min-w-[130px] max-[439px]:min-w-[120px] max-[505px]:min-w-[110px] max-[937px]:w-[20%] max-[662px]:w-[25%] max-[542px]:min-w-[30%] max-[453px]:min-w-[35%] max-[375px]:min-w-[40%] h-full rounded-lg overflow-hidden">
                     <img
                       src={`http://127.0.0.1:8000${item.bookImage}`}
                       alt=""
-                      className="w-full h-full hover:scale-105 transition ease duration-250 "
+                      className="w-full h-full  hover:scale-105 transition ease duration-250 "
                     />
                   </div>
 
                   <div
                     style={{ fontFamily: "Archivo, sans-serif" }}
-                    className="py-[5px] w-[70%] max-[453px]:min-w-[65%] max-[375px]:min-w-[60%]"
+                    className="py-[5px] w-[70%] min-w-[400px] max-[1639px]:min-w-[300px] max-[1332px]:min-w-[200px] max-[453px]:min-w-[65%] max-[375px]:min-w-[60%]"
                   >
                     <div className="w-[98%] ">
                       <p className="text-[17px] pb-[5px] font-[600] truncate">
@@ -126,7 +126,7 @@ const Categories = () => {
                         $ {item.price}
                       </p>
                       <p
-                        className="text-[16px] font-[400] text-justify max-[480px]:text-left max-[552px]:pr-[5px]"
+                        className="text-[16px] font-[400] max-[480px]:text-left max-[552px]:pr-[5px]"
                         style={{
                           overflow: "hidden",
                           textOverflow: "ellipsis",

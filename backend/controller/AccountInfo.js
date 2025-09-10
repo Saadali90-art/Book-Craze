@@ -1,6 +1,6 @@
 import jsonwebtoken from "jsonwebtoken";
-import SignModel from "../../Model/SignInModel.js";
-import Comment from "../../Model/UsersComments.js";
+import SignModel from "../Model/SignInModel.js";
+import Comment from "../Model/UsersComments.js";
 
 const updateInfo = async (userData, data, coverImageinfo, profileImageinfo) => {
   return await SignModel.updateOne(

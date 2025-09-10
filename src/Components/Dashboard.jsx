@@ -23,7 +23,7 @@ const Dashboard = () => {
       setuserData(data);
     };
 
-    fetchData("user/dashboard");
+    fetchData("book/dashboard");
   }, []);
 
   // ===================== FOR LOADING OR CREATE ONE ================================
@@ -32,7 +32,7 @@ const Dashboard = () => {
     if (userData.length === 0) {
       setTimeout(() => {
         setloading(false);
-      }, 5000);
+      }, 2000);
     } else {
       setloading(true);
     }

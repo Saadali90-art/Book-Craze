@@ -9,7 +9,7 @@ import More from "../../Requests/MoreDetails/More.js";
 
 const Mission = () => {
   const handleSubsribe = async (priceId) => {
-    let result = await More({ id: priceId }, "plan-session");
+    let result = await More({ id: priceId }, "payment/plancheckout");
 
     window.location.href = result.url;
   };

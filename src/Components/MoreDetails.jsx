@@ -27,7 +27,7 @@ const MoreDetails = () => {
       setMoreInfo(moreDetails);
     };
 
-    fetchData({ id: incomingData }, "getmoreinfo");
+    fetchData({ id: incomingData }, "more/getmoreinfo");
   }, [incomingData]);
 
   //======================== GETTING THE LIKED DATA  =============================
@@ -40,7 +40,7 @@ const MoreDetails = () => {
       );
     };
 
-    fetchData({ category: moreInfo?.category }, "youlike");
+    fetchData({ category: moreInfo?.category }, "more/youlike");
   }, [moreInfo]);
 
   // ============================= CHECKING THE USER IS AUTHORIZED =========================
@@ -69,9 +69,9 @@ const MoreDetails = () => {
       let token = localStorage.getItem("tokenuserin");
       let dataToSend = { title: moreInfo?.title, token, commentValue };
 
-      await MoreDetail(dataToSend, "comment");
+      await MoreDetail(dataToSend, "comment/savecomment");
 
-      await getComments({ title: moreInfo?.title }, "allcomments");
+      await getComments({ title: moreInfo?.title }, "comment/getcomments");
 
       setCommentDiv(false);
     }
@@ -79,7 +79,7 @@ const MoreDetails = () => {
 
   useEffect(() => {
     if (moreInfo !== null) {
-      getComments({ title: moreInfo?.title }, "allcomments");
+      getComments({ title: moreInfo?.title }, "comment/getcomments");
     }
   }, [moreInfo]);
 
@@ -93,9 +93,9 @@ const MoreDetails = () => {
   const handleLikes = async (item) => {
     let token = localStorage.getItem("tokenuserin");
 
-    let info = await cartsData("likes", { item, token });
+    let info = await cartsData("comment/likes", { item, token });
 
-    await getComments({ title: moreInfo?.title }, "allcomments");
+    await getComments({ title: moreInfo?.title }, "comment/getcomments");
   };
 
   return (

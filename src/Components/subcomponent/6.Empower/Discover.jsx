@@ -15,7 +15,7 @@ const Discover = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let data = await discoveritems("discover");
+      let data = await discoveritems("book/discover");
       setDiscover(data.sort((a, b) => b.views - a.views).slice(0, 6));
     };
 

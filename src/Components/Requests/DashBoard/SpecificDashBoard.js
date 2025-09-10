@@ -6,7 +6,10 @@ const specificBooks = async (link) => {
     headers: { "Content-Type": "text/json", tokenuser: token },
   };
 
-  let result = await fetch(`http://127.0.0.1:8000/${link}`, reqOpt);
+  let result = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}${link}`,
+    reqOpt
+  );
   let response = await result.json();
 
   if (response.message === "Data Not Present") {

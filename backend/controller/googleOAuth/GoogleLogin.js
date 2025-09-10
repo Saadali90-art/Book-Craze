@@ -1,5 +1,6 @@
 import SignModel from "../../Model/SignInModel.js";
 import jsonwebtoken from "jsonwebtoken";
+
 const googleLogin = async (req, res) => {
   let { id } = req.body;
   try {

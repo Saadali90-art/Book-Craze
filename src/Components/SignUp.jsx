@@ -59,7 +59,7 @@ const SignUp = () => {
     } else {
       if (!isNaN(datainfo.phone) && formentry.password === formentry.confirm) {
         try {
-          sendData(datainfo, "signup", seterrorobj, navigate);
+          sendData(datainfo, "user/signup", seterrorobj, navigate);
         } catch (error) {
           console.log("Error While Sending Data To DB", error.message);
         }

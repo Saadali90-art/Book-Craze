@@ -30,7 +30,7 @@ const HomePage = () => {
       );
     };
 
-    fetchData("newarrivals");
+    fetchData("book/newarrivals");
   }, []);
 
   // ========================== POPULAR TAGS =============================
@@ -58,7 +58,7 @@ const HomePage = () => {
       );
     };
 
-    fetchData("allBooks");
+    fetchData("book/allBooks");
   }, []);
 
   // ========================== MORE DATA FOR HOME PAGE ==================================
