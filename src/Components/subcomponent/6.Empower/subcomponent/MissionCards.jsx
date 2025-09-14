@@ -4,6 +4,7 @@ const MissionCards = ({ item }) => {
       <div className="flex h-[120px] max-[515px]:h-[100px] ">
         <div className="min-w-[190px] max-[531px]:min-w-[150px] max-[395px]:min-w-[100px] max-[320px]:min-w-[90px]">
           <img
+            loading="lazy"
             src={item.img}
             className="min-w-[190px] max-[531px]:min-w-[150px] max-[395px]:min-w-[100px] max-[320px]:min-w-[90px] h-full rounded-md"
           />

@@ -101,7 +101,7 @@ const practices = [
     text: "Use actions, senses, and specific details to let readers experience the scene. Instead of saying someone is angry, show the tight jaw, short replies, and shaking hands. Concrete images make feelings believable and memorable. Balance showing with clear telling when needed, so the story stays smooth and easy to follow.",
   },
   {
-    heading: "Protect Focus and Reduce Distractions",
+    heading: "Stay Focused",
     text: "Choose a calm place and a set time for writing. Silence notifications, close extra tabs, and keep only the tools you need. A short timer can help you start. When your attention is protected, ideas flow faster, and you write with greater joy. Make this quiet space a regular meeting with your book.",
   },
   {
@@ -109,7 +109,7 @@ const practices = [
     text: "Share your draft with trusted readers who understand your goals. Ask what moved them, where they felt confused, and which parts dragged. Listen without arguing, take notes, and rest before revising. Good feedback shows blind spots, while revision turns a rough draft into clear, strong pages that respect your reader’s time.",
   },
   {
-    heading: "Polish Language and Proofread",
+    heading: "Polish Language",
     text: "After big revisions, smooth your sentences. Trim extra words, fix grammar that breaks understanding, and choose simple, direct language. Read aloud to catch rhythm problems and awkward lines. Clean pages feel professional and help your story shine. When the writing is clear, readers can focus on your message, not your mistakes.",
   },
 ];

@@ -12,6 +12,10 @@ const weeklyTop = async (req, res) => {
         views: -1,
       })
       .limit(6);
+
+    if (result.length < 4) {
+      result = await Publish.find({}).sort({ views: -1 }).limit(6);
+    }
     res.status(200).send(result);
   } catch (error) {
     console.log(error.message);

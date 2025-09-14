@@ -46,6 +46,7 @@ const Login = async (req, res) => {
     }
   } catch (error) {
     console.log("Error In The Login Function", error.messsage);
+    res.status(400).json({ message: "Invalid Credientials" });
   }
 };
 

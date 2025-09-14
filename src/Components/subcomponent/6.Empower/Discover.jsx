@@ -45,7 +45,7 @@ const Discover = () => {
       <Navigation />
 
       <div className="w-full flex flex-col max-[420px]:flex-row max-[420px]:flex-wrap max-[420px]:overflow-x-hidden">
-        <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] relative mx-auto mt-[90px]">
+        <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] relative mx-auto mt-[90px] max-[552px]:mt-[70px]">
           {/* ========================= BANNER SECTION ================================= */}
 
           <section className=" mx-auto flex justify-between h-[320px]  max-[590px]:flex-col ">
@@ -76,8 +76,8 @@ const Discover = () => {
 
         {/* =========================== What You Will Discover ============================ */}
 
-        <section className=" min-h-[405px] my-[40px] bg-gray-200">
-          <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto min-h-[350px] mb-[50px] ">
+        <section className=" min-h-[405px] mt-[40px] mb-[20px] bg-gray-200">
+          <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto min-h-[350px] ">
             <p
               style={{ fontFamily: " Archivo, serif" }}
               className="text-[26px] font-[600] py-[20px]"
@@ -96,7 +96,7 @@ const Discover = () => {
 
         {/* ============================== EXPLORE ============================== */}
 
-        <section className="w-full min-h-[405px] my-[40px] ">
+        <section className="w-full min-h-[405px] mt-[10]  ">
           <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto min-h-[350px] mb-[50px] ">
             <p
               style={{ fontFamily: " Archivo, serif" }}
@@ -144,8 +144,8 @@ const Discover = () => {
         {/* =========================== ABOUT US ==================================== */}
 
         <section className="relative w-[100%] min-h-[250px]">
-          <div className="w-full h-[250px] max-[1026px]:h-[300px] max-[647px]:h-[350px] max-[524px]:h-[400px] max-[447px]:h-[450px] max-[340px]:h-[500px] max-[314px]:h-[550px] absolute -z-10 bg-[url('https://t3.ftcdn.net/jpg/05/39/65/40/240_F_539654005_M7XZRGAG3TAarymgapSSgSUdgkNKQL2G.jpg')] brightness-40 bg-center bg-no-repeat bg-cover"></div>
-          <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-white pt-[5px] text-justify">
+          <div className="w-full h-full absolute -z-10 bg-[url('https://t3.ftcdn.net/jpg/05/39/65/40/240_F_539654005_M7XZRGAG3TAarymgapSSgSUdgkNKQL2G.jpg')] brightness-40 bg-center bg-no-repeat bg-cover"></div>
+          <div className="container w-[70%] max-[1170px]:w-[80%] max-[924px]:w-[90%] mx-auto text-white pt-[5px] text-justify py-[20px]">
             <p
               style={{ fontFamily: " Archivo, serif" }}
               className="w-full mx-auto text-[26px] font-[500] py-[20px]"
@@ -160,7 +160,7 @@ const Discover = () => {
               endless discovery.
             </p>
             <p
-              className="pt-[5px] pb-[24px]"
+              className="pt-[5px] "
               style={{ fontFamily: "Montserrat, sans-serif" }}
             >
               By emphasizing creativity and exploration, we provides more than
@@ -173,35 +173,37 @@ const Discover = () => {
 
         {/* ============================== JOINING IN THE USER =============================== */}
 
-        <section className="w-full h-[230px] my-[40px]  ">
-          <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto h-[350px] max-[425px]:h-[200px] mb-[50px] flex justify-between ">
-            <div className="h-[200px] py-[30px] max-[577px]:mx-auto">
-              <p
-                style={{ fontFamily: "Archivo, san-serif" }}
-                className="text-[22px] max-[964px]:text-[18px] font-[700] "
+        <section className="bg-yellow py-10">
+          <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto flex flex-col md:flex-row items-center max-[768px]:items-start justify-between gap-6">
+            {/* Text Content */}
+            <div className="max-w-lg text-center md:text-left max-[450px]:text-left">
+              <h3
+                style={{ fontFamily: "Archivo, sans-serif" }}
+                className="text-2xl md:text-3xl font-bold "
               >
-                Great authors start with a single page
-              </p>
+                A new world opens with every book.
+              </h3>
               <p
                 style={{ fontFamily: "Patrick Hand, sans-serif" }}
-                className="font-[500] text-[19px] max-[964px]:text-[15px] py-[5px] "
+                className="text-lg md:text-xl font-medium mt-2 max-[768px]:text-left"
               >
-                Your words could shape the next unforgettable tale.
+                Every book you open leads to unforgettable moments.
               </p>
 
               <button
                 onClick={() => handlejoin()}
-                className="text-[16px] font-[600] border-black mt-[10px] cursor-pointer active:brightness-75 active:scale-95 border-[2px] flex absolute items-center bg-white px-[10px] py-[5px] rounded-md gap-x-[5px] hover:text-white hover:bg-black/90  "
+                className="mt-4 px-5 py-2 text-sm font-semibold border-2 border-black rounded-md bg-white text-black flex items-center gap-2 hover:bg-black hover:text-white active:scale-95 transition"
               >
-                Join Us
-                <FaArrowRight size={14} />
+                Join Us <FaArrowRight size={14} />
               </button>
             </div>
 
-            <div className="max-[577px]:hidden">
+            {/* Image */}
+            <div className="hidden md:block">
               <img
                 src={JoinUs}
-                className="w-[350px] max-[1062px]:w-[290px]  h-[220px] "
+                alt="Join Us"
+                className="w-[320px] md:w-[350px] h-[220px] object-cover rounded-xl shadow-md"
               />
             </div>
           </div>

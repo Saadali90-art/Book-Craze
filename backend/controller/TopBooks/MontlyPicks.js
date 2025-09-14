@@ -10,6 +10,11 @@ const MontlyPicks = async (req, res) => {
     let result = await Publish.find({ date: { $gte: lastMonth } })
       .sort({ views: -1 })
       .limit(8);
+
+    if (result.length < 8) {
+      result = await Publish.find({}).sort({ views: -1 }).limit(8);
+    }
+
     res.status(200).send(result);
   } catch (error) {
     console.log(error.message);

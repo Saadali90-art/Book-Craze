@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema({
   gender: { type: String, default: null },
   location: { type: String, default: "global" },
   about: { type: String, default: null },
+  resetPass: { type: String, default: null },
+  resetPassExpiry: { type: Number, default: null },
 });
 
 const SignModel = mongoose.model("Sign_In", userSchema);

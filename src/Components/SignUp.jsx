@@ -98,7 +98,7 @@ const SignUp = () => {
   }, [errorobj]);
 
   return (
-    <div className="w-screen h-screen bg-[url('https://img.freepik.com/free-vector/minimalistic-blur-gradient-banner-web-app-backdrop-design_1017-44315.jpg')] bg-no-repeat bg-cover flex items-center justify-center select-none">
+    <div className="w-screen h-screen max-[969px]:py-[20px] py-[10px] bg-[url('https://img.freepik.com/free-vector/minimalistic-blur-gradient-banner-web-app-backdrop-design_1017-44315.jpg')] bg-no-repeat bg-cover flex items-center justify-center select-none">
       <SignUpContainer
         handlesubmit={handlesubmit}
         showpass={showpass}

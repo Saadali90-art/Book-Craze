@@ -21,7 +21,7 @@ const SignUpContainer = ({
     <>
       {/* ================================= SIGN UP CONTAINER ================================== */}
 
-      <div className="w-[350px] max-[369px]:w-[250px]  h-[600px] max-[369px]:h-[550px] bg-white rounded-md flex items-center justify-center">
+      <div className="w-[350px] max-[369px]:w-[250px]  h-[600px] max-[369px]:h-[530px] bg-white rounded-md flex items-center justify-center">
         <div className=" w-[85%] h-[95%]  flex flex-col ">
           {/* ==================== NAV BAR SIGN UP CONTAINER =========================== */}
 
@@ -32,7 +32,7 @@ const SignUpContainer = ({
               className="w-[70px] h-[70px] max-[369px]:w-[50px] max-[369px]:h-[50px] rounded-[50%]"
             />
             <h1
-              className="font-[600] text-[28px] max-[369px]:text-[30px] text-transparent bg-clip-text px-[20px] max-[369px]:px-[10px] bg-cover"
+              className="font-[600] text-[28px] max-[369px]:text-[20px] text-transparent bg-clip-text px-[20px] max-[369px]:px-[10px] bg-cover"
               style={{
                 fontFamily: "Playfair Display SC, sans-serif",
                 backgroundImage: `url(${bgimg})`,
@@ -91,17 +91,17 @@ const SignUpContainer = ({
 
           {/* ===================== MORE SIGN UP OPTIONS ======================================== */}
 
-          <div className="w-[100%] mx-auto my-auto flex justify-between ">
+          <div className="w-[100%] mx-auto mt-[15px] max-[369px]:mt-[10px] mb-[20px] max-[369px]:mb-[0px] flex justify-between ">
             <button
               onClick={handleGoogle}
-              className="w-[70%] mx-auto px-[1px] py-[5px] cursor-pointer border-[2px] border-gray-300 hover:border-gray-600 rounded-[30px] flex flex-row gap-x-[20px] items-center justify-center"
+              className="w-[70%] max-[369px]:w-[100%] mx-auto px-[1px] py-[5px] cursor-pointer border-[2px] border-gray-300 hover:border-gray-600 rounded-[30px] flex flex-row gap-x-[20px] items-center justify-center"
             >
               <img
-                className="w-[25px] h-[25px] rounded-[50%]"
+                className="w-[25px] h-[25px] max-[369px]:w-[20px] max-[369px]:h-[20px] rounded-[50%]"
                 src={google}
                 alt="Google Icon"
               />
-              <p className="text-[15px] font-[500] mb-[2px]">
+              <p className="text-[15px] max-[369px]:text-[13px] font-[500] mb-[2px]">
                 Sign in with Google
               </p>
             </button>

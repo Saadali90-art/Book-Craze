@@ -24,7 +24,7 @@ const Mission = () => {
         {/* ========================== HERO SECTION ================================ */}
 
         <section className="w-[100%] ">
-          <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] h-[750px] mx-auto flex max-[871px]:flex-col gap-x-[20px] pt-[70px] ">
+          <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] h-[750px] mx-auto flex max-[871px]:flex-col gap-x-[20px] pt-[70px] max-[338px]:pt-[50px] ">
             <div className=" w-[55%] max-[1655px]:w-[45%] max-[871px]:w-[99%] max-[871px]:text-center max-[871px]:my-[50px] flex flex-col justify-center ">
               <p
                 style={{ fontFamily: "Libertinus Serif, serif" }}
@@ -39,7 +39,12 @@ const Mission = () => {
               </p>
             </div>
             <div className="w-[45%] max-[1655px]:w-[55%] max-[871px]:w-[99%] max-[500px]:mx-auto max-[871px]:h-[550px] max-[768px]:h-[500px]">
-              <img src={mission} alt="" className="min-w-full h-full" />
+              <img
+                loading="lazy"
+                src={mission}
+                alt=""
+                className="min-w-full h-full"
+              />
             </div>
           </div>
         </section>

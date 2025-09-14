@@ -19,6 +19,7 @@ import PublishOne from "./controller/Publish.js";
 import account from "./route/userAccount.js";
 import stripe from "./route/stripe.js";
 import googleOAuth from "./route/googleOAuth.js";
+import forgotPassword from "./route/forgotPassword.js";
 
 let app = express();
 
@@ -39,20 +40,6 @@ app.use(
     credentials: true,
   })
 );
-
-// === ROUTERS
-app.use("/user", user);
-app.use("/book", getBooks);
-app.use("/topbooks", topBooks);
-app.post("/user/publish", upload.single("bookImage"), PublishOne);
-app.use("/comment", comments);
-app.use("/cart", cartRoutes);
-app.use("/more", moreDetails);
-app.use("/account", account);
-app.use("/payment", stripe);
-app.use("/", googleOAuth);
-
-app.get("/protect", ProtectedPages);
 
 // === SESSION MANAGEMENT
 app.use(
@@ -91,6 +78,21 @@ passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
 
 connectDB(db_url);
+
+// === ROUTERS
+app.use("/user", user);
+app.use("/book", getBooks);
+app.use("/topbooks", topBooks);
+app.post("/user/publish", upload.single("bookImage"), PublishOne);
+app.use("/comment", comments);
+app.use("/cart", cartRoutes);
+app.use("/more", moreDetails);
+app.use("/account", account);
+app.use("/payment", stripe);
+app.use("/", googleOAuth);
+app.use("/forgot", forgotPassword);
+
+app.get("/protect", ProtectedPages);
 
 app.listen(PORT, () => {
   console.log("server up..");
