@@ -27,6 +27,7 @@ const SignUpContainer = ({
 
           <div className="flex items-center justify-center">
             <img
+              loading="eager"
               src={logoMain}
               alt="Logo Image"
               className="w-[70px] h-[70px] max-[369px]:w-[50px] max-[369px]:h-[50px] rounded-[50%]"
@@ -58,7 +59,7 @@ const SignUpContainer = ({
 
           {/* ============================= LAST BUTTONS ==================================  */}
 
-          <p className=" text-[10px] text-[#747272] mx-auto ">
+          <p className="text-[11px] text-[#747272] mx-auto ">
             Already Have Account
             <Link to="/login" className="text-blue-500 underline">
               Log In
@@ -67,7 +68,11 @@ const SignUpContainer = ({
 
           <p
             className=" text-[13px]  mx-auto py-[3px] text-red-600 transition duration-1000 delay-70 "
-            style={{ opacity: showerror ? 100 : 0 }}
+            style={{
+              opacity: showerror ? 100 : 0,
+              height: showerror ? "20px" : "0px",
+              transition: "opacity 500ms ease, height 500ms ease",
+            }}
           >
             {animateArr[0]}
           </p>
@@ -97,6 +102,7 @@ const SignUpContainer = ({
               className="w-[70%] max-[369px]:w-[100%] mx-auto px-[1px] py-[5px] cursor-pointer border-[2px] border-gray-300 hover:border-gray-600 rounded-[30px] flex flex-row gap-x-[20px] items-center justify-center"
             >
               <img
+                loading="eager"
                 className="w-[25px] h-[25px] max-[369px]:w-[20px] max-[369px]:h-[20px] rounded-[50%]"
                 src={google}
                 alt="Google Icon"

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "./subcomponent/1.Home/Navigation.jsx";
 import SignInData from "./Requests/Home Requests/SignInData.js";
 import specificBooks from "./Requests/DashBoard/SpecificDashBoard.js";
@@ -8,7 +8,6 @@ import Images from "./subcomponent/User Account/Images.jsx";
 import UserInfo from "./subcomponent/User Account/UserInfo.jsx";
 import Library from "./subcomponent/User Account/Library.jsx";
 import UpdateInfo from "./subcomponent/User Account/UpdateInfo.jsx";
-import { ShowPopContext } from "../App.jsx";
 
 const MyAccount = () => {
   const [accountInfo, setAccountInfo] = useState(null);
@@ -22,7 +21,6 @@ const MyAccount = () => {
   const [cover, setCover] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
-  const { showpop } = useContext(ShowPopContext);
 
   const token = localStorage.getItem("tokenuserin");
   const navigate = useNavigate();

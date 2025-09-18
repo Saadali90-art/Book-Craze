@@ -10,7 +10,7 @@ user.post("/signup", sendData);
 
 user.get("/signindata", SignInData);
 
-user.delete("/deleteUser", deleteUser);
+user.delete("/deleteuser", deleteUser);
 
 user.post("/login", Login);
 

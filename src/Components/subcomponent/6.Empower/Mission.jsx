@@ -1,4 +1,3 @@
-import React from "react";
 import Navigation from "../1.Home/Navigation";
 import mission from "../../../assets/mission/mission.jpeg";
 import { missionData, pricingPlans } from "./subcomponent/db.js";
@@ -28,7 +27,7 @@ const Mission = () => {
             <div className=" w-[55%] max-[1655px]:w-[45%] max-[871px]:w-[99%] max-[871px]:text-center max-[871px]:my-[50px] flex flex-col justify-center ">
               <p
                 style={{ fontFamily: "Libertinus Serif, serif" }}
-                className="text-[40px]/[45px] font-[600] max-[590px]:text-[30px]/[35px] max-[590px]:font-[600] "
+                className="text-[40px]/[45px] font-[700] max-[590px]:text-[30px]/[35px] max-[590px]:font-[600]"
               >
                 Why We Exist & How You Can Join
               </p>

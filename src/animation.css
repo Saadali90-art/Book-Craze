@@ -46,3 +46,15 @@
     transform: scale(1) rotate(0deg);
   }
 }
+
+.sidebar-top {
+  transition: transform 0.8s ease 0.3s, opacity 0.5s ease 0.2s;
+}
+.sidebar-top.open {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sidebar-top.closed {
+  opacity: 0;
+  transform: translateY(10px);
+}

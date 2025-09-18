@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import SmallCards from "../1.Home/subHome/SmallCards";
 
@@ -22,7 +21,7 @@ const Library = ({ edit, handlemore, publisherBooks }) => {
         className="container w-full h-full mx-auto mt-[60px] mb-[20px]"
       >
         <h1
-          className="text-[25px] font-[600] capitalize"
+          className="text-[25px] max-[393px]:text-[22px] font-[600] capitalize"
           style={{ fontFamily: "Montserrat, sans-serif" }}
         >
           Your Libaray

@@ -1,4 +1,3 @@
-import React from "react";
 import checkmark from "../../../../assets/Mission/checkmark.svg";
 import checkWhite from "../../../../assets/Mission/checkWhite.svg";
 import background from "../../../../assets/Mission/background.png";

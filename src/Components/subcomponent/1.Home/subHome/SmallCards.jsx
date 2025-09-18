@@ -1,5 +1,3 @@
-import React from "react";
-
 const SmallCards = ({ index, item, handlemore }) => {
   return (
     <>
@@ -10,6 +8,8 @@ const SmallCards = ({ index, item, handlemore }) => {
       >
         <div className="w-full overflow-hidden rounded-sm">
           <img
+            loading="eager"
+            fetchPriority="high"
             src={`http://127.0.0.1:8000${item.bookImage}`}
             alt={index + 1}
             className="w-full h-[140px] rounded-sm hover:scale-110 transition-all duration-200 ease"
@@ -24,8 +24,9 @@ const SmallCards = ({ index, item, handlemore }) => {
               display: "-webkit-box",
               WebkitBoxOrient: "vertical",
               WebkitLineClamp: 2,
+              fontFamily: "Open Sans, sans-serif",
             }}
-            className="w-full text-[15px] font-[600] py-[10px] h-[55px]"
+            className="w-full capitalize text-[14px] font-[600] py-[10px] h-[55px]"
           >
             {item.title}
           </p>

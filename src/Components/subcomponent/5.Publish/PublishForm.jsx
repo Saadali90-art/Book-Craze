@@ -131,6 +131,7 @@ const PublishForm = ({
 
             <p className="text-[17px] pb-[14px]">Image Cover</p>
             <img
+              loading="lazy"
               src={currentimage}
               className="w-[120px] h-[120px] rounded-lg mb-[14px]"
             />
@@ -138,7 +139,6 @@ const PublishForm = ({
             {/* =========================== WISH OF IMAGE FORM ================================= */}
 
             <div
-              className="max-[354px]:h-[130px]"
               style={{
                 opacity: url || browse || drop ? 0 : 1,
                 height: url || browse || drop ? "0px" : "90px",
@@ -147,14 +147,14 @@ const PublishForm = ({
                 overflow: "hidden",
               }}
             >
-              <p className="text-[17px] ">
+              <p className="text-[17px] max-[357px]:text-[15px]">
                 How would you like to add your image?
               </p>
-              <div className="w-[80%] max-[992px]:w-[85%] max-[926px]:w-[90%] max-[891px]:w-[93%] mx-auto flex justify-between py-[14px]">
+              <div className="w-[95%]  mx-auto flex justify-between gap-x-[10px] max-[334px]:gap-x-[5px] py-[14px]">
                 <button
                   onClick={() => seturl(true)}
                   type="button"
-                  className="rounded-lg px-[10px] py-[5px] shadow-[1px_2px_19px_3px_rgba(0,0,0,0.2)] hover:shadow-[1px_2px_19px_3px_rgba(59,130,246,0.8)] cursor-pointer transition ease duration-300 max-[408px]:text-sm max-[408px]:px-[10px] max-[408px]:py-[4px] max-[364px]:px-[5px] max-[320px]:text-[12px] active:bg-black/50 active:text-white "
+                  className="rounded-lg px-[10px] py-[5px] shadow-[0px_0px_15px_0px_rgba(0,0,0,0.2)] hover:shadow-[0px_0px_15px_0px_rgba(59,130,246,1)] cursor-pointer transition ease duration-300 active:bg-black/50 active:text-white whitespace-nowrap  max-[413px]:text-sm  max-[371px]:px-[4px]"
                 >
                   Image URL
                 </button>
@@ -162,14 +162,14 @@ const PublishForm = ({
                 <button
                   onClick={() => setdrop(true)}
                   type="button"
-                  className="rounded-lg px-[10px] py-[5px] shadow-[1px_2px_19px_3px_rgba(0,0,0,0.2)] hover:shadow-[1px_2px_19px_3px_rgba(59,130,246,0.8)] cursor-pointer transition ease duration-300 max-[408px]:text-sm max-[408px]:px-[10px] max-[408px]:py-[4px] max-[364px]:px-[5px] max-[320px]:text-[12px] active:bg-black/50 active:text-white "
+                  className="rounded-lg px-[10px] py-[5px] shadow-[0px_0px_15px_0px_rgba(0,0,0,0.2)] hover:shadow-[0px_0px_15px_0px_rgba(59,130,246,1)] cursor-pointer transition ease duration-300 active:bg-black/50 active:text-white whitespace-nowrap  max-[413px]:text-sm max-[371px]:px-[4px]"
                 >
                   Drag & Drop
                 </button>
                 <button
                   onClick={() => setbrowse(true)}
                   type="button"
-                  className="rounded-lg px-[10px] py-[5px] shadow-[1px_2px_19px_3px_rgba(0,0,0,0.2)] hover:shadow-[1px_2px_19px_3px_rgba(59,130,246,0.8)] cursor-pointer transition ease duration-300 max-[408px]:text-sm max-[408px]:px-[10px] max-[408px]:py-[4px] max-[364px]:px-[5px] max-[320px]:text-[12px] active:bg-black/50 active:text-white "
+                  className="rounded-lg px-[10px] py-[5px] shadow-[0px_0px_15px_0px_rgba(0,0,0,0.2)] hover:shadow-[0px_0px_15px_0px_rgba(59,130,246,1)] cursor-pointer transition ease duration-300 active:bg-black/50 active:text-white whitespace-nowrap  max-[413px]:text-sm max-[371px]:px-[4px]"
                 >
                   Browse Files
                 </button>

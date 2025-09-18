@@ -1,5 +1,5 @@
-import { BsWhatsapp } from "react-icons/bs";
-import { FaLinkedinIn } from "react-icons/fa6";
+import Linkedin from "lucide-react/dist/esm/icons/linkedin";
+import WhatsApp from "../../../assets/Footer/WhatsApp.svg";
 import mail from "../../../assets/Footer/mail.svg";
 
 const Footer = () => {
@@ -33,18 +33,18 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex gap-x-[15px] items-center max-[786px]:gap-x-[5px] max-[627px]:gap-x-[20px]">
+          <div className="flex gap-x-[5px] items-center max-[786px]:gap-x-[5px] max-[627px]:gap-x-[20px]">
             <a
               href="https://wa.me/923015392272?text=Hello%20I%20want%20to%20know%20more%20about%20your%20services"
               target="_blank"
             >
-              <BsWhatsapp
-                color="#2bc600"
-                className="w-[30px] h-[30px] max-[786px]:w-[20px] max-[786px]:h-[20px] max-[627px]:w-[30px] max-[627px]:h-[30px]"
+              <img
+                src={WhatsApp}
+                className="w-[30px] h-[30px] max-[786px]:w-[20px] max-[786px]:h-[20px] max-[627px]:w-[30px] max-[627px]:h-[30px] mr-[10px]"
               />
             </a>
             <a href="https://www.linkedin.com/in/saad-ali-b15413356?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-              <FaLinkedinIn
+              <Linkedin
                 color="#2B7FFF"
                 className="w-[30px] h-[30px] max-[786px]:w-[20px] max-[786px]:h-[20px] max-[627px]:w-[30px] max-[627px]:h-[30px]"
               />
@@ -54,6 +54,7 @@ const Footer = () => {
               target="_blank"
             >
               <img
+                loading="lazy"
                 src={mail}
                 alt=""
                 className="w-[45px] h-[45px] max-[786px]:w-[20px] max-[786px]:h-[20px] max-[627px]:w-[30px] max-[627px]:h-[30px]"

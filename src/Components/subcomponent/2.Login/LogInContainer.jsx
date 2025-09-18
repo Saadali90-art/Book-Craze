@@ -14,6 +14,7 @@ const LogInContainer = ({ handlesubmit, logerror }) => {
       <div className="bg-white w-[350px] max-[369px]:w-[250px] h-[520px]  max-[369px]:h-[460px] rounded-md flex justify-center items-center select-none ">
         <div className=" w-[80%] h-[97%] flex flex-col ">
           <img
+            loading="eager"
             src={logoMain}
             alt="Logo Loading..."
             className="w-[90px] h-[90px] max-[369px]:w-[80px] max-[369px]:h-[80px] mx-auto rounded-[50%]"
@@ -66,7 +67,11 @@ const LogInContainer = ({ handlesubmit, logerror }) => {
 
           <p
             className="text-red-500 text-[12px] font-[600] mx-auto transition-all duration-500 ease "
-            style={{ opacity: logerror ? 1 : 0 }}
+            style={{
+              opacity: logerror ? 1 : 0,
+              height: logerror ? "15px" : "0px",
+              transition: "opacity 500ms ease, height 500ms ease",
+            }}
           >
             Invalid Credientials
           </p>
@@ -91,6 +96,7 @@ const LogInContainer = ({ handlesubmit, logerror }) => {
               className="w-[70%] max-[369px]:w-[100%] mx-auto px-[1px] py-[5px] cursor-pointer border-[2px] border-gray-300 hover:border-gray-600 rounded-[30px] flex flex-row gap-x-[20px] items-center justify-center"
             >
               <img
+                loading="eager"
                 className="w-[25px] h-[25px] max-[369px]:w-[20px] max-[369px]:h-[20px] rounded-[50%]"
                 src={google}
                 alt="Google Icon"

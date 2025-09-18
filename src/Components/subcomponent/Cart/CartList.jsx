@@ -1,6 +1,6 @@
-import React from "react";
-import { FaMinus, FaPlus } from "react-icons/fa6";
-import { MdDelete } from "react-icons/md";
+import Plus from "lucide-react/dist/esm/icons/plus";
+import Minus from "lucide-react/dist/esm/icons/minus";
+import Trash2 from "lucide-react/dist/esm/icons/trash-2";
 import minus from "../../../assets/Cart/minus.svg";
 
 const CartList = ({
@@ -56,13 +56,13 @@ const CartList = ({
               <td className="text-center align-middle py-2 ">
                 <div className="flex items-center justify-center gap-x-[5px]">
                   <button onClick={() => handlePlus(index)}>
-                    <FaPlus size={10} />
+                    <Plus size={10} />
                   </button>
 
                   <p>{item.quantity}</p>
 
                   <button onClick={() => handleMinus(index)}>
-                    <FaMinus size={10} />
+                    <Minus size={10} />
                   </button>
                 </div>
               </td>
@@ -106,16 +106,16 @@ const CartList = ({
                   <div className="absolute bottom-0 flex  justify-between w-full">
                     <div className="flex gap-x-[5px] items-center">
                       <button onClick={() => handlePlus(index)}>
-                        <FaPlus size={11} />
+                        <Plus size={11} />
                       </button>
                       <p className="text-[16px]">{item.quantity}</p>
                       <button onClick={() => handleMinus(index)}>
-                        <FaMinus size={11} />
+                        <Minus size={11} />
                       </button>
                     </div>
                     <div>
                       <button onClick={() => handleDeleteItem(index)}>
-                        <MdDelete color="#262626" size={18} />
+                        <Trash2 color="#fb2c36" size={18} />
                       </button>
                     </div>
                   </div>

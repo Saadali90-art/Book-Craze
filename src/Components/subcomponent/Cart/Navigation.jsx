@@ -1,6 +1,5 @@
-import React from "react";
 import bgimg from "../../../assets/Login/bgimg.jpg";
-import { IoSearch } from "react-icons/io5";
+import Search from "lucide-react/dist/esm/icons/search";
 
 const Navigation = ({ setSearch, search }) => {
   return (
@@ -18,7 +17,7 @@ const Navigation = ({ setSearch, search }) => {
         </h1>
 
         <div className="w-[210px] max-[571px]:w-[180px] max-[365px]:w-[140px] rounded-[30px] px-[5px] max-[457px]:py-[0px] py-[3px] flex items-center gap-x-[5px]  bg-[#f1f1f1] ">
-          <IoSearch className="w-[20px] ml-[5px] max-[319px]:ml-[0px]" />
+          <Search className="w-[20px] ml-[5px] max-[319px]:ml-[0px]" />
           <input
             onChange={(e) => setSearch(e.target.value)}
             value={search}

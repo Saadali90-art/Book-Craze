@@ -5,7 +5,7 @@ const WebNovels = ({ data }) => {
     <div className=" w-[40%] max-[1943px]:w-[45%] max-[1832px]:w-[50%] max-[1657px]:w-[55%] max-[1502px]:w-[48%] max-[1335px]:w-[53%] max-[776px]:w-full max-[776px]:mt-[20px] ">
       <div className="w-full max-[1502px]:w-[95%] max-[776px]:w-full">
         <h1
-          style={{ fontFamily: "Archivo, serif" }}
+          style={{ fontFamily: "Archivo, sans-serif" }}
           className="text-[24px] ml-[25px] max-[776px]:ml-[0px] py-[10px] font-[600] text-[#1c1c1c] border-b-[1.3px] border-[#d8d8d8] "
         >
           Empower Author

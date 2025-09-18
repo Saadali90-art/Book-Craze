@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { TbRings } from "react-icons/tb";
 
 const userCarts = mongoose.Schema({
   userId: { type: String, required: true },

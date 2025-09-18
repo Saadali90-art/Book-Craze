@@ -1,6 +1,5 @@
-import React from "react";
-import { FaRegEye } from "react-icons/fa";
-import { RiEyeCloseFill } from "react-icons/ri";
+import Eye from "lucide-react/dist/esm/icons/eye";
+import EyeClosed from "lucide-react/dist/esm/icons/eye-closed";
 
 const SignUpForm = ({ handlesubmit, showpass, setshowpass }) => {
   return (
@@ -36,9 +35,13 @@ const SignUpForm = ({ handlesubmit, showpass, setshowpass }) => {
         <button
           type="button"
           onClick={() => setshowpass(!showpass)}
-          className="absolute top-[48.5%] right-[10px]"
+          className="absolute top-[47.5%] right-[10px]"
         >
-          {showpass ? <FaRegEye /> : <RiEyeCloseFill />}
+          {showpass ? (
+            <Eye className="w-[20px] h-[20px]" />
+          ) : (
+            <EyeClosed className="w-[20px] h-[20px]" />
+          )}
         </button>
 
         <input

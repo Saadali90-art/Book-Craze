@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import Discover from "../Components/subcomponent/6.Empower/Discover";
 import Writing from "../Components/subcomponent/6.Empower/Writing";

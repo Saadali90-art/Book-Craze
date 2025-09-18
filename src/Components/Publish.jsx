@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
+import { useEffect, useState } from "react";
+import ChevronLeft from "lucide-react/dist/esm/icons/chevron-left";
 import { useNavigate } from "react-router-dom";
 import "../animation.css";
 import PublishForm from "./subcomponent/5.Publish/PublishForm";
@@ -89,7 +89,6 @@ const Publish = () => {
 
     let fileinfo = new File([blob], filename, { type: blob.type });
 
-    console.log(fileinfo);
     setcurrentimage(URL.createObjectURL(fileinfo));
     setFile(fileinfo);
   };
@@ -107,10 +106,10 @@ const Publish = () => {
             className="absolute my-auto left-[15px] p-2 rounded-[50%] bg-transparent cursor-pointer max-[395px]:left-[1px]"
             onClick={() => navigate(-1)}
           >
-            <IoIosArrowBack size={"24px"} />
+            <ChevronLeft size={"24px"} />
           </button>
           <p className="text-[24px] font-[600] text-[#1c1c1c] max-[500px]:text-[22px] ">
-            Publishing Book
+            Book Details
           </p>
         </div>
         <div className="flex-grow h-[2px] bg-[#eaeaea]"></div>

@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TopBooks from "../../Requests/Home Requests/TopBooks.js";
-import Cards from "./subHome/Cards.jsx";
 import SmallCards from "./subHome/SmallCards.jsx";
 
 const TopPicks = ({ handlemore }) => {

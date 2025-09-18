@@ -1,12 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+import React, { Suspense, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SignInData from "../../Requests/Home Requests/SignInData.js";
 import newBooks from "../../Requests/Home Requests/NewBooks.js";
-import SideBar from "./subHome/SideBar.jsx";
-import NavBar from "./subHome/NavBar.jsx";
-import SearchData from "./subHome/SearchData.jsx";
 import MoreDetail from "../../Requests/MoreDetails/More.js";
-import { ShowPopContext } from "../../../App.jsx";
+import NavBar from "./subHome/NavBar.jsx";
+import Spinner from "../../Spinner.jsx";
+
+const SideBar = React.lazy(() => import("./subHome/SideBar.jsx"));
+const SearchData = React.lazy(() => import("./subHome/SearchData.jsx"));
 
 const Navigation = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -17,33 +19,42 @@ const Navigation = () => {
   const [searchInfo, setSearchInfo] = useState("");
   const [suggestion, setSuggestion] = useState(false);
   const [suggestArr, setSuggestArr] = useState([]);
-
-  const { showpop, setshowpop } = useContext(ShowPopContext);
+  const deBounceTimer = useRef(null);
 
   const navigate = useNavigate();
 
   // ======================= GETTING THE USER INFORMATION FOR SIGN UP ==========================
 
   useEffect(() => {
-    const googleLogIn = async (query) => {
-      let result = await MoreDetail({ id: query }, "googlelogin");
-      localStorage.setItem("tokenuserin", result.token);
-      setUserInfo(result.message);
+    const fetch = () => {
+      const googleLogIn = async (query) => {
+        let result = await MoreDetail({ id: query }, "googlelogin");
+        localStorage.setItem("tokenuserin", result.token);
+        setUserInfo(result.message);
+      };
+
+      const fetchData = async (link1, link2) => {
+        const [data, titles] = await Promise.all([
+          SignInData(link1),
+          newBooks(link2),
+        ]);
+        setUserInfo(data);
+        setTitles(titles);
+      };
+
+      const query = window.location.href.split("?")[1];
+
+      if (query && query.length > 0) {
+        googleLogIn(query);
+      } else {
+        fetchData("user/signindata", "book/titles");
+      }
     };
 
-    const fetchData = async (link, link2) => {
-      let data = await SignInData(link);
-      setUserInfo(data);
-      let titles = await newBooks(link2);
-      setTitles(titles);
-    };
-
-    const query = window.location.href.split("?")[1];
-
-    if (query && query.length > 0) {
-      googleLogIn(query);
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(fetch);
     } else {
-      fetchData("user/signindata", "book/titles");
+      setTimeout(fetch, 200);
     }
   }, []);
 
@@ -51,11 +62,15 @@ const Navigation = () => {
     setSearchInfo(e.target.value);
     setSuggestion(true);
 
-    setSuggestArr(
-      titles.filter((item) =>
-        item.toLowerCase().includes(searchInfo.toLowerCase())
-      )
-    );
+    if (deBounceTimer.current) clearTimeout(deBounceTimer.current);
+
+    deBounceTimer.current = setTimeout(() => {
+      setSuggestArr(
+        titles.filter((item) =>
+          item.toLowerCase().includes(searchInfo.toLowerCase())
+        )
+      );
+    }, 500);
   };
 
   const handleSearchOff = () => {
@@ -82,26 +97,28 @@ const Navigation = () => {
   // =========================== DELETING POPUP=============================
 
   const deletepopup = () => {
-    setshowpop(true);
+    if (localStorage.getItem("tokenuserin")) {
+      navigate(`/deleteuser/:${userInfo.name}`);
+    }
   };
 
   return (
     <nav className="w-[100%] bg-white  fixed top-0 z-20">
       <div
         style={{
-          backgroundColor: showpop ? "#e6e5e5" : "white",
           opacity: search ? 0 : 1,
           transform: search ? "translateX(-1350px)" : "translateX(0px)",
           transition: "transform 500ms ease, opacity 300ms ease",
         }}
       >
         {/* =========================== SIDE BAR ============================= */}
-
-        <SideBar
-          sideBar={sideBar}
-          setSideBar={setSideBar}
-          userInfo={userInfo}
-        />
+        <Suspense fallback={<Spinner />}>
+          <SideBar
+            sideBar={sideBar}
+            setSideBar={setSideBar}
+            userInfo={userInfo}
+          />
+        </Suspense>
 
         {/* ======================== NAV BAR ============================ */}
 
@@ -110,10 +127,8 @@ const Navigation = () => {
           userInfo={userInfo}
           setsignout={setsignout}
           setSearch={setSearch}
-          showpop={showpop}
           signout={signout}
           handlesignout={handlesignout}
-          setshowpop={setshowpop}
           deletepopup={deletepopup}
         />
 
@@ -121,16 +136,17 @@ const Navigation = () => {
       </div>
 
       {/* ============================= SEARCH FIELD ================================= */}
-
-      <SearchData
-        search={search}
-        handleSearch={handleSearch}
-        handleSearchOff={handleSearchOff}
-        suggestArr={suggestArr}
-        suggestion={suggestion}
-        handleValue={handleValue}
-        searchInfo={searchInfo}
-      />
+      <Suspense fallback={<Spinner />}>
+        <SearchData
+          search={search}
+          handleSearch={handleSearch}
+          handleSearchOff={handleSearchOff}
+          suggestArr={suggestArr}
+          suggestion={suggestion}
+          handleValue={handleValue}
+          searchInfo={searchInfo}
+        />
+      </Suspense>
     </nav>
   );
 };

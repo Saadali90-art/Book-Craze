@@ -1,5 +1,6 @@
-import { useEffect } from "react";
-import { IoClose, IoSearch } from "react-icons/io5";
+import X from "lucide-react/dist/esm/icons/x";
+import Search from "lucide-react/dist/esm/icons/search";
+
 import { useNavigate } from "react-router-dom";
 
 const SearchData = ({
@@ -25,7 +26,7 @@ const SearchData = ({
       <div className="flex items-center w-full h-full justify-center gap-x-[10px] relative">
         <div className="flex flex-col w-[600px] relative">
           <div className="flex items-center bg-gray-200 rounded-2xl px-[10px] py-[4px]">
-            <IoSearch />
+            <Search className="w-[20px] h-[20px]" />
             <input
               type="text"
               value={searchInfo}
@@ -43,7 +44,7 @@ const SearchData = ({
               className="w-[30px] h-[30px] rounded-[50%] cursor-pointer flex items-center justify-center"
               onClick={handleSearchOff}
             >
-              <IoClose />
+              <X className="w-[20px] h-[20px]" />
             </button>
           </div>
 

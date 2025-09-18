@@ -1,7 +1,6 @@
 import jsonwebtoken from "jsonwebtoken";
 import userLikes from "../../Model/Likes.js";
 import Comment from "../../Model/UsersComments.js";
-import mongoose from "mongoose";
 
 const likeComment = async (req, res) => {
   let data = req.body;

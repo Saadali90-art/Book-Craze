@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import empty from "../assets/DashBoard/EmptyFolder.png";
-import { IoIosArrowBack } from "react-icons/io";
+import ChevronLeft from "lucide-react/dist/esm/icons/chevron-left";
 import DashboardCards from "./subcomponent/4.Dashboard/DashboardCards";
 import NoData from "./subcomponent/4.Dashboard/NoData";
 import specificBooks from "./Requests/DashBoard/SpecificDashBoard.js";
@@ -60,7 +60,7 @@ const Dashboard = () => {
             className="absolute my-auto left-[15px] p-2 rounded-[50%] bg-transparent cursor-pointer max-[395px]:left-[1px]"
             onClick={() => navigate(-1)}
           >
-            <IoIosArrowBack size={"24px"} />
+            <ChevronLeft size={"24px"} />
           </button>
           <p className="text-[24px] font-[600] text-[#1c1c1c] max-[500px]:text-[22px] ">
             DashBoard
@@ -86,7 +86,7 @@ const Dashboard = () => {
             />
           </div>
         ) : (
-          <div className="w-[70%]  mx-auto pt-[100px] pb-[20px]">
+          <div className="w-[80%] max-[406px]:w-[90%] mx-auto pt-[90px] pb-[20px]">
             {/* ========================== YOUR DATA HUB =========================== */}
 
             <div className="flex justify-between items-center ">

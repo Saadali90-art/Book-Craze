@@ -1,9 +1,13 @@
-const deleteUser = async (setshowpop, link) => {
+const deleteUser = async (link, userpass) => {
   let data = localStorage.getItem("tokenuserin");
 
   let reqOpt = {
     method: "DELETE",
-    headers: { "Content-Type": "application/json", token: data },
+    headers: {
+      "Content-Type": "application/json",
+      token: data,
+    },
+    body: JSON.stringify(userpass),
   };
 
   let result = await fetch(
@@ -13,9 +17,7 @@ const deleteUser = async (setshowpop, link) => {
 
   if (result.ok) {
     let response = await result.json();
-    localStorage.removeItem("tokenuserin");
-    location.reload();
-    return setshowpop(false);
+    return response.message;
   }
 };
 

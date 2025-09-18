@@ -20,7 +20,7 @@ const cartCheckout = async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineitems,
       mode: "payment",
-      success_url: "http://localhost:5173/success",
+      success_url: `http://localhost:5173/success/${data[0].userId}`,
       cancel_url: "http://localhost:5173/cancel",
     });
 

@@ -1,5 +1,5 @@
-import React from "react";
-import { IoIosArrowDropdown } from "react-icons/io";
+import ChevronDown from "lucide-react/dist/esm/icons/chevron-down";
+import write from "../../../../assets/Writing/write.svg";
 
 const Practices = ({ current, setcurrent, item, index }) => {
   return (
@@ -13,11 +13,7 @@ const Practices = ({ current, setcurrent, item, index }) => {
       >
         <div className="flex justify-between items-center">
           <div className="flex flex-row items-center gap-x-[10px]">
-            <img
-              src="https://www.svgrepo.com/show/360948/write-f.svg"
-              className="w-[20px] h-[20px]"
-              alt=""
-            />
+            <img src={write} className="w-[20px] h-[20px]" alt="" />
             <h1 className="text-[16px] font-[600] py-[10px] ">
               {item.heading}
             </h1>
@@ -33,7 +29,7 @@ const Practices = ({ current, setcurrent, item, index }) => {
               }
             }}
           >
-            <IoIosArrowDropdown size={23} />
+            <ChevronDown size={23} />
           </button>
         </div>
 

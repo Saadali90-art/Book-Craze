@@ -1,5 +1,3 @@
-import React from "react";
-
 const Cards = ({ index, handlemore, item }) => {
   return (
     <div
@@ -11,6 +9,8 @@ const Cards = ({ index, handlemore, item }) => {
         className="w-full h-[210px] overflow-hidden rounded-md cursor-pointer "
       >
         <img
+          loading="lazy"
+          width={160}
           src={`http://127.0.0.1:8000${item.bookImage}`}
           className="w-full  h-[230px] hover:scale-105 transition-all duration-500 ease"
         />

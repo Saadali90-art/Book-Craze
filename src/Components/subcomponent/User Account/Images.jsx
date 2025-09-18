@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { FaCamera } from "react-icons/fa";
+import Camera from "lucide-react/dist/esm/icons/camera";
 import user from "../../../assets/MyAccount/user.svg";
 import CoverImage from "../../../assets/MyAccount/CoverImage.avif";
 
@@ -21,11 +20,23 @@ const Images = ({
 
       <div className=" w-[100%]  h-[300px] relative ">
         {accountInfo.coverImage === null && coverImage === null ? (
-          <img className="w-full h-full brightness-90" src={CoverImage} />
+          <img
+            loading="eager"
+            className="w-full h-full brightness-90"
+            src={CoverImage}
+          />
         ) : coverImage !== null ? (
-          <img className="w-full h-full brightness-90" src={coverImage} />
+          <img
+            loading="eager"
+            className="w-full h-full brightness-90"
+            src={coverImage}
+          />
         ) : (
-          <img className="w-full h-full brightness-90" src={coverImageUrl} />
+          <img
+            loading="eager"
+            className="w-full h-full brightness-90"
+            src={coverImageUrl}
+          />
         )}
 
         {/* ==================== IMAGE CHANGE BUTTON ======================== */}
@@ -39,7 +50,7 @@ const Images = ({
           className=" absolute cursor-pointer z-[10] bottom-[10px] right-[10px]  "
         >
           <div className="group w-[40px] h-[38px] overflow-hidden hover:w-[200px] transition-width ease duration-700 flex gap-x-[10px] bg-blue-500 px-[10px] py-[6px] rounded-sm">
-            <FaCamera size={25} color="white" />
+            <Camera size={25} color="white" />
             <p className="text-white hidden group-hover:block whitespace-nowrap font-[500]">
               Upload Cover Photo
             </p>
@@ -58,11 +69,23 @@ const Images = ({
         className="w-[200px] max-[491px]:w-[180px] max-[393px]:w-[150px] h-[200px]  max-[491px]:h-[180px]  max-[393px]:h-[150px] max-[453px]:mt-[15px] max-[453px]:left-[5px] brightness-100 absolute z-10 left-[20px] border-[6px] border-white bg-gray-400 rounded-[50%]"
       >
         {accountInfo.profileImage === null && profileImage === null ? (
-          <img src={user} className="w-full h-full rounded-[50%]" />
+          <img
+            loading="eager"
+            src={user}
+            className="w-full h-full rounded-[50%]"
+          />
         ) : profileImage !== null ? (
-          <img src={profileImage} className="w-full h-full rounded-[50%]" />
+          <img
+            loading="eager"
+            src={profileImage}
+            className="w-full h-full rounded-[50%]"
+          />
         ) : (
-          <img src={profileImageUrl} className="w-full h-full rounded-[50%]" />
+          <img
+            loading="eager"
+            src={profileImageUrl}
+            className="w-full h-full rounded-[50%]"
+          />
         )}
 
         {/* ==================== IMAGE CHANGE BUTTON ======================== */}
@@ -81,7 +104,7 @@ const Images = ({
             hidden
             onChange={handleProfile}
           />
-          <FaCamera size={25} color="white" />
+          <Camera size={25} color="white" />
         </label>
       </div>
     </>

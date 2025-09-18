@@ -5,6 +5,8 @@ const CartItems = async (req, res) => {
   let dataobj = req.body;
   let token = req.headers.tokeninfo;
 
+  if (!token) return res.status(400).json({ message: "User Not allowed" });
+
   let tokenData = await jsonwebtoken.verify(token, process.env.secretkey);
 
   let objInfo = {
@@ -17,10 +19,13 @@ const CartItems = async (req, res) => {
   };
 
   try {
-    let exist = await userCart.findOne({ title: dataobj.title });
+    let exist = await userCart.findOne({
+      title: dataobj.title,
+      userId: tokenData.userId,
+    });
 
     if (exist === null) {
-      let cartItem = await userCart.insertOne(objInfo);
+      await userCart.insertOne(objInfo);
       res.status(200).json("Data Added to Db");
     } else {
       res.status(200).json("Data Already Present");

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navigation from "./subcomponent/1.Home/Navigation";
 import MoreDetail from "./Requests/MoreDetails/More.js";
@@ -42,19 +42,19 @@ const Categories = () => {
     <main className="w-full">
       <Navigation />
 
-      <div className="w-full h-[130px] max-[678px]:h-[118px] bg-gray-200 mt-[70px] max-[813px]:mt-[50px] mb-[20px] relative">
+      <div className="w-full h-[130px] max-[813px]:h-[114px] bg-gray-200 mt-[70px] max-[813px]:mt-[50px] mb-[20px] relative">
         {/* ======================== TOP SECTION OF CATEGORIES INFO ======================== */}
 
         <h1
           style={{ fontFamily: "Archivo, sans-serif" }}
-          className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-[30px] max-[678px]:text-[25px] font-[600] py-[10px] pb-[34px]"
+          className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-[30px] max-[813px]:text-[25px] font-[600] py-[10px] pb-[34px]"
         >
           {id}
         </h1>
 
         <div
           style={{ fontFamily: "Archivo, sans-serif" }}
-          className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-[23px] max-[678px]:text-[19px] max-[678px]:mt-[ font-[500] flex flex-row gap-x-[20px] "
+          className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto text-[23px] max-[813px]:text-[15px] font-[500] flex flex-row gap-x-[20px] "
         >
           <button
             className="cursor-pointer"
@@ -97,7 +97,7 @@ const Categories = () => {
             <div className="flex flex-wrap gap-x-[15px] gap-y-[20px]  max-[937px]:justify-center">
               {categoryData.map((item, index) => (
                 <div
-                  className="w-[49%] max-[937px]:w-[100%] h-[160px] flex gap-x-[20px] cursor-pointer"
+                  className="w-[49%] max-[937px]:w-[100%] h-[160px] flex gap-x-[10px] cursor-pointer"
                   key={index}
                   onClick={() =>
                     navigate("/user/dashboard/more", {

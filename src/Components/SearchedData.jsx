@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { IoClose, IoSearch } from "react-icons/io5";
+import Search from "lucide-react/dist/esm/icons/search";
+import X from "lucide-react/dist/esm/icons/x";
 import { useNavigate, useParams } from "react-router-dom";
 import newBooks from "./Requests/Home Requests/NewBooks.js";
 import DataCards from "./subcomponent/4.Dashboard/DataCards.jsx";
@@ -36,7 +37,7 @@ const SearchedData = () => {
     <main className="w-full pb-[20px]">
       <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] flex h-[70px] justify-center  items-center mx-auto ">
         <div className="flex items-center w-full bg-gray-200 rounded-2xl px-[10px] py-[4px] ">
-          <IoSearch />
+          <Search className="w-[20px] h-[20px]" />
           <input
             type="text"
             value={search}
@@ -48,7 +49,7 @@ const SearchedData = () => {
             onClick={() => setSearch("")}
             className="w-[30px] h-[30px] rounded-[50%] cursor-pointer flex items-center justify-center "
           >
-            <IoClose />
+            <X className="w-[20px] h-[20px]" />
           </button>
         </div>
       </div>

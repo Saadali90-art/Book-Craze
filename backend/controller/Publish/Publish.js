@@ -1,4 +1,4 @@
-import Publish from "../Model/PublishModel.js";
+import Publish from "../../Model/PublishModel.js";
 import jsonwebtoken from "jsonwebtoken";
 
 const PublishOne = async (req, res) => {

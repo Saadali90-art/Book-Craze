@@ -93,6 +93,8 @@ const MoreDetails = () => {
   const handleLikes = async (item) => {
     let token = localStorage.getItem("tokenuserin");
 
+    if (!token) return navigate("/login");
+
     let info = await cartsData("comment/likes", { item, token });
 
     await getComments({ title: moreInfo?.title }, "comment/getcomments");

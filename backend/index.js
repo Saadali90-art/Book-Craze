@@ -15,11 +15,13 @@ import cartRoutes from "./route/cart.js";
 import ProtectedPages from "./controller/Protect.js";
 import moreDetails from "./route/moreDetails.js";
 import upload from "./multer/multer.js";
-import PublishOne from "./controller/Publish.js";
+import PublishOne from "./controller/Publish/Publish.js";
 import account from "./route/userAccount.js";
 import stripe from "./route/stripe.js";
 import googleOAuth from "./route/googleOAuth.js";
 import forgotPassword from "./route/forgotPassword.js";
+import optimizeImage from "./controller/Publish/OptimizeImage.js";
+import compression from "compression";
 
 let app = express();
 
@@ -28,6 +30,10 @@ let PORT = process.env.PORT;
 let db_url = process.env.db_url;
 
 // ================= MIDDLE WARES ====================
+
+// Enable gzip/Brotli compression
+app.use(compression());
+
 // ====== BODY PARSING
 app.use(express.json({ limit: "50mb" }));
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
@@ -83,7 +89,12 @@ connectDB(db_url);
 app.use("/user", user);
 app.use("/book", getBooks);
 app.use("/topbooks", topBooks);
-app.post("/user/publish", upload.single("bookImage"), PublishOne);
+app.post(
+  "/user/publish",
+  upload.single("bookImage"),
+  optimizeImage,
+  PublishOne
+);
 app.use("/comment", comments);
 app.use("/cart", cartRoutes);
 app.use("/more", moreDetails);

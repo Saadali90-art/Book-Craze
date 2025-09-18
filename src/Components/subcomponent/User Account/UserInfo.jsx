@@ -1,8 +1,6 @@
-import React from "react";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-import { CiEdit } from "react-icons/ci";
-import { LiaEditSolid } from "react-icons/lia";
+import MapPin from "lucide-react/dist/esm/icons/map-pin";
+import Calendar from "lucide-react/dist/esm/icons/calendar";
+import write from "../../../assets/Writing/write.svg";
 
 const UserInfo = ({ edit, setEdit, accountInfo }) => {
   return (
@@ -40,7 +38,10 @@ const UserInfo = ({ edit, setEdit, accountInfo }) => {
           onClick={() => setEdit(true)}
           className="cursor-pointer mb-[15px] max-[338px]:mb-[10px] hidden max-[531px]:block text-blue-500"
         >
-          <LiaEditSolid className="text-[36px] max-[393px]:text-[32px] max-[338px]:h-[30px]" />
+          <img
+            src={write}
+            className="text-[36px] max-[393px]:text-[32px] max-[338px]:h-[30px]"
+          />
         </button>
       </div>
 
@@ -59,13 +60,12 @@ const UserInfo = ({ edit, setEdit, accountInfo }) => {
         }}
         className="w-full h-[30px] flex items-center gap-x-[20px] text-gray-500 "
       >
-        <p className="flex items-center gap-x-[8px] text-[17px] whitespace-nowrap">
-          <FaRegCalendarAlt size={20} /> {accountInfo?.date?.slice(0, 10)}{" "}
-          Joined
+        <p className="flex items-center gap-x-[8px] text-[17px] max-[393px]:text-[15px] whitespace-nowrap">
+          <Calendar size={20} /> {accountInfo?.date?.slice(0, 10)} Joined
         </p>
 
-        <p className="flex items-center gap-x-[8px] text-[17px] capitalize">
-          <FaLocationDot size={20} /> {accountInfo.location}
+        <p className="flex items-center gap-x-[8px] text-[17px] max-[393px]:text-[15px] capitalize">
+          <MapPin size={20} /> {accountInfo.location}
         </p>
       </div>
     </>

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "../1.Home/Navigation";
 import discovering from "../../../assets/Discover/discover.png";
 import Cards from "../1.Home/subHome/Cards.jsx";
 import { useNavigate } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa6";
 import "../../../animation.css";
 import JoinUs from "../../../assets/Discover/JoinUs.png";
 import Footer from "../1.Home/Footer";
 import discoveritems from "./Requests/discoveritems.js";
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
 
 const Discover = () => {
   const [discover, setDiscover] = useState([]);
@@ -176,7 +176,7 @@ const Discover = () => {
         <section className="bg-yellow py-10">
           <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto flex flex-col md:flex-row items-center max-[768px]:items-start justify-between gap-6">
             {/* Text Content */}
-            <div className="max-w-lg text-center md:text-left max-[450px]:text-left">
+            <div className="max-w-lg text-center md:text-left max-[768px]:text-left max-[450px]:text-left">
               <h3
                 style={{ fontFamily: "Archivo, sans-serif" }}
                 className="text-2xl md:text-3xl font-bold "
@@ -184,8 +184,8 @@ const Discover = () => {
                 A new world opens with every book.
               </h3>
               <p
-                style={{ fontFamily: "Patrick Hand, sans-serif" }}
-                className="text-lg md:text-xl font-medium mt-2 max-[768px]:text-left"
+                style={{ fontFamily: "Archivo, sans-serif" }}
+                className="text-lg max-[540px]:text-[16px] md:text-lg mt-2 max-[768px]:text-left"
               >
                 Every book you open leads to unforgettable moments.
               </p>
@@ -194,7 +194,7 @@ const Discover = () => {
                 onClick={() => handlejoin()}
                 className="mt-4 px-5 py-2 text-sm font-semibold border-2 border-black rounded-md bg-white text-black flex items-center gap-2 hover:bg-black hover:text-white active:scale-95 transition"
               >
-                Join Us <FaArrowRight size={14} />
+                Join Us <ArrowRight size={14} />
               </button>
             </div>
 

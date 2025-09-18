@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router-dom";
 import "../animation.css";
@@ -31,7 +31,7 @@ const Cart = () => {
 
   useEffect(() => {
     const fetchData = async (link, dataobj) => {
-      let info = await cartsData(link, dataobj);
+      await cartsData(link, dataobj);
     };
 
     if (incomingData !== "Only Show") {
@@ -154,7 +154,7 @@ const Cart = () => {
             </p>
             <input
               type="text"
-              className="bg-[#F1F1F1] rounded-sm w-[250px] h-[30px] px-[5px] py-[3px] outline-none"
+              className="bg-[#d6d5d5] rounded-sm w-[250px] h-[30px] px-[5px] py-[3px] outline-none"
             />
           </div>
           <div style={{ fontFamily: "Montserrat, sans-serif" }}>

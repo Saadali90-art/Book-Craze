@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import ThumbsUp from "lucide-react/dist/esm/icons/thumbs-up";
+import ThumbsFilled from "../../../assets/More Details/ThumbFilled.svg";
+
 import user from "../../../assets/MyAccount/user.svg";
 
 const Comments = ({
@@ -11,8 +12,6 @@ const Comments = ({
   comments,
   handleLikes,
 }) => {
-  const [like, setLike] = useState(false);
-
   return (
     <>
       <div className="w-[100%] min-h-[220px] bg-pink- mb-[30px] ">
@@ -94,11 +93,13 @@ const Comments = ({
                   <div className="flex items-center gap-x-[20px] mt-[10px]">
                     {item.profileImage === null ? (
                       <img
+                        loading="lazy"
                         src={user}
                         className="w-[40px] h-[40px] rounded-[50%] "
                       />
                     ) : (
                       <img
+                        loading="lazy"
                         className="w-[40px] h-[40px] rounded-[50%] "
                         src={`http://127.0.0.1:8000${item.profileImage}`}
                         alt=""
@@ -137,9 +138,9 @@ const Comments = ({
                       style={{ cursor: "pointer" }}
                     >
                       {item.likes > 0 ? (
-                        <AiFillLike className="w-[20px] h-[20px]" />
+                        <img src={ThumbsFilled} className="w-[20px] h-[20px]" />
                       ) : (
-                        <AiOutlineLike className="w-[20px] h-[20px]" />
+                        <ThumbsUp className="w-[20px] h-[20px]" />
                       )}
                     </button>
                     <p>{item.likes}</p>

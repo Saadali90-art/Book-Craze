@@ -1,6 +1,4 @@
-import React from "react";
-import checkmark from "../../assets/Mission/checkmark.svg";
-import { MdCancel } from "react-icons/md";
+import CircleX from "lucide-react/dist/esm/icons/circle-x";
 import { useNavigate } from "react-router-dom";
 
 const Cancel = () => {
@@ -10,7 +8,7 @@ const Cancel = () => {
     <div className="w-[100%] h-screen bg-[#f5f5f5] flex  items-center justify-center">
       <div className="container w-[400px] bg-white  h-[230px] rounded-sm shadow-[0px_0px_18px_5px_rgba(0,0,0,0.1)]">
         <div className="flex justify-center">
-          <MdCancel className="w-[50px] h-[50px] mt-[20px] " color="red" />
+          <CircleX className="w-[50px] h-[50px] mt-[20px] " color="#FB2C36" />
         </div>
 
         <div className="flex flex-col items-center mt-[10px] mb-[40px] justify-center ">
