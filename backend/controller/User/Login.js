@@ -33,11 +33,9 @@ const Login = async (req, res) => {
     if (await verifyLogin(data)) {
       let result = await SignModel.findOne({ email: data.email });
 
-      let secretkey = process.env.secretkey;
-
       let token = await jsonwebtoken.sign(
         { name: result.name, userId: result.userId },
-        secretkey
+        process.env.secretkey
       );
 
       res.status(200).json({ message: "Done", token: token });
@@ -45,7 +43,6 @@ const Login = async (req, res) => {
       res.status(400).json({ message: "Invalid Credientials" });
     }
   } catch (error) {
-    console.log("Error In The Login Function", error.messsage);
     res.status(400).json({ message: "Invalid Credientials" });
   }
 };

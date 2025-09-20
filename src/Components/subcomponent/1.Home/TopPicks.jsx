@@ -25,15 +25,21 @@ const TopPicks = ({ handlemore }) => {
             Monthly Spotlight
           </h1>
 
-          <div className="w-full flex flex-wrap gap-x-[10px] gap-y-[20px] justify-evenly ">
-            {monthlyPicks.map((item, index) => (
-              <SmallCards
-                item={item}
-                index={index}
-                key={index}
-                handlemore={handlemore}
-              />
-            ))}
+          <div className="w-full flex flex-wrap gap-x-[10px] gap-y-[20px] justify-evenly">
+            {monthlyPicks.length === 0 ? (
+              <div className="w-full text-[19px] font-[500] flex items-center justify-center">
+                <p>No items present</p>
+              </div>
+            ) : (
+              monthlyPicks.map((item, index) => (
+                <SmallCards
+                  item={item}
+                  index={index}
+                  key={index}
+                  handlemore={handlemore}
+                />
+              ))
+            )}
           </div>
 
           <div className="flex flex-row justify-between mx-auto  mt-[20px] "></div>

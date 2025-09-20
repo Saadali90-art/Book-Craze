@@ -52,19 +52,19 @@ const SideBar = ({ sideBar, setSideBar, userInfo }) => {
             }}
           >
             <Link
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
               to={"/"}
             >
               Home
             </Link>
             <Link
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
               to={"/user/publish"}
             >
               Publish
             </Link>
             <Link
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
               to={"/user/dashboard"}
             >
               Dashboard
@@ -72,37 +72,37 @@ const SideBar = ({ sideBar, setSideBar, userInfo }) => {
 
             <button
               onClick={() => navigate("/user/cart", { state: "Only Show" })}
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
             >
               <p>My Cart</p>
             </button>
 
             <Link
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
               to={"/empowering/discover%20new%20worlds"}
             >
               Discover Ideas
             </Link>
             <Link
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
               to={"/login"}
             >
               Log In
             </Link>
             <button
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
               onClick={() => navigate("/search")}
             >
               Search
             </button>
             <Link
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
               to={`/user/${userInfo?.name}`}
             >
               My Account
             </Link>
             <Link
-              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full hover:bg-gray-200 rounded-md text-[16px] font-[400]"
+              className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
               to={"/empowering/our%20purpose%20%26%20plans"}
             >
               About Us

@@ -5,7 +5,6 @@ const newArrivals = async (req, res) => {
     let data = await Publish.find({});
     res.status(200).send(data);
   } catch (error) {
-    console.log(error.message);
     res.status(400).send("Error While Sorting the Data");
   }
 };

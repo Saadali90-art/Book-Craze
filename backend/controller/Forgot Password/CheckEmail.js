@@ -31,7 +31,6 @@ const checkEmail = async (req, res) => {
       res.status(200).json({ message: "emailverify" });
     }
   } catch (error) {
-    console.log("Error While Checking Email", error);
     res.status(400).json({ message: error });
   }
 };

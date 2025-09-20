@@ -26,7 +26,6 @@ const cartCheckout = async (req, res) => {
 
     res.status(200).json({ id: session.id });
   } catch (error) {
-    console.log(error.message);
     res.status(400).json({ id: error.message });
   }
 };

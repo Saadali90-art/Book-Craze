@@ -48,93 +48,100 @@ const Carousel = () => {
           className="w-[800px] max-[2087px]:w-[750px] max-[1943px]:w-[700px] max-[1832px]:w-[580px] max-[1657px]:w-[420px] max-[1050px]:w-[350px] max-[776px]:w-[600px] max-[666px]:w-[500px] max-[565px]:w-[400px] max-[446px]:w-[320px] max-[357px]:w-[300px] max-[332px]:w-[280px] max-[776px]:mx-auto h-[260px] flex overflow-hidden rounded-lg relative"
           style={{ background: weeklyTop.length === 0 ? "white" : "black" }}
         >
-          {weeklyTop.map((item, index) => (
-            <div
-              onClick={() =>
-                navigate("/user/dashboard/more", {
-                  state: item,
-                })
-              }
-              key={index}
-              style={{
-                transform: `translateX(-${current * 100}%)`,
-                opacity: current === index ? 1 : 0,
-                cursor: "pointer",
-                transition: "transform 5ms linear ,opacity 400ms linear",
-              }}
-              className="min-w-full"
-            >
-              <div className="absolute inset-0 -z-10">
-                <img
-                  loading="eager"
-                  fetchPriority="high"
-                  width={800}
-                  height={260}
-                  src={`http://127.0.0.1:8000${item.bookImage}`}
-                  className="min-w-full h-full object-cover"
-                  alt=""
-                />
-                <div className="absolute inset-0 bg-black/30" />{" "}
-                {/* overlay for brightness */}
-                <div className="absolute inset-0 backdrop-blur-xl" />{" "}
-                {/* optional blur layer */}
-              </div>
-
-              {/* ======================== INNER INFO =============================== */}
-              <div className="h-[240px] overflow-hidden flex px-[15px] py-[15px] pt-[20px]">
-                <div className="w-[30%] max-[1663px]:w-[35%] max-[446px]:w-[120px] h-[210px]">
+          {weeklyTop.length === 0 ? (
+            <div className="w-full text-[19px] font-[500] flex items-center justify-center">
+              <p>No items present</p>
+            </div>
+          ) : (
+            weeklyTop.map((item, index) => (
+              <div
+                onClick={() =>
+                  navigate("/user/dashboard/more", {
+                    state: item,
+                  })
+                }
+                key={index}
+                style={{
+                  transform: `translateX(-${current * 100}%)`,
+                  opacity: current === index ? 1 : 0,
+                  cursor: "pointer",
+                  transition: "transform 5ms linear ,opacity 400ms linear",
+                }}
+                className="min-w-full"
+              >
+                <div className="absolute inset-0 -z-10">
                   <img
                     loading="eager"
                     fetchPriority="high"
-                    width={120}
-                    height={210}
+                    width={800}
+                    height={260}
                     src={`http://127.0.0.1:8000${item.bookImage}`}
+                    className="min-w-full h-full object-cover"
                     alt=""
-                    className="w-full max-[446px]:w-[120px] h-[210px] rounded-lg"
                   />
+                  <div className="absolute inset-0 bg-black/30" />{" "}
+                  {/* overlay for brightness */}
+                  <div className="absolute inset-0 backdrop-blur-xl" />{" "}
+                  {/* optional blur layer */}
                 </div>
 
-                <div className="w-[70%] max-[1663px]:w-[65%] pl-[10px] h-[210px] overflow-hidden">
-                  <p
-                    style={{
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      WebkitBoxOrient: "vertical",
-                      WebkitLineClamp: 1,
-                      fontFamily: "Archivo, 'Open Sans', serif",
-                    }}
-                    className="text-white text-[18px] font-[500] pt-[10px] pb-[5px] max-[446px]:pb-[0px]"
-                  >
-                    {item.title}
-                  </p>
-
-                  <div className="flex items-center gap-x-[30px] py-[3px] ">
-                    <p className="text-white text-[14px] py-[2px]">
-                      Price : ${item.price}
-                    </p>
-                    <p className="text-white text-[14px] py-[2px] max-[446px]:hidden">
-                      {item.category}
-                    </p>
+                {/* ======================== INNER INFO =============================== */}
+                <div className="h-[240px] overflow-hidden flex px-[15px] py-[15px] pt-[20px]">
+                  <div className="w-[30%] max-[1663px]:w-[35%] max-[446px]:w-[120px] h-[210px]">
+                    <img
+                      loading="eager"
+                      fetchPriority="high"
+                      width={120}
+                      height={210}
+                      src={`http://127.0.0.1:8000${item.bookImage}`}
+                      alt=""
+                      className="w-full max-[446px]:w-[120px] h-[210px] rounded-lg"
+                    />
                   </div>
 
-                  <p
-                    style={{
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      WebkitBoxOrient: "vertical",
-                      WebkitLineClamp: 7,
-                      fontFamily: "Archivo, 'Open Sans', serif",
-                    }}
-                    className="text-white text-[13px] py-[2px] pb-[3px] font-[400] text-justify max-[446px]:text-left"
-                  >
-                    {item.description}
-                  </p>
+                  <div className="w-[70%] max-[1663px]:w-[65%] pl-[10px] h-[210px] overflow-hidden">
+                    <p
+                      style={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitBoxOrient: "vertical",
+                        WebkitLineClamp: 1,
+                        fontFamily: "Archivo, 'Open Sans', serif",
+                      }}
+                      className="text-white text-[18px] font-[500] pt-[10px] pb-[5px] max-[446px]:pb-[0px]"
+                    >
+                      {item.title}
+                    </p>
+
+                    <div className="flex items-center gap-x-[30px] py-[3px] ">
+                      <p className="text-white text-[14px] py-[2px]">
+                        Price : ${item.price}
+                      </p>
+                      <p className="text-white text-[14px] py-[2px] max-[446px]:hidden">
+                        {item.category}
+                      </p>
+                    </div>
+
+                    <p
+                      style={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitBoxOrient: "vertical",
+                        WebkitLineClamp: 7,
+                        fontFamily: "Archivo, 'Open Sans', serif",
+                      }}
+                      className="text-white text-[13px] py-[2px] pb-[3px] font-[400] text-justify max-[446px]:text-left"
+                    >
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
+          {}
 
           {/* ====================== DOTS ============================ */}
           <div className="flex gap-x-[8px] absolute top-[90%] left-[40%]">

@@ -4,15 +4,19 @@ import SignModel from "../Model/SignInModel.js";
 
 const ProtectedPages = async (req, res) => {
   let token = req.headers.token;
-  let secretkey = process.env.secretkey;
 
   if (token) {
-    let tokendata = await jsonwebtoken.verify(token, secretkey);
+    let tokenData;
+    try {
+      tokenData = jsonwebtoken.verify(token, process.env.secretkey);
+    } catch (err) {
+      return res.status(401).json({ message: "User UnAuthorized" });
+    }
 
     try {
       let result = await SignModel.find({
-        name: tokendata.name,
-        userId: tokendata.userId,
+        name: tokenData.name,
+        userId: tokenData.userId,
       });
 
       if (result !== null) {

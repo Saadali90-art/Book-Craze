@@ -20,7 +20,6 @@ const getPublish = async (req, res) => {
       res.status(201).json({ message: "Data Not Present" });
     }
   } catch (error) {
-    console.log("Can Not Get Data From DB", error.message);
     res.status(400).json({ message: error });
   }
 };

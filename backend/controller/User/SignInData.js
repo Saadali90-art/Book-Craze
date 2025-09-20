@@ -8,23 +8,25 @@ import dotenv from "dotenv";
 const SignInData = async (req, res) => {
   let tokenfront = req.headers.authorization;
 
-  let secretkey = process.env.secretkey;
-
-  let tokendata = await jsonwebtoken.verify(tokenfront, secretkey);
+  let tokenData;
+  try {
+    tokenData = jsonwebtoken.verify(tokenfront, process.env.secretkey);
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid or Expired Token" });
+  }
 
   try {
     let result = await SignModel.findOne({
-      name: tokendata.name,
-      userId: tokendata.userId,
+      name: tokenData.name,
+      userId: tokenData.userId,
     });
 
     if (!result) {
       return res.status(404).json({ message: "User Not Found" });
+    } else {
+      res.status(200).json({ message: result });
     }
-
-    res.status(200).json({ message: result });
   } catch (error) {
-    console.log("Can not Find User Sign In", error.message);
     res.status(400).json({ message: "User Not Found" });
   }
 };

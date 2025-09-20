@@ -101,7 +101,7 @@ const PublishForm = ({
 
             {/* ================= MALE  */}
 
-            <div className="w-[50%] pb-[14px] mx-auto flex justify-between max-[360px]:w-[80%]">
+            <div className="w-[50%] pb-[14px] mx-auto flex justify-between max-[1394px]:w-[80%] max-[355px]:w-[90%]">
               <label htmlFor="Male" className="cursor-pointer">
                 Male
                 <input
@@ -122,6 +122,18 @@ const PublishForm = ({
                   name="gender"
                   id="Female"
                   value={"Female"}
+                  className="accent-black scale-110 cursor-pointer ml-[20px] max-[395px]:ml-[10px] "
+                />
+              </label>
+
+              {/* ================== BOTH  */}
+              <label htmlFor="Both" className="cursor-pointer">
+                Both
+                <input
+                  type="radio"
+                  name="gender"
+                  id="Both"
+                  value={"Both"}
                   className="accent-black scale-110 cursor-pointer ml-[20px] max-[395px]:ml-[10px] "
                 />
               </label>

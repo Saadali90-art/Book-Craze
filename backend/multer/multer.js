@@ -26,10 +26,9 @@ const storage = multer.diskStorage({
       folder = "uploads/bookImage/";
     } else {
       folder = path.join("uploads", name);
-
-      if (!fs.existsSync(folder)) {
-        fs.mkdirSync(folder, { recursive: true });
-      }
+    }
+    if (!fs.existsSync(folder)) {
+      fs.mkdirSync(folder, { recursive: true });
     }
 
     cb(null, folder);

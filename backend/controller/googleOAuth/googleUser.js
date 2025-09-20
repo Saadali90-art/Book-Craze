@@ -25,14 +25,11 @@ const googleUser = async (profile) => {
 
       // fetch the inserted document
       user = await SignModel.findById(result.insertedId);
-      console.log("User Data Added To DB");
     } else {
-      console.log("User Already Present");
     }
 
     return { profile, userId };
   } catch (error) {
-    console.log(error.message);
     return null;
   }
 };

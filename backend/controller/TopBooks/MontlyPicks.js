@@ -9,15 +9,14 @@ const MontlyPicks = async (req, res) => {
   try {
     let result = await Publish.find({ date: { $gte: lastMonth } })
       .sort({ views: -1 })
-      .limit(8);
+      .limit(6);
 
-    if (result.length < 8) {
-      result = await Publish.find({}).sort({ views: -1 }).limit(8);
+    if (result.length < 6) {
+      result = await Publish.find({}).sort({ views: -1 }).limit(6);
     }
 
     res.status(200).send(result);
   } catch (error) {
-    console.log(error.message);
     res.status(400).send("Data Not Founded According To Month");
   }
 };

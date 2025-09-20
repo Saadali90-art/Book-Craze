@@ -1,11 +1,11 @@
 const deleteUser = async (link, userpass) => {
-  let data = localStorage.getItem("tokenuserin");
+  let token = localStorage.getItem("tokenuserin");
 
   let reqOpt = {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      token: data,
+      token,
     },
     body: JSON.stringify(userpass),
   };

@@ -16,6 +16,7 @@ const DeleteUser = () => {
       let data = await deleteUser("user/deleteuser", {
         pass: formEntry.password,
       });
+
       if (data === "User Deleted") {
         localStorage.removeItem("tokenuserin");
         navigate("/");

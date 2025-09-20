@@ -17,7 +17,10 @@ const Navigation = ({ setSearch, search }) => {
         </h1>
 
         <div className="w-[210px] max-[571px]:w-[180px] max-[365px]:w-[140px] rounded-[30px] px-[5px] max-[457px]:py-[0px] py-[3px] flex items-center gap-x-[5px]  bg-[#f1f1f1] ">
-          <Search className="w-[20px] ml-[5px] max-[319px]:ml-[0px]" />
+          <Search
+            className="w-[20px] h-[20px] max-[457px]:w-[17px] max-[457px]:h-[17px] ml-[5px] max-[319px]:ml-[0px]"
+            color="#545454"
+          />
           <input
             onChange={(e) => setSearch(e.target.value)}
             value={search}

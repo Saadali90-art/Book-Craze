@@ -19,8 +19,8 @@ const Discover = () => {
       setDiscover(data.sort((a, b) => b.views - a.views).slice(0, 6));
     };
 
-    fetchData(), [];
-  });
+    fetchData();
+  }, []);
 
   const handlemore = (item) => {
     if (item !== null) {
@@ -66,6 +66,8 @@ const Discover = () => {
 
             <div className="w-[40%] max-[590px]:w-[100%] h-full  max-[590px]:absolute flex justify-end -z-20 max-[590px]:brightness-60">
               <img
+                loading="eager"
+                fetchPriority="high"
                 className="w-[380px] max-[777px]:w-[100%] h-full max-[590px]:h-[320px] rounded-md"
                 src={discovering}
                 alt=""
@@ -86,10 +88,15 @@ const Discover = () => {
             </p>
 
             <div className="flex flex-wrap justify-evenly gap-x-[10px] gap-y-[15px] max-[368px]:gap-y-[0px] pb-[20px] ">
-              {discover !== null &&
+              {discover.length === 0 ? (
+                <div className="w-full h-[200px] mt-[20px] text-[19px] font-[500] flex items-center justify-center">
+                  <p>No items present</p>
+                </div>
+              ) : (
                 discover.map((item, index) => (
                   <Cards handlemore={handlemore} item={item} key={index} />
-                ))}
+                ))
+              )}
             </div>
           </div>
         </section>
@@ -179,13 +186,13 @@ const Discover = () => {
             <div className="max-w-lg text-center md:text-left max-[768px]:text-left max-[450px]:text-left">
               <h3
                 style={{ fontFamily: "Archivo, sans-serif" }}
-                className="text-2xl md:text-3xl font-bold "
+                className="text-[26px] font-bold max-[771px]:text-[24px]"
               >
                 A new world opens with every book.
               </h3>
               <p
                 style={{ fontFamily: "Archivo, sans-serif" }}
-                className="text-lg max-[540px]:text-[16px] md:text-lg mt-2 max-[768px]:text-left"
+                className="text-lg max-[540px]:text-[16px] max-[771px]:text-[15px] mt-2 max-[768px]:text-left"
               >
                 Every book you open leads to unforgettable moments.
               </p>
@@ -201,6 +208,7 @@ const Discover = () => {
             {/* Image */}
             <div className="hidden md:block">
               <img
+                loading="lazy"
                 src={JoinUs}
                 alt="Join Us"
                 className="w-[320px] md:w-[350px] h-[220px] object-cover rounded-xl shadow-md"

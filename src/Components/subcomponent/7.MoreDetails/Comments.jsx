@@ -132,7 +132,6 @@ const Comments = ({
                   </div>
 
                   <div className="flex w-full justify-end gap-x-[10px] mt-[3px]">
-                    {" "}
                     <button
                       onClick={() => handleLikes(item)}
                       style={{ cursor: "pointer" }}

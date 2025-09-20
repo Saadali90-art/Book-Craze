@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SignUpContainer from "./subcomponent/3.SignUp/SignUpContainer";
 import sendData from "./Requests/SignUp/Signup.js";
+import bgSignUp from "../assets/SignUp/bgsignup.webp";
 
 const SignUp = () => {
   // ==============  HOOKS ---------------------------
@@ -98,7 +99,10 @@ const SignUp = () => {
   }, [errorobj]);
 
   return (
-    <div className="w-screen h-screen max-[969px]:py-[20px] py-[10px] bg-[url('https://img.freepik.com/free-vector/minimalistic-blur-gradient-banner-web-app-backdrop-design_1017-44315.jpg')] bg-no-repeat bg-cover flex items-center justify-center select-none">
+    <div
+      style={{ backgroundImage: `url(${bgSignUp})` }}
+      className="w-screen h-screen max-[969px]:py-[20px] py-[10px] bg-[url('')] bg-no-repeat bg-cover flex items-center justify-center select-none"
+    >
       <SignUpContainer
         handlesubmit={handlesubmit}
         showpass={showpass}

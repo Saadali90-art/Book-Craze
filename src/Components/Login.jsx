@@ -11,7 +11,7 @@ const Login = () => {
 
   // ================GETTING INFO FROM THE INPUT FIELDS ===================
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
 
     let data = e.target;
@@ -24,19 +24,26 @@ const Login = () => {
     };
 
     try {
-      LogDataSend(dataobj, "user/login", navigate, setlogerror);
+      await LogDataSend(dataobj, "user/login", navigate, setlogerror);
     } catch (error) {
       console.log("Can Not Give Data To Log Data ", error.messsage);
     }
   };
 
   return (
-    <div
-      style={{ backgroundImage: `url(${bgimg})` }}
-      className="container max-w-screen h-screen
-   bg-no-repeat bg-cover flex justify-center items-center"
-    >
-      <LogInContainer handlesubmit={handlesubmit} logerror={logerror} />
+    <div className="relative max-w-screen h-screen flex justify-center items-center">
+      {/* Background Layer */}
+      <div
+        className="absolute inset-0 bg-no-repeat bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${bgimg})`,
+        }}
+      ></div>
+
+      {/* Foreground Content */}
+      <div className="relative z-10">
+        <LogInContainer handlesubmit={handlesubmit} logerror={logerror} />
+      </div>
     </div>
   );
 };

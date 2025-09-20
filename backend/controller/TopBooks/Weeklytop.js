@@ -18,7 +18,6 @@ const weeklyTop = async (req, res) => {
     }
     res.status(200).send(result);
   } catch (error) {
-    console.log(error.message);
     res.status(400).send("Can Not Find Data From Weekly Top");
   }
 };

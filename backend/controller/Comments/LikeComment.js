@@ -4,8 +4,14 @@ import Comment from "../../Model/UsersComments.js";
 
 const likeComment = async (req, res) => {
   let data = req.body;
+  let token = req.headers.tokeninfo;
 
-  let tokenData = await jsonwebtoken.verify(data.token, process.env.secretkey);
+  let tokenData;
+  try {
+    tokenData = jsonwebtoken.verify(token, process.env.secretkey);
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid or Expired Token" });
+  }
 
   try {
     let user = await userLikes.findOne({

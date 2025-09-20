@@ -1,5 +1,4 @@
 import jsonwebtoken from "jsonwebtoken";
-import dotenv from "dotenv";
 import Publish from "../../Model/PublishModel.js";
 import Comment from "../../Model/UsersComments.js";
 import SignModel from "../../Model/SignInModel.js";
@@ -9,7 +8,12 @@ const comment = async (req, res) => {
   let { token, commentValue, title } = req.body;
   let data = { token, commentValue, title };
 
-  let tokendata = await jsonwebtoken.verify(data.token, process.env.secretkey);
+  let tokenData;
+  try {
+    tokenData = jsonwebtoken.verify(token, process.env.secretkey);
+  } catch (err) {
+    return res.status(401).json({ message: "User UnAuthorized" });
+  }
 
   let commentId = crypto
     .createHash("sha256")
@@ -19,37 +23,35 @@ const comment = async (req, res) => {
 
   try {
     let userData = await SignModel.findOne({
-      userId: tokendata.userId,
-      name: tokendata.name,
+      userId: tokenData.userId,
+      name: tokenData.name,
     });
 
     let usersbook = await Publish.findOne({ title: data.title });
 
     let Author = null;
 
-    if (usersbook.userId === tokendata.userId) {
+    if (usersbook.userId === tokenData.userId) {
       Author = true;
     } else {
       Author = false;
     }
 
     let commentData = {
-      userId: tokendata.userId,
+      userId: tokenData.userId,
       commentId,
       Author,
-      name: tokendata.name,
+      name: tokenData.name,
       commentValue,
       title,
       profileImage: userData.profileImage,
     };
 
     await Comment.insertOne(commentData);
-    console.log("Comment Inserted To DB");
-
     res.status(200).json({ message: "Comment Added To DB" });
   } catch (error) {
     console.log(error.message);
-    res.status(400).send("Comment Not Added To DB");
+    res.status(400).json({ message: error.message });
   }
 };
 

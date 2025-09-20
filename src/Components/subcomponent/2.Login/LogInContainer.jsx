@@ -24,7 +24,8 @@ const LogInContainer = ({ handlesubmit, logerror }) => {
             style={{
               fontFamily: "Playfair Display SC, sans-serif",
               backgroundImage: `url(${bgimg})`,
-              animation: "mover 8s ease infinite",
+
+              animation: "mover 8s linear infinite", // 🔥 smoother
             }}
           >
             Book Craze
@@ -46,6 +47,7 @@ const LogInContainer = ({ handlesubmit, logerror }) => {
               type="password"
               placeholder="Password "
               name="password"
+              autoComplete="off"
               className="bg-black/10 px-[15px] py-[5px] rounded-2xl outline-none text-[15px] select-none max-[369px]:text-[12px] max-[369px]:text-[#4d4d4d]"
             />
           </form>
@@ -66,7 +68,7 @@ const LogInContainer = ({ handlesubmit, logerror }) => {
           </p>
 
           <p
-            className="text-red-500 text-[12px] font-[600] mx-auto transition-all duration-500 ease "
+            className="text-red-500 text-[12px] mb-[5px] font-[600] mx-auto transition-all duration-500 ease "
             style={{
               opacity: logerror ? 1 : 0,
               height: logerror ? "15px" : "0px",

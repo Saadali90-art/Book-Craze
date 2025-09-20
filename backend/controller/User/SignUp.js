@@ -55,7 +55,6 @@ const sendData = async (req, res) => {
       console.log("Error While Sending Data To DB", error.message);
     }
   } else {
-    console.log("Data Already Present");
     res.status(400).json({
       message: "Data Already Present",
     });

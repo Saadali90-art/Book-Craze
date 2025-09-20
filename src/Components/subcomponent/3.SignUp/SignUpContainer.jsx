@@ -21,7 +21,7 @@ const SignUpContainer = ({
     <>
       {/* ================================= SIGN UP CONTAINER ================================== */}
 
-      <div className="w-[350px] max-[369px]:w-[250px]  h-[600px] max-[369px]:h-[530px] bg-white rounded-md flex items-center justify-center">
+      <div className="w-[350px] max-[369px]:w-[250px]  h-[600px] max-[955px]:h-[570px] max-[369px]:h-[510px] bg-white rounded-md flex items-center justify-center">
         <div className=" w-[85%] h-[95%]  flex flex-col ">
           {/* ==================== NAV BAR SIGN UP CONTAINER =========================== */}
 

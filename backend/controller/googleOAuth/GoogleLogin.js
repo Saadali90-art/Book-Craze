@@ -13,9 +13,10 @@ const googleLogin = async (req, res) => {
       );
 
       res.status(200).json({ message: user, token });
+    } else {
+      res.status(401).json({ message: "User Invalid" });
     }
   } catch (error) {
-    console.log(error.message);
     res.status(400).json({ message: error.mesage });
   }
 };

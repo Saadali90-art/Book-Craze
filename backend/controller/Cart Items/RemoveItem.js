@@ -4,11 +4,10 @@ const removeCartItem = async (req, res) => {
   let data = req.body;
 
   try {
-    let result = await userCart.deleteMany({
+    await userCart.deleteMany({
       title: data.title,
       bookImage: data.bookImage,
     });
-    console.log("Data Deleted");
     res.status(200).json({ message: "Data Deleted" });
   } catch (error) {
     console.log(error.message);

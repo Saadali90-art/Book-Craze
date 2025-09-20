@@ -6,8 +6,12 @@ const PublishOne = async (req, res) => {
     const { title, category, gender, description, price } = req.body;
     const token = req.headers.tokenuser;
 
-    // verify user
-    const tokeninfo = await jsonwebtoken.verify(token, process.env.secretkey);
+    let tokenData;
+    try {
+      tokenData = jsonwebtoken.verify(token, process.env.secretkey);
+    } catch (err) {
+      return res.status(401).json({ message: "Invalid or Expired Token" });
+    }
 
     // uploaded image path
     let fileimage = null;
@@ -28,7 +32,7 @@ const PublishOne = async (req, res) => {
     }
 
     let data = {
-      userId: tokeninfo.userId,
+      userId: tokenData.userId,
       title,
       category,
       gender,

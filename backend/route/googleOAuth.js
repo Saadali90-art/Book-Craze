@@ -1,6 +1,8 @@
 import express from "express";
 import passport from "passport";
 import googleLogin from "../controller/googleOAuth/GoogleLogin.js";
+import userGooglePass from "../controller/googleOAuth/userPass.js";
+import SignModel from "../Model/SignInModel.js";
 
 const googleOAuth = express.Router();
 
@@ -12,13 +14,21 @@ googleOAuth.get(
 googleOAuth.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/signup" }),
-  (req, res) => {
+  async (req, res) => {
     const userId = req.user.userId;
 
-    res.redirect(`http://localhost:5173/?${userId}`);
+    let userInfo = await SignModel.findOne({ userId: userId });
+
+    if (userInfo.password === null) {
+      res.redirect(`http://localhost:5173/googlepassword/${userId}`);
+    } else {
+      res.redirect(`http://localhost:5173/?${userId}`);
+    }
   }
 );
 
 googleOAuth.post("/googlelogin", googleLogin);
+
+googleOAuth.post("/googleuserpass", userGooglePass);
 
 export default googleOAuth;

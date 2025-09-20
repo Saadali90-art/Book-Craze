@@ -17,7 +17,6 @@ const resetToken = async (req, res) => {
       res.status(200).json({ message: token });
     }
   } catch (error) {
-    console.log(error.message);
     res.status(400).json({ message: "Error While Giving Reset Token" });
   }
 };

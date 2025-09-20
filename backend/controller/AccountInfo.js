@@ -24,7 +24,12 @@ const accountInfo = async (req, res) => {
   let data = req.body;
   let newtoken = null;
 
-  let tokenData = await jsonwebtoken.verify(token, process.env.secretkey);
+  let tokenData;
+  try {
+    tokenData = jsonwebtoken.verify(token, process.env.secretkey);
+  } catch (err) {
+    return res.status(401).json({ message: "User UnAuthorized" });
+  }
 
   // ========== MAKING NEW TOKEN IF THE NAME IS CHANGED ============
 

@@ -7,7 +7,12 @@ const CartItems = async (req, res) => {
 
   if (!token) return res.status(400).json({ message: "User Not allowed" });
 
-  let tokenData = await jsonwebtoken.verify(token, process.env.secretkey);
+  let tokenData;
+  try {
+    tokenData = jsonwebtoken.verify(token, process.env.secretkey);
+  } catch (err) {
+    return res.status(401).json({ message: "User UnAuthorized" });
+  }
 
   let objInfo = {
     name: tokenData.name,

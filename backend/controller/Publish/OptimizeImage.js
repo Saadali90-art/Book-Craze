@@ -1,5 +1,6 @@
 import sharp from "sharp";
 import fs from "fs";
+import path from "path";
 
 const optimizeImage = async (req, res, next) => {
   if (!req.file || req.file.fieldname !== "bookImage") {
@@ -7,26 +8,30 @@ const optimizeImage = async (req, res, next) => {
   }
 
   try {
-    const inputPath = req.file.path;
-    const tempPath = inputPath + ".tmp"; // temporary file
+    const inputPath = req.file.path; // original upload path (e.g., uploads/image.jpg)
+    const extname = path.extname(inputPath).toLowerCase();
+    let outputPath = inputPath;
 
-    // Get original format (jpeg, png, etc.)
-    const metadata = await sharp(inputPath).metadata();
+    if (extname !== ".webp") {
+      outputPath = inputPath.replace(path.extname(inputPath), ".webp"); // new .webp path
+    }
 
-    // Create optimized copy
+    // Convert to webp
     await sharp(inputPath)
       .resize(400, 300, {
         fit: "inside",
         withoutEnlargement: true,
       })
-      .toFormat(metadata.format, { quality: 90 })
-      .toFile(tempPath);
+      .webp({ quality: 90 })
+      .toFile(outputPath);
 
-    // Delete the old file
+    // Delete old file
     fs.unlinkSync(inputPath);
 
-    // Rename new file to original name
-    fs.renameSync(tempPath, inputPath);
+    // Update multer file info (VERY IMPORTANT)
+    req.file.path = outputPath;
+    req.file.filename = path.basename(outputPath);
+    req.file.mimetype = "image/webp"; // now the server knows it's webp
 
     next();
   } catch (err) {

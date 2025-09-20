@@ -7,7 +7,6 @@ const Titles = async (req, res) => {
     res.status(200).send(result);
   } catch (error) {
     res.send(400).send("Titles Not Finded");
-    console.log(error.message);
   }
 };
 

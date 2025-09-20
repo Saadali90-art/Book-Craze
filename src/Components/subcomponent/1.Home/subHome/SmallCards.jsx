@@ -3,7 +3,7 @@ const SmallCards = ({ index, item, handlemore }) => {
     <>
       <div
         key={index}
-        className="w-[180px] max-[2163px]:w-[160px] max-[1963px]:w-[140px] max-[1702px]:w-[120px] max-[1474px]:w-[100px] h-[220px] relative overflow-hidden rounded-md "
+        className="w-[230px] max-[2043px]:w-[200px] max-[1786px]:w-[180px] h-[300px] relative overflow-hidden rounded-md "
         onClick={() => handlemore(item)}
       >
         <div className="w-full overflow-hidden rounded-sm">
@@ -12,7 +12,7 @@ const SmallCards = ({ index, item, handlemore }) => {
             fetchPriority="high"
             src={`http://127.0.0.1:8000${item.bookImage}`}
             alt={index + 1}
-            className="w-full h-[140px] rounded-sm hover:scale-110 transition-all duration-200 ease"
+            className="w-full h-[220px] rounded-sm hover:scale-110 transition-all duration-200 ease"
           />
         </div>
 
@@ -40,3 +40,4 @@ const SmallCards = ({ index, item, handlemore }) => {
 };
 
 export default SmallCards;
+//  max-[2163px]:w-[290px] max-[1963px]:w-[140px] max-[1702px]:w-[120px] max-[1474px]:w-[100px]

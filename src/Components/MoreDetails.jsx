@@ -122,14 +122,25 @@ const MoreDetails = () => {
           </h1>
 
           <div className="flex min-h-[320px]  flex-wrap justify-evenly gap-x-[10px] gap-y-[15px] pb-[20px]">
-            {youLike.map((item, index) => (
-              <Cards
-                handlemore={handlemore}
-                item={item}
-                index={index}
-                key={index}
-              />
-            ))}
+            {youLike.length === 0 ? (
+              <div className="w-full flex items-center justify-center">
+                <p
+                  className="text-[19px] font-[500]"
+                  style={{ fontFamily: "Archivo, sans-serif" }}
+                >
+                  For now no items founded.
+                </p>
+              </div>
+            ) : (
+              youLike.map((item, index) => (
+                <Cards
+                  handlemore={handlemore}
+                  item={item}
+                  index={index}
+                  key={index}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>
