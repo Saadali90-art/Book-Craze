@@ -105,6 +105,13 @@ app.use("/forgot", forgotPassword);
 
 app.get("/protect", ProtectedPages);
 
-app.listen(PORT, () => {
-  console.log("server up..");
-});
+// Local run (development)
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => {
+    console.log(`Server running locally on port ${PORT}`);
+  });
+}
+
+// For Vercel
+export default app;
