@@ -1,5 +1,5 @@
 import Linkedin from "lucide-react/dist/esm/icons/linkedin";
-import WhatsApp from "../../../assets/Footer/whatsapp.svg";
+import WhatsApp from "../../../assets/Footer/tempwhat.svg";
 import mail from "../../../assets/Footer/mail.svg";
 
 const Footer = () => {
