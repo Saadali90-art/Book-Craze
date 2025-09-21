@@ -42,7 +42,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 // === CORS MANAGEMENT
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://book-craze.netlify.app/",
     credentials: true,
   })
 );
