@@ -4,7 +4,10 @@ const discoveritems = async (link) => {
     headers: { "Content-Type": "text/json" },
   };
 
-  let result = await fetch(`http://127.0.0.1:8000/${link}`, reqopt);
+  let result = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}${link}`,
+    reqopt
+  );
   let response = await result.json();
   response = response.sort((a, b) => b.views - a.views);
 
