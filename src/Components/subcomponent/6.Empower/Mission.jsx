@@ -1,5 +1,5 @@
 import Navigation from "../1.Home/Navigation";
-import mission from "../../../assets/mission/mission.jpeg";
+import mission from "../../../assets/Mission/mission.jpeg";
 import { missionData, pricingPlans } from "./subcomponent/db.js";
 import MissionCards from "./subcomponent/MissionCards";
 import PricingCards from "./subcomponent/PricingCards";
