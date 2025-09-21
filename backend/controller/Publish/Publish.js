@@ -13,10 +13,10 @@ const PublishOne = async (req, res) => {
       return res.status(401).json({ message: "Invalid or Expired Token" });
     }
 
-    // uploaded image path
+    // uploaded image path from Cloudinary
     let fileimage = null;
-    if (req.file) {
-      fileimage = `/uploads/bookImage/${req.file.filename}`;
+    if (req.file && req.file.path) {
+      fileimage = req.file.path; // this is the full Cloudinary URL (WebP)
     }
 
     // validation
@@ -31,18 +31,19 @@ const PublishOne = async (req, res) => {
       return res.status(400).json({ message: "Data Not Present" });
     }
 
-    let data = {
+    const data = {
       userId: tokenData.userId,
       title,
       category,
       gender,
       description,
       price,
-      bookImage: fileimage,
+      bookImage: fileimage, // save the Cloudinary URL
     };
 
     // save to db
     await Publish.insertOne(data);
+
     res.status(200).json({
       message: "Book published successfully",
     });

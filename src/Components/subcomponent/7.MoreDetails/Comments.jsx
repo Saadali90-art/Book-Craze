@@ -101,7 +101,7 @@ const Comments = ({
                       <img
                         loading="lazy"
                         className="w-[40px] h-[40px] rounded-[50%] "
-                        src={`http://127.0.0.1:8000${item.profileImage}`}
+                        src={item.profileImage}
                         alt=""
                       />
                     )}

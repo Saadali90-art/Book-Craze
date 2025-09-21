@@ -56,7 +56,7 @@ const NovelDetails = ({ moreInfo }) => {
               </p>
               <img
                 loading="eager"
-                src={`http://127.0.0.1:8000${moreInfo.bookImage}`}
+                src={moreInfo.bookImage}
                 alt="Book Cover Image"
                 className="w-full h-full rounded-lg"
               />

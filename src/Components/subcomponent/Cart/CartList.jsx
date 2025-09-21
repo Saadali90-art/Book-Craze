@@ -39,9 +39,8 @@ const CartList = ({
                   </button>
 
                   <div className="min-w-[60px] h-[60px]">
-                    {" "}
                     <img
-                      src={`http://127.0.0.1:8000${item.bookImage}`}
+                      src={item.bookImage}
                       alt=""
                       className="w-[60px] h-[60px] object-cover"
                     />
@@ -85,11 +84,7 @@ const CartList = ({
             <div key={index}>
               <div className="flex gap-x-[10px]">
                 <div className="w-[30%] h-[100px]">
-                  <img
-                    src={`http://127.0.0.1:8000${item.bookImage}`}
-                    alt=""
-                    className="w-full h-full"
-                  />
+                  <img src={item.bookImage} alt="" className="w-full h-full" />
                 </div>
 
                 <div

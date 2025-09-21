@@ -11,7 +11,7 @@ const Cards = ({ index, handlemore, item }) => {
         <img
           loading="lazy"
           width={160}
-          src={`http://127.0.0.1:8000${item.bookImage}`}
+          src={item.bookImage}
           className="w-full  h-[230px] hover:scale-105 transition-all duration-500 ease"
         />
       </div>

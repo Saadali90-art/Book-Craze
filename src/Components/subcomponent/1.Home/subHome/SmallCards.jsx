@@ -10,7 +10,7 @@ const SmallCards = ({ index, item, handlemore }) => {
           <img
             loading="eager"
             fetchPriority="high"
-            src={`http://127.0.0.1:8000${item.bookImage}`}
+            src={item.bookImage}
             alt={index + 1}
             className="w-full h-[220px] rounded-sm hover:scale-110 transition-all duration-200 ease"
           />

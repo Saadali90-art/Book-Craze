@@ -75,7 +75,7 @@ const Carousel = () => {
                     fetchPriority="high"
                     width={800}
                     height={260}
-                    src={`http://127.0.0.1:8000${item.bookImage}`}
+                    src={item.bookImage}
                     className="min-w-full h-full object-cover"
                     alt=""
                   />
@@ -93,7 +93,7 @@ const Carousel = () => {
                       fetchPriority="high"
                       width={120}
                       height={210}
-                      src={`http://127.0.0.1:8000${item.bookImage}`}
+                      src={item.bookImage}
                       alt=""
                       className="w-full max-[446px]:w-[120px] h-[210px] rounded-lg"
                     />

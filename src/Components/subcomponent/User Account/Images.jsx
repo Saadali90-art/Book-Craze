@@ -5,14 +5,13 @@ import CoverImage from "../../../assets/MyAccount/CoverImage.avif";
 const Images = ({
   accountInfo,
   coverImage,
-
   edit,
   handleCover,
   handleProfile,
   profileImage,
 }) => {
-  let profileImageUrl = `http://127.0.0.1:8000${accountInfo.profileImage}`;
-  let coverImageUrl = `http://127.0.0.1:8000${accountInfo.coverImage}`;
+  let profileImageUrl = accountInfo.profileImage;
+  let coverImageUrl = accountInfo.coverImage;
 
   return (
     <>

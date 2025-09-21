@@ -14,7 +14,7 @@ const DataCards = ({ item, index, navigate }) => {
           }
         >
           <img
-            src={`http://localhost:8000${item.bookImage}`}
+            src={item.bookImage}
             alt="Image Not Found"
             className="w-full h-[340px]  hover:scale-105 hover:rounded-t-4xl transition-all duration-500 ease"
           />
