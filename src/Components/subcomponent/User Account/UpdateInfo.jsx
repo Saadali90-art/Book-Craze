@@ -4,7 +4,10 @@ const UpdateInfo = ({
   accountInfo,
   updateInfo,
   setUpdateInfo,
+  load,
   handleFormSubmit,
+  loadingdots,
+  currentdot,
 }) => {
   return (
     <>
@@ -276,14 +279,37 @@ const UpdateInfo = ({
           </p>
 
           {/* =================== SAVE UPDATES == */}
-
           <div className="flex justify-end max-[491px]:w-[300px] max-[335px]:w-[250px]">
-            <button
-              className="bg-blue-500 px-[10px] py-[8px] min-w-[100px]  rounded-sm text-white text-[17px] font-[500] cursor-pointer "
-              type="submit"
-            >
-              Save changes
-            </button>
+            {load ? (
+              <div
+                className="w-[100%] flex justify-end items-center my-[20px] mb-[30px] "
+                style={{
+                  height: load ? "10px" : "0px",
+                  opacity: load ? 1 : 0,
+                  transition: "height 500ms ease, opacity 500ms ease",
+                }}
+              >
+                <p className="text-[15px] font-[500]">Loading</p>
+                <div className="flex gap-x-[1px] mt-[4px]">
+                  {loadingdots.map((_, i) => (
+                    <div
+                      key={i}
+                      className="w-[3px] h-[3px] bg-black rounded-[50%]"
+                      style={{
+                        background: currentdot >= i ? "black" : "white",
+                      }}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <button
+                className="bg-blue-500 px-[10px] py-[8px] min-w-[100px]  rounded-sm text-white text-[17px] font-[500] cursor-pointer "
+                type="submit"
+              >
+                Save changes
+              </button>
+            )}
           </div>
         </form>
       </div>

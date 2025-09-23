@@ -20,13 +20,12 @@ import account from "./route/userAccount.js";
 import stripe from "./route/stripe.js";
 import googleOAuth from "./route/googleOAuth.js";
 import forgotPassword from "./route/forgotPassword.js";
-import optimizeImage from "./controller/Publish/OptimizeImage.js";
+// import optimizeImage from "./controller/Publish/OptimizeImage.js";
 import compression from "compression";
 
 let app = express();
 
 dotenv.config();
-let PORT = process.env.PORT;
 let db_url = process.env.db_url;
 
 // ================= MIDDLE WARES ====================
@@ -42,7 +41,11 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 // === CORS MANAGEMENT
 app.use(
   cors({
-    origin: ["https://book-craze.netlify.app", "http://localhost:5173"],
+    origin: [
+      "https://Book-Craze.vercel.app",
+      "http://localhost:5173",
+      "http://127.0.0.1:5173", // add this
+    ],
     credentials: true,
   })
 );
@@ -92,7 +95,7 @@ app.use("/topbooks", topBooks);
 app.post(
   "/user/publish",
   upload.single("bookImage"),
-  optimizeImage,
+  // optimizeImage,
   PublishOne
 );
 app.use("/comment", comments);

@@ -9,8 +9,10 @@ const planCheckout = async (req, res) => {
       mode: "subscription",
       payment_method_types: ["card"],
       line_items: [{ price: id, quantity: 1 }],
-      success_url: "http://localhost:5173/success",
-      cancel_url: "http://localhost:5173/cancel",
+      success_url: `${import.meta.env.VITE_FRONTEND_URL}success/${
+        data[0].userId
+      }`,
+      cancel_url: `${import.meta.env.VITE_FRONTEND_URL}cancel`,
     });
 
     res.status(200).json({ url: session.url });

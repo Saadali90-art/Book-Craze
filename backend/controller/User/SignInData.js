@@ -1,7 +1,5 @@
-import bcrypt from "bcrypt";
 import SignModel from "../../Model/SignInModel.js";
 import jsonwebtoken from "jsonwebtoken";
-import dotenv from "dotenv";
 
 // ======================== GETTING THE USER DATA FOR THE HOME PAGE SIGN UP =======================
 

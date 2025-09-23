@@ -1,13 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import deleteUser from "./Requests/Home Requests/DeleteUser.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const DeleteUser = () => {
   const [showError, setShowError] = useState(null);
   const navigate = useNavigate();
+  let loadingdots = Array.from({ length: 4 });
+  let [currentdot, setcurrentdot] = useState(0);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentdot === 3) {
+        setcurrentdot(0);
+      } else {
+        setcurrentdot(currentdot + 1);
+      }
+    }, 100);
+  }, [currentdot]);
 
   const userDelete = async (e) => {
     e.preventDefault();
+    setLoad(true);
 
     let formData = new FormData(e.target);
     let formEntry = Object.fromEntries(formData.entries());
@@ -23,6 +37,8 @@ const DeleteUser = () => {
       } else if (data === "User Unauthorized") {
         navigate("/");
       } else {
+        setLoad(false);
+
         setShowError(data);
 
         setTimeout(() => {
@@ -66,12 +82,36 @@ const DeleteUser = () => {
             </p>
 
             <div className="w-[100%] flex justify-end mt-[15px]">
-              <button
-                type="submit"
-                className=" bg-[#1ab9d1] px-[10px] py-[7px] font-[500] rounded-sm text-white text-[14px] cursor-pointer  active:brightness-75"
-              >
-                Delete Account
-              </button>
+              {load ? (
+                <div
+                  className="w-[90%] flex justify-end items-center mt-[10px]  "
+                  style={{
+                    height: load ? "10px" : "0px",
+                    opacity: load ? 1 : 0,
+                    transition: "height 500ms ease, opacity 500ms ease",
+                  }}
+                >
+                  <p className="text-[15px] font-[500]">Loading</p>
+                  <div className="flex gap-x-[1px] mt-[4px]">
+                    {loadingdots.map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-[3px] h-[3px] bg-black rounded-[50%]"
+                        style={{
+                          background: currentdot >= i ? "black" : "white",
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  className=" bg-[#1ab9d1] px-[10px] py-[7px] font-[500] rounded-sm text-white text-[14px] cursor-pointer  active:brightness-75"
+                >
+                  Delete Account
+                </button>
+              )}
             </div>
           </form>
         </div>

@@ -14,10 +14,22 @@ const SignUp = () => {
   const [showerror, setshowerror] = useState(false);
   const [showpass, setshowpass] = useState(false);
   const navigate = useNavigate();
+  let [currentdot, setcurrentdot] = useState(0);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentdot === 3) {
+        setcurrentdot(0);
+      } else {
+        setcurrentdot(currentdot + 1);
+      }
+    }, 100);
+  }, [currentdot]);
 
   // ================================ SUBMITTING THE FORM =================================
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
 
     let data = e.target;
@@ -33,6 +45,7 @@ const SignUp = () => {
       seterrorobj((pre) => {
         return [{ message: "Data Is Empty" }, ...pre];
       });
+
       return;
     }
 
@@ -60,7 +73,13 @@ const SignUp = () => {
     } else {
       if (!isNaN(datainfo.phone) && formentry.password === formentry.confirm) {
         try {
-          sendData(datainfo, "user/signup", seterrorobj, navigate);
+          await sendData(
+            datainfo,
+            "user/signup",
+            seterrorobj,
+            navigate,
+            setLoad
+          );
         } catch (error) {
           console.log("Error While Sending Data To DB", error.message);
         }
@@ -110,6 +129,8 @@ const SignUp = () => {
         showerror={showerror}
         shake={shake}
         animateArr={animateArr}
+        load={load}
+        currentdot={currentdot}
       />
     </div>
   );

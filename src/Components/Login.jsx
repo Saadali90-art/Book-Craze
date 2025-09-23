@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../animation.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LogInContainer from "./subcomponent/2.Login/LogInContainer";
 import LogDataSend from "./Requests/LogIn/Login.js";
 import bgimg from "../assets/Login//bgimg.jpg";
@@ -8,11 +8,24 @@ import bgimg from "../assets/Login//bgimg.jpg";
 const Login = () => {
   const [logerror, setlogerror] = useState(false);
   const navigate = useNavigate();
+  let [currentdot, setcurrentdot] = useState(0);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentdot === 3) {
+        setcurrentdot(0);
+      } else {
+        setcurrentdot(currentdot + 1);
+      }
+    }, 100);
+  }, [currentdot]);
 
   // ================GETTING INFO FROM THE INPUT FIELDS ===================
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+    setLoad(true);
 
     let data = e.target;
     let formdata = new FormData(data);
@@ -24,7 +37,7 @@ const Login = () => {
     };
 
     try {
-      await LogDataSend(dataobj, "user/login", navigate, setlogerror);
+      await LogDataSend(dataobj, "user/login", navigate, setlogerror, setLoad);
     } catch (error) {
       console.log("Can Not Give Data To Log Data ", error.messsage);
     }
@@ -42,7 +55,12 @@ const Login = () => {
 
       {/* Foreground Content */}
       <div className="relative z-10">
-        <LogInContainer handlesubmit={handlesubmit} logerror={logerror} />
+        <LogInContainer
+          handlesubmit={handlesubmit}
+          logerror={logerror}
+          load={load}
+          currentdot={currentdot}
+        />
       </div>
     </div>
   );

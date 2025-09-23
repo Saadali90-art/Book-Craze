@@ -7,6 +7,23 @@ const EmailVerify = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   let { id } = useParams();
+  let [currentdot, setcurrentdot] = useState(0);
+  let loadingdots = Array.from({ length: 4 });
+  const [load, setLoad] = useState(false);
+
+  // ================= LOADING DOTS ===============
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentdot === 3) {
+        setcurrentdot(0);
+      } else {
+        setcurrentdot(currentdot + 1);
+      }
+    }, 100);
+  }, [currentdot]);
+
+  // ======================= GETTING DATA FROM THE USER ID AND GETTING THE RESET AND RESET TIME OF USER
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,12 +36,15 @@ const EmailVerify = () => {
 
   const handleCheck = async (e) => {
     e.preventDefault();
+    setLoad(true);
 
     let formData = new FormData(e.target);
     let formEntry = Object.fromEntries(formData.entries());
 
     if (userData !== null) {
       if (userData.resetPassExpiry < Date.now()) {
+        setLoad(false);
+
         setError("Code Expired");
         setTimeout(() => {
           setError(null);
@@ -42,6 +62,7 @@ const EmailVerify = () => {
 
           navigate("/changepassword");
         } else {
+          setLoad(false);
           setError("Invalid Credientials");
 
           setTimeout(() => {
@@ -94,12 +115,36 @@ const EmailVerify = () => {
             </div>
 
             <div className="w-[100%] flex mx-auto justify-end mt-[5px] mb-[8px]">
-              <button
-                type="submit"
-                className="bg-[#1ab9d1] px-[10px] py-[7px] font-[500] rounded-sm text-white text-[14px] cursor-pointer  active:brightness-75"
-              >
-                Verify
-              </button>
+              {load ? (
+                <div
+                  className="w-[90%] flex justify-end items-center mt-[10px]  "
+                  style={{
+                    height: load ? "10px" : "0px",
+                    opacity: load ? 1 : 0,
+                    transition: "height 500ms ease, opacity 500ms ease",
+                  }}
+                >
+                  <p className="text-[15px] font-[500]">Loading</p>
+                  <div className="flex gap-x-[1px] mt-[4px]">
+                    {loadingdots.map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-[3px] h-[3px] bg-black rounded-[50%]"
+                        style={{
+                          background: currentdot >= i ? "black" : "white",
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  className="bg-[#1ab9d1] px-[10px] py-[7px] font-[500] rounded-sm text-white text-[14px] cursor-pointer  active:brightness-75"
+                >
+                  Verify
+                </button>
+              )}
             </div>
           </form>
         </div>

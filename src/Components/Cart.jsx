@@ -16,6 +16,19 @@ const Cart = () => {
   const [search, setSearch] = useState("");
   const location = useLocation();
   let incomingData = location.state;
+  let [currentdot, setcurrentdot] = useState(0);
+  let loadingdots = Array.from({ length: 4 });
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentdot === 3) {
+        setcurrentdot(0);
+      } else {
+        setcurrentdot(currentdot + 1);
+      }
+    }, 100);
+  }, [currentdot]);
 
   // ================== CARTS DATA FROM DB ===========================
 
@@ -98,6 +111,8 @@ const Cart = () => {
   };
 
   const makePayment = async () => {
+    setLoad(true);
+
     const stripe = await loadStripe(
       import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
     );
@@ -162,14 +177,38 @@ const Cart = () => {
           </div>
         </section>
         <div className="flex w-full justify-end max-[696px]:justify-center max-[696px]:mt-[10px]">
-          <button
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="bg-blue-500 px-[23px] cursor-pointer rounded-sm py-[3px] text-white font-[500] text-[16px] active:brightness-70 border-[1px] border-transparent hover:border-blue-500 hover:bg-white hover:text-blue-500 hover:font-[500] transition-colors ease duration-500"
-            disabled={totalCost === 0}
-            onClick={makePayment}
-          >
-            Checkout
-          </button>
+          {load ? (
+            <div
+              className="w-[100%] flex justify-end max-[696px]:justify-center items-center my-[20px] mb-[30px] "
+              style={{
+                height: load ? "10px" : "0px",
+                opacity: load ? 1 : 0,
+                transition: "height 500ms ease, opacity 500ms ease",
+              }}
+            >
+              <p className="text-[15px] font-[500]">Loading</p>
+              <div className="flex gap-x-[1px] mt-[4px]">
+                {loadingdots.map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-[3px] h-[3px] bg-black rounded-[50%]"
+                    style={{
+                      background: currentdot >= i ? "black" : "white",
+                    }}
+                  ></div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <button
+              style={{ fontFamily: "Montserrat, sans-serif" }}
+              className="bg-blue-500 px-[23px] cursor-pointer rounded-sm py-[3px] text-white font-[500] text-[16px] active:brightness-70 border-[1px] border-transparent hover:border-blue-500 hover:bg-white hover:text-blue-500 hover:font-[500] transition-colors ease duration-500"
+              disabled={totalCost === 0}
+              onClick={makePayment}
+            >
+              Checkout
+            </button>
+          )}
         </div>
       </section>
     </main>

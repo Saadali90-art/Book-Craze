@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import SignModel from "../../Model/SignInModel.js";
 import crypto from "crypto";
 import jsonwebtoken from "jsonwebtoken";
-import dotenv from "dotenv";
 
 // ==============VERIFYING DATA IF THEY ARE PREVIOUS PRESENT ===================
 const verify = async (data) => {

@@ -1,4 +1,4 @@
-const LogDataSend = async (data, link, navigate, setlogerror) => {
+const LogDataSend = async (data, link, navigate, setlogerror, setLoad) => {
   let reqOpt = {
     method: "POST",
     body: JSON.stringify(data),
@@ -15,6 +15,7 @@ const LogDataSend = async (data, link, navigate, setlogerror) => {
     localStorage.setItem("tokenuserin", response.token);
     navigate("/");
   } else {
+    setLoad(false);
     setlogerror(true);
     setTimeout(() => {
       setlogerror(false);

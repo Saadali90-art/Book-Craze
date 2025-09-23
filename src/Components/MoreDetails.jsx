@@ -9,15 +9,27 @@ import Footer from "./subcomponent/1.Home/Footer.jsx";
 import cartsData from "./Requests/Cart/CartInfo.js";
 
 const MoreDetails = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  let incomingData = location.state;
-
   const [moreInfo, setMoreInfo] = useState(null);
   const [youLike, setYouLike] = useState([]);
   const [comments, setComments] = useState([]);
   const [commentDiv, setCommentDiv] = useState(false);
   const [commentValue, setCommentValue] = useState("");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  let incomingData = location.state;
+  let [currentdot, setcurrentdot] = useState(0);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentdot === 3) {
+        setcurrentdot(0);
+      } else {
+        setcurrentdot(currentdot + 1);
+      }
+    }, 100);
+  }, [currentdot]);
 
   // ========================== FINDING DATA IN DATA BASE ============================
 
@@ -108,7 +120,12 @@ const MoreDetails = () => {
 
       {/* ======================= SPECIFIC NOVEL DETAILS =========================== */}
 
-      <NovelDetails moreInfo={moreInfo} />
+      <NovelDetails
+        moreInfo={moreInfo}
+        load={load}
+        setLoad={setLoad}
+        currentdot={currentdot}
+      />
 
       {/* ============================== YOU MAY ALSO LIKE ============================= */}
 

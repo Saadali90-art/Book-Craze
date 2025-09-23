@@ -14,7 +14,6 @@ const MyAccount = () => {
   const [publisherBooks, setPublisherBooks] = useState([]);
   const [edit, setEdit] = useState(false);
   const [updateInfo, setUpdateInfo] = useState(null);
-  const [currentdot, setcurrentdot] = useState(0);
   const [loading, setloading] = useState(true);
   const [error, setError] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -25,6 +24,8 @@ const MyAccount = () => {
   const token = localStorage.getItem("tokenuserin");
   const navigate = useNavigate();
   let loadingdots = Array.from({ length: 4 });
+  let [currentdot, setcurrentdot] = useState(0);
+  const [load, setLoad] = useState(false);
 
   if (token === undefined || token === null) {
     navigate("/login");
@@ -102,6 +103,7 @@ const MyAccount = () => {
 
     try {
       if (formEntry !== null) {
+        setLoad(true);
         const info = await accountData("account/changeinfo", formEntry);
 
         if ((updateInfo?.name ?? accountInfo.name) !== accountInfo.name) {
@@ -113,6 +115,7 @@ const MyAccount = () => {
         if (info.message === "Data Updated") {
           location.reload();
         } else {
+          setLoad(false);
           setError(info.message);
           setTimeout(() => {
             setError(null);
@@ -120,7 +123,7 @@ const MyAccount = () => {
         }
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
 
@@ -166,12 +169,15 @@ const MyAccount = () => {
 
               <div>
                 <UpdateInfo
+                  load={load}
                   edit={edit}
                   accountInfo={accountInfo}
                   updateInfo={updateInfo}
                   setUpdateInfo={setUpdateInfo}
                   handleFormSubmit={handleFormSubmit}
                   error={error}
+                  loadingdots={loadingdots}
+                  currentdot={currentdot}
                 />
               </div>
             </div>

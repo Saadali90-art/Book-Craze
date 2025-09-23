@@ -20,9 +20,9 @@ googleOAuth.get(
     let userInfo = await SignModel.findOne({ userId: userId });
 
     if (userInfo.password === null) {
-      res.redirect(`http://localhost:5173/googlepassword/${userId}`);
+      res.redirect(`${process.env.VITE_FRONTEND_URL}googlepassword/${userId}`);
     } else {
-      res.redirect(`http://localhost:5173/?${userId}`);
+      res.redirect(`${process.env.VITE_FRONTEND_URL}?${userId}`);
     }
   }
 );

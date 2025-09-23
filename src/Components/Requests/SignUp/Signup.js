@@ -1,4 +1,4 @@
-const sendData = async (data, link, seterrorobj, navigate) => {
+const sendData = async (data, link, seterrorobj, navigate, setLoad) => {
   let infodata = JSON.stringify(data);
 
   let reqOpt = {
@@ -19,6 +19,7 @@ const sendData = async (data, link, seterrorobj, navigate) => {
       return [response, ...pre];
     });
   } else {
+    setLoad(true);
     localStorage.setItem("tokenuserin", response.token);
     if (response.message === "Data Sended TO DB") {
       navigate("/");

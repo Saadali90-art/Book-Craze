@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-// import { CgGenderFemale, CgGenderMale } from "react-icons/cg";
-// import { FaEye } from "react-icons/fa";
-// import { TbCategoryPlus } from "react-icons/tb";
 import Mars from "lucide-react/dist/esm/icons/mars";
 import Venus from "lucide-react/dist/esm/icons/venus";
 import Grip from "lucide-react/dist/esm/icons/grip";
@@ -9,9 +6,10 @@ import Eye from "lucide-react/dist/esm/icons/eye";
 
 import { useNavigate } from "react-router-dom";
 
-const NovelDetails = ({ moreInfo }) => {
-  const navigate = useNavigate();
+const NovelDetails = ({ moreInfo, load, currentdot, setLoad }) => {
   const [views, setViews] = useState("");
+  const navigate = useNavigate();
+  let loadingdots = Array.from({ length: 4 });
 
   const handleViews = () => {
     if (moreInfo?.views < 1000) {
@@ -34,6 +32,11 @@ const NovelDetails = ({ moreInfo }) => {
   useEffect(() => {
     handleViews();
   }, [moreInfo]);
+
+  const handleCart = (moreInfo) => {
+    navigate("/user/cart", { state: moreInfo });
+    setLoad(true);
+  };
 
   return (
     <>
@@ -120,12 +123,36 @@ const NovelDetails = ({ moreInfo }) => {
               style={{ fontFamily: "Montserrat, sans-serif" }}
               className="mt-[15px] flex flex-row gap-x-[10px] max-[496px]:mt-[20px]"
             >
-              <button
-                onClick={() => navigate("/user/cart", { state: moreInfo })}
-                className="absolute bottom-0 bg-blue-500 px-[9px] py-[7px] font-[500] rounded-lg text-white hover:bg-white hover:text-black border-transparent border-[1px] hover:border-black tranistion-all duration-500 ease hover:font-[500] cursor-pointer "
-              >
-                Add To Cart
-              </button>
+              {load ? (
+                <div
+                  className="w-[100%] flex justify-start items-center my-[20px] mb-[30px] "
+                  style={{
+                    height: load ? "10px" : "0px",
+                    opacity: load ? 1 : 0,
+                    transition: "height 500ms ease, opacity 500ms ease",
+                  }}
+                >
+                  <p className="text-[15px] font-[500]">Loading</p>
+                  <div className="flex gap-x-[1px] mt-[4px]">
+                    {loadingdots.map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-[3px] h-[3px] bg-black rounded-[50%]"
+                        style={{
+                          background: currentdot >= i ? "black" : "white",
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => handleCart(moreInfo)}
+                  className="absolute bottom-0 bg-blue-500 px-[9px] py-[7px] font-[500] rounded-lg text-white hover:bg-white hover:text-black border-transparent border-[1px] hover:border-black tranistion-all duration-500 ease hover:font-[500] cursor-pointer "
+                >
+                  Add To Cart
+                </button>
+              )}
             </div>
           </div>
         </div>

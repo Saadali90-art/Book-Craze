@@ -11,7 +11,11 @@ const PublishForm = ({
   handleclick,
   currentimage,
   urlToFile,
+  load,
+  currentdot,
 }) => {
+  let loadingdots = Array.from({ length: 4 });
+
   return (
     <>
       <div className="w-[100%]  ">
@@ -25,6 +29,7 @@ const PublishForm = ({
 
             <p className="text-[17px] pb-[10px] ">Book Name</p>
             <input
+              required
               type="text"
               name="title"
               placeholder="Title.."
@@ -258,6 +263,7 @@ const PublishForm = ({
             <div className="relative z-10 pt-[17px]">
               <p className="text-[17px] pb-[10px] ">Price</p>
               <input
+                required
                 type="number"
                 name="price"
                 className="w-full outline-black outline-[1px] hover:outline-blue-400 focus:outline-blue-400  rounded-lg px-[10px] py-[5px] transition-all duration-400 ease"
@@ -268,6 +274,7 @@ const PublishForm = ({
             <div className="flex flex-col relative z-10">
               <p className="text-[17px] py-[14px] ">Main Idea</p>
               <textarea
+                required
                 name="description"
                 className="outline-[1px] rounded-lg px-[10px] py-[5px] h-[200px] resize-none transition-all duration-400 ease hover:outline-blue-400 focus:outline-blue-400"
                 contentEditable
@@ -287,13 +294,37 @@ const PublishForm = ({
               </p>
             </div>
 
-            <div className="flex items-center justify-end w-full ">
-              <button
-                type="submit"
-                className=" my-[14px] mb-[20px] px-[15px] py-[5px] text-[17px] bg-blue-500 rounded-lg font-[500] text-white cursor-pointer active:brightness-60 active:scale-95"
-              >
-                Submit
-              </button>
+            <div className="flex items-end justify-end w-full ">
+              {load ? (
+                <div
+                  className="w-[100%] flex justify-end items-center my-[20px] mb-[30px] "
+                  style={{
+                    height: load ? "10px" : "0px",
+                    opacity: load ? 1 : 0,
+                    transition: "height 500ms ease, opacity 500ms ease",
+                  }}
+                >
+                  <p className="text-[15px] font-[500]">Loading</p>
+                  <div className="flex gap-x-[1px] mt-[4px]">
+                    {loadingdots.map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-[3px] h-[3px] bg-black rounded-[50%]"
+                        style={{
+                          background: currentdot >= i ? "black" : "white",
+                        }}
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  className=" my-[14px] mb-[20px] px-[15px] py-[5px] text-[17px] bg-blue-500 rounded-lg font-[500] text-white cursor-pointer active:brightness-60 active:scale-95"
+                >
+                  Submit
+                </button>
+              )}
             </div>
           </form>
 

@@ -1,4 +1,4 @@
-const sendData = async (data, link, seterror, navigate) => {
+const sendData = async (data, link, seterror, navigate, setLoad) => {
   let token = localStorage.getItem("tokenuserin");
 
   let reqOpt = {
@@ -13,6 +13,7 @@ const sendData = async (data, link, seterror, navigate) => {
   );
 
   if (!result.ok) {
+    setLoad(false);
     let response = await result.json();
     if (response.message === "Data Not Present") {
       seterror(true);

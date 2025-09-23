@@ -12,9 +12,13 @@ const SignUpContainer = ({
   showerror,
   shake,
   animateArr,
+  load,
+  currentdot,
 }) => {
+  let loadingdots = Array.from({ length: 4 });
+
   const handleGoogle = async () => {
-    window.location.href = `${import.meta.env.VITE_BACKEND_URL}/auth/google`;
+    window.location.href = `${import.meta.env.VITE_BACKEND_URL}auth/google`;
   };
 
   return (
@@ -77,16 +81,40 @@ const SignUpContainer = ({
             {animateArr[0]}
           </p>
 
-          <button
-            form="formsignup"
-            type="submit"
-            className="text-white bg-linear-to-bl from-blue-600 to-purple-600 w-[46%] uppercase rounded-4xl py-[6px] font-[600] mx-auto my-[18px] active:scale-95 active:brightness-70 cursor-pointer"
-            style={{
-              animation: shake ? "wrong 0.15s ease 3" : "none",
-            }}
-          >
-            Sign Up
-          </button>
+          {load ? (
+            <div
+              className="w-[100%] flex justify-center items-center my-[20px] mb-[30px] "
+              style={{
+                height: load ? "10px" : "0px",
+                opacity: load ? 1 : 0,
+                transition: "height 500ms ease, opacity 500ms ease",
+              }}
+            >
+              <p className="text-[15px] font-[500]">Loading</p>
+              <div className="flex gap-x-[1px] mt-[4px]">
+                {loadingdots.map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-[3px] h-[3px] bg-black rounded-[50%]"
+                    style={{
+                      background: currentdot >= i ? "black" : "white",
+                    }}
+                  ></div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <button
+              form="formsignup"
+              type="submit"
+              className="text-white bg-linear-to-bl from-blue-600 to-purple-600 w-[46%] uppercase rounded-4xl py-[6px] font-[600] mx-auto my-[18px] active:scale-95 active:brightness-70 cursor-pointer"
+              style={{
+                animation: shake ? "wrong 0.15s ease 3" : "none",
+              }}
+            >
+              Sign Up
+            </button>
+          )}
 
           <div className="flex items-center gap-x-[3.5px]">
             <div className="flex-grow h-[1.5px] bg-[#cecccc]"></div>

@@ -3,21 +3,32 @@ import ChevronLeft from "lucide-react/dist/esm/icons/chevron-left";
 import { useNavigate } from "react-router-dom";
 import "../animation.css";
 import PublishForm from "./subcomponent/5.Publish/PublishForm";
-import sendData from "./Requests/Publish/PublishData";
+import sendData from "./Requests/Publish/PublishData.js";
+import dummyBook from "../assets/Publish/dummybook.jpg";
 
 const Publish = () => {
   // =========== HOOKS OR OTHER DATA =====================
 
-  const navigate = useNavigate();
-  const [currentimage, setcurrentimage] = useState(
-    "https://img.freepik.com/free-vector/blank-book-cover-white-vector-illustration_1284-41903.jpg?semt=ais_hybrid&w=740"
-  );
+  const [currentimage, setcurrentimage] = useState(dummyBook);
 
   const [file, setFile] = useState(null);
   const [url, seturl] = useState(false);
   const [drop, setdrop] = useState(false);
   const [browse, setbrowse] = useState(false);
   const [error, seterror] = useState(false);
+  const navigate = useNavigate();
+  let [currentdot, setcurrentdot] = useState(0);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (currentdot === 3) {
+        setcurrentdot(0);
+      } else {
+        setcurrentdot(currentdot + 1);
+      }
+    }, 100);
+  }, [currentdot]);
 
   // ================== FOR REMOVING THE DEFAULT BEHAVIOUR OF MVING TO OTHER TABS
 
@@ -28,8 +39,9 @@ const Publish = () => {
 
   // ============== FORM DATA TO OBJECT ======================
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
+    setLoad(true);
 
     let formData = new FormData(e.target);
 
@@ -40,7 +52,7 @@ const Publish = () => {
     }
 
     try {
-      sendData(formData, "user/publish", seterror, navigate);
+      await sendData(formData, "user/publish", seterror, navigate, setLoad);
     } catch (error) {
       console.log("Error While Giving Data", error.message);
     }
@@ -131,6 +143,8 @@ const Publish = () => {
         currentimage={currentimage}
         urlToFile={urlToFile}
         setcurrentimage={setcurrentimage}
+        load={load}
+        currentdot={currentdot}
       />
     </div>
   );
