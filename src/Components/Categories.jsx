@@ -13,10 +13,14 @@ const Categories = () => {
 
   useEffect(() => {
     const fetchData = async (data, link) => {
-      let response = await MoreDetail(data, link);
-      setCategoryData(
-        [...response].sort((a, b) => new Date(b.date) - new Date(a.date))
-      );
+      try {
+        let response = await MoreDetail(data, link);
+        setCategoryData(
+          [...response].sort((a, b) => new Date(b.date) - new Date(a.date))
+        );
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData({ category: id }, "book/category");

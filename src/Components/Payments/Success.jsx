@@ -11,8 +11,11 @@ const Success = () => {
 
   useEffect(() => {
     const removeCartItems = async (data, link) => {
-      let userRes = await removeItem(data, link);
-      console.log(userRes);
+      try {
+        await removeItem(data, link);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     removeCartItems("cart/removecartauto", { userid: id });

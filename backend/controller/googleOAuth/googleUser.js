@@ -30,6 +30,7 @@ const googleUser = async (profile) => {
 
     return { profile, userId };
   } catch (error) {
+    console.log(error);
     return null;
   }
 };

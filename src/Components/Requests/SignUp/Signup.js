@@ -7,23 +7,31 @@ const sendData = async (data, link, seterrorobj, navigate, setLoad) => {
     body: infodata,
   };
 
-  let result = await fetch(
-    `${import.meta.env.VITE_BACKEND_URL}${link}`,
-    reqOpt
-  );
+  try {
+    let result = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}${link}`,
+      reqOpt
+    );
 
-  let response = await result.json();
+    let response = await result.json();
 
-  if (!result.ok) {
-    seterrorobj((pre) => {
-      return [response, ...pre];
-    });
-  } else {
-    setLoad(true);
-    localStorage.setItem("tokenuserin", response.token);
-    if (response.message === "Data Sended TO DB") {
-      navigate("/");
+    if (response.message === "User Not Found") {
+      navigate("/login");
     }
+
+    if (!result.ok) {
+      seterrorobj((pre) => {
+        return [response, ...pre];
+      });
+    } else {
+      setLoad(true);
+      localStorage.setItem("tokenuserin", response.token);
+      if (response.message === "Data Sended TO DB") {
+        navigate("/");
+      }
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 

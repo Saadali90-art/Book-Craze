@@ -40,7 +40,6 @@ const sendData = async (req, res) => {
   if (await verify(data)) {
     try {
       let result = await SignModel.insertOne(data);
-      console.log("Data Sended TO DB");
 
       let secretkey = process.env.secretkey;
 
@@ -52,6 +51,7 @@ const sendData = async (req, res) => {
       res.status(200).json({ message: "Data Sended TO DB", token: token });
     } catch (error) {
       console.log("Error While Sending Data To DB", error.message);
+      res.status(401).json({ message: "Error While Sending Data To DB" });
     }
   } else {
     res.status(400).json({

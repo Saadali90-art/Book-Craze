@@ -6,16 +6,20 @@ const specificBooks = async (link) => {
     headers: { "Content-Type": "text/json", tokenuser: token },
   };
 
-  let result = await fetch(
-    `${import.meta.env.VITE_BACKEND_URL}${link}`,
-    reqOpt
-  );
-  let response = await result.json();
+  try {
+    let result = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}${link}`,
+      reqOpt
+    );
+    let response = await result.json();
 
-  if (response.message === "Data Not Present") {
-    return response.message;
-  } else {
-    return response.message.sort((a, b) => b.views - a.views);
+    if (response.message === "Data Not Present") {
+      return response.message;
+    } else {
+      return response.message.sort((a, b) => b.views - a.views);
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 

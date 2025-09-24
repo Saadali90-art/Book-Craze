@@ -18,6 +18,8 @@ const verifyReset = async (req, res) => {
       res.status(200).json({ message: true, userData: userInfo });
     }
   } catch (error) {
+    console.log(error);
+
     res.status(400).json({ message: "Error While Checking Reset Token" });
   }
 };

@@ -20,6 +20,8 @@ const updatePass = async (req, res) => {
 
     res.status(200).json({ message: "/login" });
   } catch (error) {
+    console.log(error);
+
     res.status(400).json({ message: "Error in Password Chnaging" });
   }
 };

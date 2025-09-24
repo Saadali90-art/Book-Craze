@@ -23,13 +23,17 @@ const GoogleUserPassword = () => {
         setError(null);
       }, 2000);
     } else {
-      let info = await MoreDetail(
-        { pass: formEntry.password, id },
-        "googleuserpass"
-      );
+      try {
+        let info = await MoreDetail(
+          { pass: formEntry.password, id },
+          "googleuserpass"
+        );
 
-      if (info.message === "Password Created") {
-        navigate("/");
+        if (info.message === "Password Created") {
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
   };

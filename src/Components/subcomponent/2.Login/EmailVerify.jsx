@@ -27,8 +27,15 @@ const EmailVerify = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let userInfo = await MoreDetail({ userid: id }, "forgot/forgotuserdata");
-      setUserData(userInfo.message);
+      try {
+        let userInfo = await MoreDetail(
+          { userid: id },
+          "forgot/forgotuserdata"
+        );
+        setUserData(userInfo.message);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData();
@@ -54,13 +61,17 @@ const EmailVerify = () => {
           formEntry.verifycode.trim().toLowerCase() ===
           userData.resetPass.trim().toLowerCase()
         ) {
-          let resetToken = await MoreDetail(
-            { data: userData.resetPass },
-            "forgot/resetToken"
-          );
-          localStorage.setItem("reset", resetToken.message);
+          try {
+            let resetToken = await MoreDetail(
+              { data: userData.resetPass },
+              "forgot/resetToken"
+            );
+            localStorage.setItem("reset", resetToken.message);
 
-          navigate("/changepassword");
+            navigate("/changepassword");
+          } catch (error) {
+            console.log(error);
+          }
         } else {
           setLoad(false);
           setError("Invalid Credientials");

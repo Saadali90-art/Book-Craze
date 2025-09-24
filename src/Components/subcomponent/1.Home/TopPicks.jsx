@@ -7,8 +7,12 @@ const TopPicks = ({ handlemore }) => {
 
   useEffect(() => {
     const fetchData = async (link) => {
-      let data = await TopBooks(link);
-      setMonthlyPicks(data);
+      try {
+        let data = await TopBooks(link);
+        setMonthlyPicks(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData("topbooks/monthlypicks");

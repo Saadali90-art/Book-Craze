@@ -73,13 +73,17 @@ const SignUp = () => {
     } else {
       if (!isNaN(datainfo.phone) && formentry.password === formentry.confirm) {
         try {
-          await sendData(
+          let response = await sendData(
             datainfo,
             "user/signup",
             seterrorobj,
             navigate,
             setLoad
           );
+
+          if (response === "Error While Sending Data To DB") {
+            location.reload();
+          }
         } catch (error) {
           console.log("Error While Sending Data To DB", error.message);
         }

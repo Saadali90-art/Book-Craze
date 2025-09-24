@@ -19,8 +19,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async (link) => {
-      let data = await specificBooks(link);
-      setuserData(data);
+      try {
+        let data = await specificBooks(link);
+        setuserData(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData("book/dashboard");

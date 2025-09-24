@@ -10,14 +10,18 @@ const deleteUser = async (link, userpass) => {
     body: JSON.stringify(userpass),
   };
 
-  let result = await fetch(
-    `${import.meta.env.VITE_BACKEND_URL}${link}`,
-    reqOpt
-  );
+  try {
+    let result = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}${link}`,
+      reqOpt
+    );
 
-  if (result.ok) {
-    let response = await result.json();
-    return response.message;
+    if (result.ok) {
+      let response = await result.json();
+      return response.message;
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 

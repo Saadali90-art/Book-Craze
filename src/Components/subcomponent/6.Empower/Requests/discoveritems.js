@@ -4,14 +4,18 @@ const discoveritems = async (link) => {
     headers: { "Content-Type": "text/json" },
   };
 
-  let result = await fetch(
-    `${import.meta.env.VITE_BACKEND_URL}${link}`,
-    reqopt
-  );
-  let response = await result.json();
-  response = response.sort((a, b) => b.views - a.views);
+  try {
+    let result = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}${link}`,
+      reqopt
+    );
+    let response = await result.json();
+    response = response.sort((a, b) => b.views - a.views);
 
-  return response;
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default discoveritems;

@@ -11,8 +11,12 @@ const Carousel = () => {
   // ========================== GETTING THE WEEKLY TOP DATA ===================================
   useEffect(() => {
     const fetchData = async (link) => {
-      let data = await TopBooks(link);
-      setWeeklyTop(data);
+      try {
+        let data = await TopBooks(link);
+        setWeeklyTop(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData("topbooks/weeklytop");

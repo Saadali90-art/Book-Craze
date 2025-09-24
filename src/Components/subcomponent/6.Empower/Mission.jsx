@@ -8,9 +8,12 @@ import More from "../../Requests/MoreDetails/More.js";
 
 const Mission = () => {
   const handleSubsribe = async (priceId) => {
-    let result = await More({ id: priceId }, "payment/plancheckout");
-
-    window.location.href = result.url;
+    try {
+      let result = await More({ id: priceId }, "payment/plancheckout");
+      window.location.href = result.url;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

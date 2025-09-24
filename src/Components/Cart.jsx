@@ -33,18 +33,26 @@ const Cart = () => {
   // ================== CARTS DATA FROM DB ===========================
 
   const getCarts = async (link) => {
-    let info = await SignInData(link);
-    let data = [...new Map(info.map((item) => [item.title, item])).values()];
-    setCartItems(data);
-    setFilteredArray(data);
-    handlePrices();
+    try {
+      let info = await SignInData(link);
+      let data = [...new Map(info.map((item) => [item.title, item])).values()];
+      setCartItems(data);
+      setFilteredArray(data);
+      handlePrices();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // =================== ENTRING CARTS DATA IN DB ========================
 
   useEffect(() => {
     const fetchData = async (link, dataobj) => {
-      await cartsData(link, dataobj);
+      try {
+        await cartsData(link, dataobj);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     if (incomingData !== "Only Show") {
@@ -98,8 +106,13 @@ const Cart = () => {
 
   const handleDeleteItem = async (index) => {
     let data = cartItems[index];
-    let info = await removeItem("cart/removeitem", data);
-    getCarts("cart/cartitems");
+
+    try {
+      await removeItem("cart/removeitem", data);
+      getCarts("cart/cartitems");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSearch = () => {
@@ -117,14 +130,21 @@ const Cart = () => {
       import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
     );
 
-    let responseInfo = await MoreDetail(filteredArray, "payment/cartcheckout");
+    try {
+      let responseInfo = await MoreDetail(
+        filteredArray,
+        "payment/cartcheckout"
+      );
 
-    const result = stripe.redirectToCheckout({
-      sessionId: responseInfo.id,
-    });
+      const result = stripe.redirectToCheckout({
+        sessionId: responseInfo.id,
+      });
 
-    if (result.error) {
-      console.log(result.error);
+      if (result.error) {
+        console.log(result.error);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

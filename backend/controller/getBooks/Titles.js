@@ -6,6 +6,8 @@ const Titles = async (req, res) => {
     result = result.map((item) => item.title);
     res.status(200).send(result);
   } catch (error) {
+    console.log(error);
+
     res.send(400).send("Titles Not Finded");
   }
 };

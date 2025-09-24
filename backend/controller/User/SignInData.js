@@ -19,8 +19,8 @@ const SignInData = async (req, res) => {
       userId: tokenData.userId,
     });
 
-    if (!result) {
-      return res.status(404).json({ message: "User Not Found" });
+    if (result === null) {
+      return res.status(401).json({ message: "Invalid Token" });
     } else {
       res.status(200).json({ message: result });
     }

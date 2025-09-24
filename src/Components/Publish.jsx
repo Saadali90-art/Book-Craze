@@ -54,7 +54,7 @@ const Publish = () => {
     try {
       await sendData(formData, "user/publish", seterror, navigate, setLoad);
     } catch (error) {
-      console.log("Error While Giving Data", error.message);
+      console.log("Error While Giving Data To Books", error.message);
     }
   };
 

@@ -15,8 +15,12 @@ const Discover = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let data = await discoveritems("book/discover");
-      setDiscover(data.sort((a, b) => b.views - a.views).slice(0, 6));
+      try {
+        let data = await discoveritems("book/discover");
+        setDiscover(data.sort((a, b) => b.views - a.views).slice(0, 6));
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData();

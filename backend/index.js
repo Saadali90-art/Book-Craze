@@ -92,12 +92,7 @@ connectDB(db_url);
 app.use("/user", user);
 app.use("/book", getBooks);
 app.use("/topbooks", topBooks);
-app.post(
-  "/user/publish",
-  upload.single("bookImage"),
-  // optimizeImage,
-  PublishOne
-);
+app.post("/user/publish", upload.single("bookImage"), PublishOne);
 app.use("/comment", comments);
 app.use("/cart", cartRoutes);
 app.use("/more", moreDetails);

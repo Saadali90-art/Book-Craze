@@ -32,15 +32,19 @@ const ChangePassword = () => {
     }
 
     const fetchData = async () => {
-      let verifyReset = await MoreDetail(
-        { data: userToken },
-        "forgot/verifyreset"
-      );
+      try {
+        let verifyReset = await MoreDetail(
+          { data: userToken },
+          "forgot/verifyreset"
+        );
 
-      if (verifyReset.message === false) {
-        navigate("/signup");
-      } else {
-        setUserInfo(verifyReset.userData);
+        if (verifyReset.message === false) {
+          navigate("/signup");
+        } else {
+          setUserInfo(verifyReset.userData);
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
 
@@ -64,13 +68,18 @@ const ChangePassword = () => {
       }, 2000);
     } else {
       setLoad(true);
-      let info = await MoreDetail(
-        { pass: formEntry.password, user: userInfo },
-        "forgot/updatepass"
-      );
 
-      localStorage.removeItem("reset");
-      navigate(`${info.message}`);
+      try {
+        let info = await MoreDetail(
+          { pass: formEntry.password, user: userInfo },
+          "forgot/updatepass"
+        );
+
+        localStorage.removeItem("reset");
+        navigate(`${info.message}`);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

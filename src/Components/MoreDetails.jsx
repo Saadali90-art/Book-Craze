@@ -35,8 +35,12 @@ const MoreDetails = () => {
 
   useEffect(() => {
     const fetchData = async (data, link) => {
-      let moreDetails = await MoreDetail(data, link);
-      setMoreInfo(moreDetails);
+      try {
+        let moreDetails = await MoreDetail(data, link);
+        setMoreInfo(moreDetails);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData({ id: incomingData }, "more/getmoreinfo");
@@ -46,10 +50,16 @@ const MoreDetails = () => {
 
   useEffect(() => {
     const fetchData = async (data, link) => {
-      let youLiked = await MoreDetail(data, link);
-      setYouLike(
-        youLiked.message.filter((item) => item._id !== moreInfo._id).slice(0, 6)
-      );
+      try {
+        let youLiked = await MoreDetail(data, link);
+        setYouLike(
+          youLiked.message
+            .filter((item) => item._id !== moreInfo._id)
+            .slice(0, 6)
+        );
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData({ category: moreInfo?.category }, "more/youlike");
@@ -70,8 +80,12 @@ const MoreDetails = () => {
   // ======================= GETTING THE COMMENT DATA FROM THE DB =======================
 
   const getComments = async (data, link) => {
-    let commentInfo = await MoreDetail(data, link);
-    setComments(commentInfo);
+    try {
+      let commentInfo = await MoreDetail(data, link);
+      setComments(commentInfo);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // ============================= SENDING COMMENT TO DB ================================
@@ -81,11 +95,15 @@ const MoreDetails = () => {
       let token = localStorage.getItem("tokenuserin");
       let dataToSend = { title: moreInfo?.title, token, commentValue };
 
-      await MoreDetail(dataToSend, "comment/savecomment");
+      try {
+        await MoreDetail(dataToSend, "comment/savecomment");
 
-      await getComments({ title: moreInfo?.title }, "comment/getcomments");
+        await getComments({ title: moreInfo?.title }, "comment/getcomments");
 
-      setCommentDiv(false);
+        setCommentDiv(false);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -107,9 +125,12 @@ const MoreDetails = () => {
 
     if (!token) return navigate("/login");
 
-    let info = await cartsData("comment/likes", { item, token });
-
-    await getComments({ title: moreInfo?.title }, "comment/getcomments");
+    try {
+      let info = await cartsData("comment/likes", { item, token });
+      await getComments({ title: moreInfo?.title }, "comment/getcomments");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

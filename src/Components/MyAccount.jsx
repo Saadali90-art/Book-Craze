@@ -35,8 +35,12 @@ const MyAccount = () => {
 
   useEffect(() => {
     const fetchData = async (link) => {
-      let datainfo = await SignInData(link);
-      setAccountInfo(datainfo);
+      try {
+        let datainfo = await SignInData(link);
+        setAccountInfo(datainfo);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData("account/myaccount");
@@ -46,12 +50,15 @@ const MyAccount = () => {
 
   useEffect(() => {
     const fetchData = async (link) => {
-      let data = await specificBooks(link);
-
-      if (data === "Data Not Present") {
-        setPublisherBooks(null);
-      } else {
-        setPublisherBooks(data);
+      try {
+        let data = await specificBooks(link);
+        if (data === "Data Not Present") {
+          setPublisherBooks(null);
+        } else {
+          setPublisherBooks(data);
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
 

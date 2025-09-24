@@ -14,8 +14,12 @@ const SearchedData = () => {
 
   useEffect(() => {
     const fetchData = async (link) => {
-      let data = await newBooks(link);
-      setTotalData(data);
+      try {
+        let data = await newBooks(link);
+        setTotalData(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData("book/searches");

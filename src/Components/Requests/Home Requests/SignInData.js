@@ -10,13 +10,17 @@ const SignInData = async (link) => {
       },
     };
 
-    let result = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}${link}`,
-      reqOpt
-    );
-    let response = await result.json();
+    try {
+      let result = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}${link}`,
+        reqOpt
+      );
+      let response = await result.json();
 
-    return response.message;
+      return response.message;
+    } catch (error) {
+      console.log(error);
+    }
   } else {
     return null;
   }

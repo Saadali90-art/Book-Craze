@@ -28,18 +28,34 @@ const Navigation = () => {
   useEffect(() => {
     const fetch = () => {
       const googleLogIn = async (query) => {
-        let result = await MoreDetail({ id: query }, "googlelogin");
-        localStorage.setItem("tokenuserin", result.token);
-        setUserInfo(result.message);
+        try {
+          let result = await MoreDetail({ id: query }, "googlelogin");
+          localStorage.setItem("tokenuserin", result.token);
+          setUserInfo(result.message);
+        } catch (error) {
+          console.log(error);
+        }
       };
 
       const fetchData = async (link1, link2) => {
-        const [data, titles] = await Promise.all([
-          SignInData(link1),
-          newBooks(link2),
-        ]);
-        setUserInfo(data);
-        setTitles(titles);
+        try {
+          let result1 = await SignInData(link1);
+          let result2 = await newBooks(link2);
+
+          if (
+            result1 === "Invalid Token" ||
+            result1 === "Invalid or Expired Token"
+          ) {
+            localStorage.removeItem("tokenuserin");
+            location.reload();
+          } else {
+            setUserInfo(result1);
+          }
+
+          setTitles(result2);
+        } catch (error) {
+          console.log(error);
+        }
       };
 
       const query = window.location.href.split("?")[1];

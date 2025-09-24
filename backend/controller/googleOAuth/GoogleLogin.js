@@ -17,6 +17,8 @@ const googleLogin = async (req, res) => {
       res.status(401).json({ message: "User Invalid" });
     }
   } catch (error) {
+    console.log(error);
+
     res.status(400).json({ message: error.mesage });
   }
 };
