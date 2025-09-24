@@ -46,7 +46,7 @@ const PrivateAccess = ({ children }) => {
 
   if (isAuth === null)
     return (
-      <div className="w-[90%] flex justify-end items-center mt-[10px]  ">
+      <div className="w-screen h-screen flex justify-center items-center">
         <p className="text-[15px] font-[500]">Loading</p>
         <div className="flex gap-x-[1px] mt-[4px]">
           {loadingdots.map((_, i) => (
