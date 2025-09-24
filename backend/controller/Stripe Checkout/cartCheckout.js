@@ -20,10 +20,8 @@ const cartCheckout = async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineitems,
       mode: "payment",
-      success_url: `${import.meta.env.VITE_FRONTEND_URL}success/${
-        data[0].userId
-      }`,
-      cancel_url: `${import.meta.env.VITE_FRONTEND_URL}cancel`,
+      success_url: `${process.env.FRONTEND_URL}success/${data[0].userId}`,
+      cancel_url: `${process.env.FRONTEND_URL}cancel`,
     });
 
     res.status(200).json({ id: session.id });

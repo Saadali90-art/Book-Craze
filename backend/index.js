@@ -108,6 +108,10 @@ app.use("/forgot", forgotPassword);
 
 app.get("/protect", ProtectedPages);
 
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Hello World" });
+});
+
 // Local run (development)
 if (process.env.NODE_ENV !== "production") {
   const PORT = process.env.PORT || 8000;
