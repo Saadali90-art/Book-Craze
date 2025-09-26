@@ -44,7 +44,7 @@ const NovelDetails = ({ moreInfo, load, currentdot, setLoad }) => {
 
       {moreInfo !== null ? (
         <div
-          className="container w-[70%] max-[1170px]:w-[80%] max-[924px]:w-[90%] min-h-[380px] relative mx-auto mt-[100px] max-[813px]:mt-[70px] flex max-[496px]:flex-col max-[2108px]:gap-x-[20px]"
+          className="container w-[70%] max-[1170px]:w-[80%] max-[924px]:w-[90%] min-h-[380px] relative mx-auto mt-[130px] max-[813px]:mt-[100px] flex max-[496px]:flex-col max-[2108px]:gap-x-[20px]"
           style={{ fontFamily: "Roboto, sans-serif" }}
         >
           {/* ==================== IMAGE ================== */}

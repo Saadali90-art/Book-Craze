@@ -27,6 +27,7 @@ let app = express();
 
 dotenv.config();
 let db_url = process.env.db_url;
+let PORT = process.env.PORT;
 
 // ================= MIDDLE WARES ====================
 
@@ -42,7 +43,6 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(
   cors({
     origin: [
-      "https://bookcraze.vercel.app",
       "http://localhost:5173",
       "http://127.0.0.1:5173", // add this
     ],
@@ -103,17 +103,6 @@ app.use("/forgot", forgotPassword);
 
 app.get("/protect", ProtectedPages);
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Hello World" });
+app.listen(PORT, () => {
+  console.log("server up..");
 });
-
-// Local run (development)
-if (process.env.NODE_ENV !== "production") {
-  const PORT = process.env.PORT || 8000;
-  app.listen(PORT, () => {
-    console.log(`Server running locally on port ${PORT}`);
-  });
-}
-
-// For Vercel
-export default app;

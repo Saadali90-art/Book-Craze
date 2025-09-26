@@ -46,7 +46,7 @@ const Categories = () => {
     <main className="w-full">
       <Navigation />
 
-      <div className="w-full h-[130px] max-[813px]:h-[114px] bg-gray-200 mt-[70px] max-[813px]:mt-[50px] mb-[20px] relative">
+      <div className="w-full h-[130px] max-[813px]:h-[114px] bg-gray-200 mt-[100px] max-[813px]:mt-[80px] mb-[20px] relative">
         {/* ======================== TOP SECTION OF CATEGORIES INFO ======================== */}
 
         <h1

@@ -5,6 +5,7 @@ import ScrollToTop from "./Components/ScrollToTop";
 import PrivateAccess from "./Components/PrivateAccess";
 import DeleteUser from "./Components/DeleteUser";
 import GoogleUserPassword from "./Components/GoogleUserPassword";
+import Marquee from "./Components/Marquee";
 
 // Lazy-loaded pages (only big pages)
 const Login = React.lazy(() => import("./Components/Login"));
@@ -40,6 +41,7 @@ const App = () => {
           path="/"
           element={
             <Suspense fallback={<Spinner />}>
+              <Marquee />
               <HomePage />
             </Suspense>
           }
@@ -66,6 +68,7 @@ const App = () => {
           element={
             <PrivateAccess>
               <Suspense fallback={<Spinner />}>
+                <Marquee />
                 <Dashboard />
               </Suspense>
             </PrivateAccess>
@@ -77,6 +80,8 @@ const App = () => {
           element={
             <PrivateAccess>
               <Suspense fallback={<Spinner />}>
+                <Marquee />
+
                 <Publish />
               </Suspense>
             </PrivateAccess>
@@ -87,6 +92,7 @@ const App = () => {
           element={
             <PrivateAccess>
               <Suspense fallback={<Spinner />}>
+                <Marquee />
                 <Cart />
               </Suspense>
             </PrivateAccess>
@@ -97,6 +103,7 @@ const App = () => {
           element={
             <PrivateAccess>
               <Suspense fallback={<Spinner />}>
+                <Marquee />
                 <MyAccount />
               </Suspense>
             </PrivateAccess>
@@ -115,6 +122,7 @@ const App = () => {
           path="/user/dashboard/more"
           element={
             <Suspense fallback={<Spinner />}>
+              <Marquee />
               <MoreDetails />
             </Suspense>
           }
@@ -123,6 +131,7 @@ const App = () => {
           path="/empowering/:id"
           element={
             <Suspense fallback={<Spinner />}>
+              <Marquee />
               <Empower />
             </Suspense>
           }
@@ -131,6 +140,7 @@ const App = () => {
           path="/search/:id?"
           element={
             <Suspense fallback={<Spinner />}>
+              <Marquee />
               <SearchedData />
             </Suspense>
           }
@@ -139,6 +149,7 @@ const App = () => {
           path="/category/:id"
           element={
             <Suspense fallback={<Spinner />}>
+              <Marquee />
               <Categories />
             </Suspense>
           }

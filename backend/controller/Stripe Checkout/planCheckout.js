@@ -9,12 +9,13 @@ const planCheckout = async (req, res) => {
       mode: "subscription",
       payment_method_types: ["card"],
       line_items: [{ price: id, quantity: 1 }],
-      success_url: `${process.env.FRONTEND_URL}success/${data[0].userId}`,
+      success_url: `${process.env.FRONTEND_URL}success`,
       cancel_url: `${process.env.FRONTEND_URL}cancel`,
     });
 
     res.status(200).json({ url: session.url });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: error.message });
   }
 };

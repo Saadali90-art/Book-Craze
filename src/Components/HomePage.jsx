@@ -91,7 +91,7 @@ const HomePage = () => {
       <Navigation />
 
       <div className="w-full mx-auto">
-        <div className="container w-[70%] min-h-[360px] max-[1170px]:w-[80%] max-[924px]:w-[90%] mx-auto pt-[80px] max-[776px]:pt-[60px] flex max-[776px]:flex-col justify-between ">
+        <div className="container w-[70%] min-h-[360px] max-[1170px]:w-[80%] max-[924px]:w-[90%] mx-auto pt-[110px] max-[776px]:pt-[90px] flex max-[776px]:flex-col justify-between ">
           <Carousel />
 
           <WebNovels data={novelinfo} />

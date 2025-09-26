@@ -49,7 +49,7 @@ const Discover = () => {
       <Navigation />
 
       <div className="w-full flex flex-col max-[420px]:flex-row max-[420px]:flex-wrap max-[420px]:overflow-x-hidden">
-        <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] relative mx-auto mt-[90px] max-[552px]:mt-[70px]">
+        <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] relative mx-auto mt-[120px] max-[552px]:mt-[100px]">
           {/* ========================= BANNER SECTION ================================= */}
 
           <section className=" mx-auto flex justify-between h-[320px]  max-[590px]:flex-col ">

@@ -60,7 +60,7 @@ const deleteUser = async (req, res) => {
       await Publish.deleteMany({ userId: tokenData.userId });
       res.status(200).json({ message: "User Deleted" });
     } else {
-      res.status(201).json({ message: "Invalid Credientals" });
+      res.status(400).json({ message: "Invalid Credientals" });
     }
   } catch (error) {
     res.status(400).json({ message: "User Not Deleted" });

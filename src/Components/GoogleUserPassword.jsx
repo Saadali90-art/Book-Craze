@@ -30,6 +30,7 @@ const GoogleUserPassword = () => {
         );
 
         if (info.message === "Password Created") {
+          localStorage.setItem("tokenuserin", info.token);
           navigate("/");
         }
       } catch (error) {

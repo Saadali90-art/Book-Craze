@@ -119,7 +119,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="w-[100%] bg-white  fixed top-0 z-20">
+    <nav className="w-[100%] bg-white mt-[30px] fixed top-0 z-20">
       <div
         style={{
           opacity: search ? 0 : 1,

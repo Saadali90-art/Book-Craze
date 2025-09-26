@@ -38,7 +38,7 @@ const SearchedData = () => {
   }, [totalData, search]);
 
   return (
-    <main className="w-full pb-[20px]">
+    <main className="w-full pb-[20px] mt-[30px]">
       <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] flex h-[70px] justify-center  items-center mx-auto ">
         <div className="flex items-center w-full bg-gray-200 rounded-2xl px-[10px] py-[4px] ">
           <Search className="w-[20px] h-[20px]" />

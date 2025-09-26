@@ -46,7 +46,7 @@ const DeleteUser = () => {
         }, 2000);
       }
     } catch (error) {
-      console.log("Error While Deleting User Account");
+      console.log(error);
     }
   };
 

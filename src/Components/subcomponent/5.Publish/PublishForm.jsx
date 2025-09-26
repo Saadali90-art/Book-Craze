@@ -19,7 +19,7 @@ const PublishForm = ({
   return (
     <>
       <div className="w-[100%]  ">
-        <div className="w-[45%] max-[890px]:w-[50%] max-[763px]:w-[60%] max-[637px]:w-[80%] max-[471px]:w-[95%] mx-auto h-[500px] pt-[90px] ">
+        <div className="w-[45%] max-[890px]:w-[50%] max-[763px]:w-[60%] max-[637px]:w-[80%] max-[471px]:w-[95%] mx-auto h-[500px] pt-[120px] ">
           <form
             className="w-full flex flex-col"
             onSubmit={handlesubmit}

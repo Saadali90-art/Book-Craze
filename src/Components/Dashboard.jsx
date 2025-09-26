@@ -5,6 +5,7 @@ import ChevronLeft from "lucide-react/dist/esm/icons/chevron-left";
 import DashboardCards from "./subcomponent/4.Dashboard/DashboardCards";
 import NoData from "./subcomponent/4.Dashboard/NoData";
 import specificBooks from "./Requests/DashBoard/SpecificDashBoard.js";
+import Marquee from "./Marquee.jsx";
 
 const Dashboard = () => {
   // ======================== HOOKS OR DATA VARIABLE ================================
@@ -58,7 +59,7 @@ const Dashboard = () => {
     <div style={{ fontFamily: "Montserrat, sans-serif", userSelect: "none" }}>
       {/* ======================== DASHBOARD NAVIGATION BAR  ============================= */}
 
-      <div className="container max-w-[100%]  h-[70px]  bg-gray-100 fixed z-20">
+      <div className="container max-w-[100%]  h-[70px]  bg-gray-100 fixed z-20 mt-[30px]">
         <div className="w-[70%] mx-auto h-[70px] flex items-center justify-center  ">
           <button
             className="absolute my-auto left-[15px] p-2 rounded-[50%] bg-transparent cursor-pointer max-[395px]:left-[1px]"
@@ -90,7 +91,7 @@ const Dashboard = () => {
             />
           </div>
         ) : (
-          <div className="w-[80%] max-[406px]:w-[90%] mx-auto pt-[90px] pb-[20px]">
+          <div className="w-[80%] max-[406px]:w-[90%] mx-auto pt-[120px] pb-[20px]">
             {/* ========================== YOUR DATA HUB =========================== */}
 
             <div className="flex justify-between items-center ">

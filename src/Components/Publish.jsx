@@ -5,6 +5,7 @@ import "../animation.css";
 import PublishForm from "./subcomponent/5.Publish/PublishForm";
 import sendData from "./Requests/Publish/PublishData.js";
 import dummyBook from "../assets/Publish/dummybook.jpg";
+import Marquee from "./Marquee.jsx";
 
 const Publish = () => {
   // =========== HOOKS OR OTHER DATA =====================
@@ -112,8 +113,8 @@ const Publish = () => {
     >
       {/* ============ Publish NAV BARR ==================*/}
 
-      <div className="container max-w-[100%]  h-[70px]  bg-gray-100 fixed z-20">
-        <div className="w-[80%] mx-auto h-[70px] flex items-center justify-center  ">
+      <div className="container max-w-[100%]  h-[70px]  bg-gray-100 fixed z-20 mt-[30px]">
+        <div className="w-[80%] mx-auto h-[70px] flex items-center justify-center ">
           <button
             className="absolute my-auto left-[15px] p-2 rounded-[50%] bg-transparent cursor-pointer max-[395px]:left-[1px]"
             onClick={() => navigate(-1)}

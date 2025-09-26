@@ -124,7 +124,7 @@ const SignUp = () => {
   return (
     <div
       style={{ backgroundImage: `url(${bgSignUp})` }}
-      className="w-screen h-screen max-[969px]:py-[20px] py-[10px] bg-[url('')] bg-no-repeat bg-cover flex items-center justify-center select-none"
+      className="w-screen h-screen max-[969px]:py-[20px] py-[10px] bg-no-repeat bg-cover flex items-center justify-center select-none"
     >
       <SignUpContainer
         handlesubmit={handlesubmit}
