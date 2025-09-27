@@ -28,7 +28,7 @@ const Writing = () => {
 
       <Navigation />
 
-      <main className="mt-[120px] max-[813px]:mt-[110px] max-[338px]:mt-[100px]">
+      <main className="mt-[90px] max-[813px]:mt-[80px] max-[338px]:mt-[70px]">
         {/* ============================== HERO SECTION ================================ */}
 
         <section

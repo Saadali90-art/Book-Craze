@@ -8,7 +8,6 @@ import removeItem from "./Requests/Cart/RemoveCartItem.js";
 import Navigation from "./subcomponent/Cart/Navigation.jsx";
 import CartList from "./subcomponent/Cart/CartList.jsx";
 import MoreDetail from "./Requests/MoreDetails/More.js";
-import Marquee from "./Marquee.jsx";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -150,8 +149,7 @@ const Cart = () => {
   };
 
   return (
-    <main className="w-[100%] overflow-hidden mt-[30px]">
-      <Marquee />
+    <main className="w-[100%] overflow-hidden ">
       <Navigation search={search} setSearch={setSearch} />
 
       <section className="container w-[70%] mx-auto max-[1170px]:w-[80%] max-[924px]:w-[90%] my-[20px]">
