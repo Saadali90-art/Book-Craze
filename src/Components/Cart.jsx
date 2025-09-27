@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import "../animation.css";
 import Navigation from "./subcomponent/Cart/Navigation.jsx";
 import CartList from "./subcomponent/Cart/CartList.jsx";
-import dashboardInfo from "./db/Dashboard.js";
+import MoreDetail from "./Requests/MoreDetails/More.js";
 
 const Cart = () => {
   let cartItems = dashboardInfo;
@@ -94,7 +94,7 @@ const Cart = () => {
   const makePayment = async () => {};
 
   return (
-    <main className="w-[100%] overflow-hidden mt-[30px]">
+    <main className="w-[100%] overflow-hidden ">
       <Navigation search={search} setSearch={setSearch} />
 
       <section className="container w-[70%] mx-auto max-[1170px]:w-[80%] max-[924px]:w-[90%] my-[20px]">

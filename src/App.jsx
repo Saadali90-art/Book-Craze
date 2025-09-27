@@ -4,7 +4,6 @@ import Spinner from "./Components/Spinner";
 import ScrollToTop from "./Components/ScrollToTop";
 import DeleteUser from "./Components/DeleteUser";
 import GoogleUserPassword from "./Components/GoogleUserPassword";
-import Marquee from "./Components/Marquee";
 
 // Lazy-loaded pages (only big pages)
 const Login = React.lazy(() => import("./Components/Login"));
@@ -40,7 +39,6 @@ const App = () => {
           path="/"
           element={
             <Suspense fallback={<Spinner />}>
-              <Marquee />
               <HomePage />
             </Suspense>
           }
@@ -65,39 +63,42 @@ const App = () => {
         <Route
           path="/user/dashboard"
           element={
-            <Suspense fallback={<Spinner />}>
-              <Marquee />
-              <Dashboard />
-            </Suspense>
+            <PrivateAccess>
+              <Suspense fallback={<Spinner />}>
+                <Dashboard />
+              </Suspense>
+            </PrivateAccess>
           }
         />
 
         <Route
           path="/user/publish"
           element={
-            <Suspense fallback={<Spinner />}>
-              <Marquee />
-
-              <Publish />
-            </Suspense>
+            <PrivateAccess>
+              <Suspense fallback={<Spinner />}>
+                <Publish />
+              </Suspense>
+            </PrivateAccess>
           }
         />
         <Route
           path="/user/cart"
           element={
-            <Suspense fallback={<Spinner />}>
-              <Marquee />
-              <Cart />
-            </Suspense>
+            <PrivateAccess>
+              <Suspense fallback={<Spinner />}>
+                <Cart />
+              </Suspense>
+            </PrivateAccess>
           }
         />
         <Route
           path="/user"
           element={
-            <Suspense fallback={<Spinner />}>
-              <Marquee />
-              <MyAccount />
-            </Suspense>
+            <PrivateAccess>
+              <Suspense fallback={<Spinner />}>
+                <MyAccount />
+              </Suspense>
+            </PrivateAccess>
           }
         />
         <Route path="/deleteuser" element={<DeleteUser />} />
@@ -106,7 +107,6 @@ const App = () => {
           path="/user/dashboard/more"
           element={
             <Suspense fallback={<Spinner />}>
-              <Marquee />
               <MoreDetails />
             </Suspense>
           }
@@ -115,7 +115,6 @@ const App = () => {
           path="/empowering/:id"
           element={
             <Suspense fallback={<Spinner />}>
-              <Marquee />
               <Empower />
             </Suspense>
           }
@@ -124,7 +123,6 @@ const App = () => {
           path="/search/:id?"
           element={
             <Suspense fallback={<Spinner />}>
-              <Marquee />
               <SearchedData />
             </Suspense>
           }
@@ -133,7 +131,6 @@ const App = () => {
           path="/category/:id"
           element={
             <Suspense fallback={<Spinner />}>
-              <Marquee />
               <Categories />
             </Suspense>
           }
