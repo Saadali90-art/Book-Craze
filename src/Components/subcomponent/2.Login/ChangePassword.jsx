@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MoreDetail from "../../Requests/MoreDetails/More";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -22,35 +21,6 @@ const ChangePassword = () => {
     }, 100);
   }, [currentdot]);
 
-  // ====================== UPDATING USER PASSWORD ====================
-
-  useEffect(() => {
-    let userToken = localStorage.getItem("reset");
-
-    if (!userToken) {
-      navigate("/signup");
-    }
-
-    const fetchData = async () => {
-      try {
-        let verifyReset = await MoreDetail(
-          { data: userToken },
-          "forgot/verifyreset"
-        );
-
-        if (verifyReset.message === false) {
-          navigate("/signup");
-        } else {
-          setUserInfo(verifyReset.userData);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   const handleFormData = async (e) => {
     e.preventDefault();
 
@@ -68,18 +38,7 @@ const ChangePassword = () => {
       }, 2000);
     } else {
       setLoad(true);
-
-      try {
-        let info = await MoreDetail(
-          { pass: formEntry.password, user: userInfo },
-          "forgot/updatepass"
-        );
-
-        localStorage.removeItem("reset");
-        navigate(`${info.message}`);
-      } catch (error) {
-        console.log(error);
-      }
+      navigate("/");
     }
   };
 

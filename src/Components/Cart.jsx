@@ -138,7 +138,9 @@ const Cart = () => {
             />
           </div>
           <div style={{ fontFamily: "Montserrat, sans-serif" }}>
-            <p className="text-[16px] font-[600]">Total Cost : $ {totalCost}</p>
+            <p className="text-[16px] font-[600]">
+              Total Cost : $ {totalCost.toFixed(2)}
+            </p>
           </div>
         </section>
         <div className="flex w-full justify-end max-[696px]:justify-center max-[696px]:mt-[10px]">

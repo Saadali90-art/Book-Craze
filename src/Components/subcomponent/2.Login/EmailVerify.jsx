@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import MoreDetail from "../../Requests/MoreDetails/More.js";
 
 const EmailVerify = () => {
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
-  let { id } = useParams();
   let [currentdot, setcurrentdot] = useState(0);
   let loadingdots = Array.from({ length: 4 });
   const [load, setLoad] = useState(false);
@@ -25,63 +23,11 @@ const EmailVerify = () => {
 
   // ======================= GETTING DATA FROM THE USER ID AND GETTING THE RESET AND RESET TIME OF USER
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let userInfo = await MoreDetail(
-          { userid: id },
-          "forgot/forgotuserdata"
-        );
-        setUserData(userInfo.message);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   const handleCheck = async (e) => {
     e.preventDefault();
     setLoad(true);
 
-    let formData = new FormData(e.target);
-    let formEntry = Object.fromEntries(formData.entries());
-
-    if (userData !== null) {
-      if (userData.resetPassExpiry < Date.now()) {
-        setLoad(false);
-
-        setError("Code Expired");
-        setTimeout(() => {
-          setError(null);
-        }, 2000);
-      } else {
-        if (
-          formEntry.verifycode.trim().toLowerCase() ===
-          userData.resetPass.trim().toLowerCase()
-        ) {
-          try {
-            let resetToken = await MoreDetail(
-              { data: userData.resetPass },
-              "forgot/resetToken"
-            );
-            localStorage.setItem("reset", resetToken.message);
-
-            navigate("/changepassword");
-          } catch (error) {
-            console.log(error);
-          }
-        } else {
-          setLoad(false);
-          setError("Invalid Credientials");
-
-          setTimeout(() => {
-            setError(null);
-          }, 2000);
-        }
-      }
-    }
+    navigate("/changepassword");
   };
 
   return (

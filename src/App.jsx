@@ -163,7 +163,7 @@ const App = () => {
           }
         />
         <Route
-          path="/emailverify/:id"
+          path="/emailverify"
           element={
             <Suspense fallback={<Spinner />}>
               <EmailVerify />
