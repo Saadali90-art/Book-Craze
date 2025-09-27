@@ -1,7 +1,6 @@
 import React, { useEffect, useState, Suspense } from "react";
 import "../animation.css";
 import { useNavigate } from "react-router-dom";
-import newBooks from "./Requests/Home Requests/NewBooks.js";
 import { fanficTags, novelinfo } from "./db/data.js";
 import Spinner from "./Spinner.jsx";
 
@@ -10,6 +9,7 @@ import Navigation from "./subcomponent/1.Home/Navigation";
 import Carousel from "./subcomponent/1.Home/Carousel";
 import WebNovels from "./subcomponent/1.Home/WebNovels";
 import TopPicks from "./subcomponent/1.Home/TopPicks";
+import newArrivals from "./db/NewArrrivals.js";
 
 // LAZY imports (below-the-fold)
 const NewArrivals = React.lazy(() =>
@@ -23,58 +23,40 @@ const PopularTags = React.lazy(() =>
 
 const HomePage = () => {
   const [fanfic, setFanfic] = useState("");
-  const [popularTags, setPopularTags] = useState([]);
-  const [newArrival, setNewArrival] = useState([]);
+  let popularTags = [
+    "Fantasy",
+    "Educational",
+    "Cooking",
+    "Web Development",
+    "Coding",
+    "Science Fiction",
+    "Romance",
+    "Mystery",
+    "Biography",
+    "History",
+    "Health & Fitness",
+    "Business",
+    "Self-Help",
+    "Travel",
+    "Poetry",
+    "Philosophy",
+    "Children's Books",
+    "Art & Design",
+    "Technology",
+    "Horror",
+  ];
+
+  let newArrival = newArrivals;
   const navigate = useNavigate();
-
-  // ========================== FETCH DATA PARALLEL =============================
-  useEffect(() => {
-    const fetchAll = async () => {
-      try {
-        const [newArrivalData, allBooksData] = await Promise.all([
-          newBooks("book/newarrivals"),
-          newBooks("book/allBooks"),
-        ]);
-
-        setNewArrival(
-          newArrivalData
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
-            .slice(0, 6)
-        );
-
-        const tagCount = {};
-        allBooksData
-          .map((item) => item.category)
-          .forEach((c) => {
-            tagCount[c] = (tagCount[c] || 0) + 1;
-          });
-
-        const popularArr = Object.entries(tagCount)
-          .map(([tag, popular]) => ({ tag, popular }))
-          .sort((a, b) => b.popular - a.popular)
-          .slice(0, 20);
-
-        setPopularTags(popularArr);
-      } catch (err) {
-        console.error("Error fetching HomePage data:", err);
-      }
-    };
-
-    // Defer fetch until browser is idle or after slight delay
-    if ("requestIdleCallback" in window) {
-      requestIdleCallback(() => fetchAll());
-    } else {
-      setTimeout(() => fetchAll(), 200);
-    }
-  }, []);
 
   // ========================== HANDLERS ========================================
   const handlemore = (item) => {
-    if (item !== null) navigate("/user/dashboard/more", { state: item._id });
+    if (item !== null) navigate("/user/dashboard/more", { state: item });
   };
 
   const handleCategories = (item) => {
     setFanfic(item);
+    console.log(item);
     navigate(`/category/${item}`);
   };
 

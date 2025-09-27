@@ -97,7 +97,7 @@ const SideBar = ({ sideBar, setSideBar, userInfo }) => {
             </button>
             <Link
               className="flex pl-[5px] my-[2px] cursor-pointer py-[10px] w-full rounded-md text-[16px] font-[400]"
-              to={`/user/${userInfo?.name}`}
+              to={`/user`}
             >
               My Account
             </Link>

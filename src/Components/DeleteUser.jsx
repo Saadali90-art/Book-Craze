@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import deleteUser from "./Requests/Home Requests/DeleteUser.js";
 import { useEffect, useState } from "react";
 
 const DeleteUser = () => {

@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../animation.css";
 import { useEffect, useState } from "react";
 import LogInContainer from "./subcomponent/2.Login/LogInContainer";
-import LogDataSend from "./Requests/LogIn/Login.js";
-import bgimg from "../assets/Login//bgimg.jpg";
+import bgimg from "../assets/Login/bgimg.jpg";
 
 const Login = () => {
   const [logerror, setlogerror] = useState(false);
@@ -23,24 +22,34 @@ const Login = () => {
 
   // ================GETTING INFO FROM THE INPUT FIELDS ===================
 
-  const handlesubmit = async (e) => {
+  // const handlesubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoad(true);
+
+  //   let data = e.target;
+  //   let formdata = new FormData(data);
+  //   formdata = Object.fromEntries(formdata.entries());
+
+  //   let dataobj = {
+  //     email: formdata.email,
+  //     password: formdata.password,
+  //   };
+
+  //   try {
+  //     await LogDataSend(dataobj, "user/login", navigate, setlogerror, setLoad);
+  //   } catch (error) {
+  //     console.log("Can Not Give Data To Log Data ", error.messsage);
+  //   }
+  // };
+
+  const handlesubmit = (e) => {
     e.preventDefault();
-    setLoad(true);
 
-    let data = e.target;
-    let formdata = new FormData(data);
-    formdata = Object.fromEntries(formdata.entries());
+    setlogerror(true);
 
-    let dataobj = {
-      email: formdata.email,
-      password: formdata.password,
-    };
-
-    try {
-      await LogDataSend(dataobj, "user/login", navigate, setlogerror, setLoad);
-    } catch (error) {
-      console.log("Can Not Give Data To Log Data ", error.messsage);
-    }
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
 
   return (

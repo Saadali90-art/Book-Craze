@@ -82,7 +82,7 @@ const CartList = ({
         {filteredArray.length > 0 ? (
           filteredArray.map((item, index) => (
             <div key={index}>
-              <div className="flex gap-x-[10px]">
+              <div className="flex gap-x-[10px] mb-[10px]">
                 <div className="w-[30%] h-[100px]">
                   <img src={item.bookImage} alt="" className="w-full h-full" />
                 </div>
@@ -95,7 +95,7 @@ const CartList = ({
                     {item.title}
                   </p>
                   <p className="text-orange-500 w-full font-[600] py-[5px]">
-                    $ {item.price}
+                    $ {item.price.toFixed(2)}
                   </p>
 
                   <div className="absolute bottom-0 flex  justify-between w-full">

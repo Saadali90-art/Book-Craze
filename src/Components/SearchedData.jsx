@@ -2,40 +2,27 @@ import { useEffect, useState } from "react";
 import Search from "lucide-react/dist/esm/icons/search";
 import X from "lucide-react/dist/esm/icons/x";
 import { useNavigate, useParams } from "react-router-dom";
-import newBooks from "./Requests/Home Requests/NewBooks.js";
 import DataCards from "./subcomponent/4.Dashboard/DataCards.jsx";
+import dashboardInfo from "./db/Dashboard.js";
 
 const SearchedData = () => {
   const { id } = useParams();
   const [search, setSearch] = useState(id || "");
-  const [searchData, setSearchData] = useState([]);
+  let searchData = dashboardInfo;
   const [totalData, setTotalData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async (link) => {
-      try {
-        let data = await newBooks(link);
-        setTotalData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData("book/searches");
-  }, []);
+    setTotalData(
+      searchData.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search]);
 
   const handlechange = (e) => {
     setSearch(e.target.value);
   };
-
-  useEffect(() => {
-    setSearchData(
-      totalData.filter((item) =>
-        item.title.toLowerCase().includes(search?.toLowerCase())
-      )
-    );
-  }, [totalData, search]);
 
   return (
     <main className="w-full pb-[20px] mt-[30px]">
@@ -63,15 +50,15 @@ const SearchedData = () => {
 
       <div className="mt-[20px] container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] mx-auto ">
         <p className="text-[15px] font-[500] py-[10px]">
-          Number Of Matches : {searchData.length}
+          Number Of Matches : {totalData.length}
         </p>
         <div className="w-full flex justify-center flex-wrap gap-x-[20px] gap-y-[10px] select-none">
-          {searchData.length <= 0 ? (
+          {totalData.length <= 0 ? (
             <div className="w-full h-[200px] flex items-center justify-center">
               <p className="text-[17px] font-[600]">No Items Found</p>
             </div>
           ) : (
-            searchData.map((item, index) => (
+            totalData.map((item, index) => (
               <DataCards
                 item={item}
                 index={index}

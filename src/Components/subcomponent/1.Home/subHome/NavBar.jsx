@@ -6,7 +6,6 @@ import Search from "lucide-react/dist/esm/icons/search";
 import LogOut from "lucide-react/dist/esm/icons/log-out";
 import UserCircle from "lucide-react/dist/esm/icons/user-circle";
 
-import { useEffect, useState } from "react";
 import Menu from "lucide-react/dist/esm/icons/menu";
 
 const NavBar = ({
@@ -18,17 +17,7 @@ const NavBar = ({
   handlesignout,
   deletepopup,
 }) => {
-  const [middleButtons, setMiddleButtons] = useState(false);
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (localStorage.getItem("tokenuserin")) {
-      setMiddleButtons(true);
-    } else {
-      setMiddleButtons(false);
-    }
-  }, [userInfo]);
 
   return (
     <>
@@ -60,11 +49,7 @@ const NavBar = ({
           className="flex items-center max-[813px]:hidden"
           style={{ fontFamily: "Montserrat, sans-serif" }}
         >
-          <div
-            style={{
-              display: middleButtons ? "block" : "none",
-            }}
-          >
+          <div>
             <button
               onClick={() => navigate("/")}
               className=" mr-[18px]  max-[789px]:mr-[9px] max-[789px]:text-[13px] text-[15px] font-[550] cursor-pointer underline decoration-transparent decoration-[3px] underline-offset-[15px] hover:decoration-blue-600 hover:underline-offset-[5px] transition-all duration-200 ease  "
@@ -78,10 +63,10 @@ const NavBar = ({
               Dashboard
             </button>
             <button
-              onClick={() => navigate("/user/publish")}
+              onClick={() => navigate("/user")}
               className=" mr-[18px]  max-[789px]:mr-[9px] max-[789px]:text-[13px] text-[15px] font-[550] cursor-pointer underline decoration-transparent decoration-[3px] underline-offset-[15px] hover:decoration-blue-600 hover:underline-offset-[5px] transition-all duration-200 ease  "
             >
-              Publish
+              Profile
             </button>
             <button
               onClick={() => navigate("/user/cart", { state: "Only Show" })}

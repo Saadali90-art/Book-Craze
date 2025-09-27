@@ -77,7 +77,7 @@ const LogInContainer = ({ handlesubmit, logerror, load, currentdot }) => {
               transition: "opacity 500ms ease, height 500ms ease",
             }}
           >
-            Invalid Credientials
+            Backend Not Available
           </p>
 
           {load ? (

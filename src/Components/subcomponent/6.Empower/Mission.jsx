@@ -4,7 +4,6 @@ import { missionData, pricingPlans } from "./subcomponent/db.js";
 import MissionCards from "./subcomponent/MissionCards";
 import PricingCards from "./subcomponent/PricingCards";
 import Footer from "../1.Home/Footer.jsx";
-import More from "../../Requests/MoreDetails/More.js";
 
 const Mission = () => {
   const handleSubsribe = async (priceId) => {

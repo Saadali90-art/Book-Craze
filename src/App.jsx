@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Spinner from "./Components/Spinner";
 import ScrollToTop from "./Components/ScrollToTop";
-import PrivateAccess from "./Components/PrivateAccess";
 import DeleteUser from "./Components/DeleteUser";
 import GoogleUserPassword from "./Components/GoogleUserPassword";
 import Marquee from "./Components/Marquee";
@@ -66,57 +65,42 @@ const App = () => {
         <Route
           path="/user/dashboard"
           element={
-            <PrivateAccess>
-              <Suspense fallback={<Spinner />}>
-                <Marquee />
-                <Dashboard />
-              </Suspense>
-            </PrivateAccess>
+            <Suspense fallback={<Spinner />}>
+              <Marquee />
+              <Dashboard />
+            </Suspense>
           }
         />
 
         <Route
           path="/user/publish"
           element={
-            <PrivateAccess>
-              <Suspense fallback={<Spinner />}>
-                <Marquee />
+            <Suspense fallback={<Spinner />}>
+              <Marquee />
 
-                <Publish />
-              </Suspense>
-            </PrivateAccess>
+              <Publish />
+            </Suspense>
           }
         />
         <Route
           path="/user/cart"
           element={
-            <PrivateAccess>
-              <Suspense fallback={<Spinner />}>
-                <Marquee />
-                <Cart />
-              </Suspense>
-            </PrivateAccess>
+            <Suspense fallback={<Spinner />}>
+              <Marquee />
+              <Cart />
+            </Suspense>
           }
         />
         <Route
-          path="/user/:id"
+          path="/user"
           element={
-            <PrivateAccess>
-              <Suspense fallback={<Spinner />}>
-                <Marquee />
-                <MyAccount />
-              </Suspense>
-            </PrivateAccess>
+            <Suspense fallback={<Spinner />}>
+              <Marquee />
+              <MyAccount />
+            </Suspense>
           }
         />
-        <Route
-          path="/deleteuser/:id"
-          element={
-            <PrivateAccess>
-              <DeleteUser />
-            </PrivateAccess>
-          }
-        />
+        <Route path="/deleteuser" element={<DeleteUser />} />
 
         <Route
           path="/user/dashboard/more"

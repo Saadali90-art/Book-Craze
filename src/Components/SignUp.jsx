@@ -2,7 +2,6 @@ import "../animation.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SignUpContainer from "./subcomponent/3.SignUp/SignUpContainer";
-import sendData from "./Requests/SignUp/Signup.js";
 import bgSignUp from "../assets/SignUp/bgsignup.webp";
 
 const SignUp = () => {
@@ -16,6 +15,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   let [currentdot, setcurrentdot] = useState(0);
   const [load, setLoad] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,66 +29,12 @@ const SignUp = () => {
 
   // ================================ SUBMITTING THE FORM =================================
 
-  const handlesubmit = async (e) => {
+  const handlesubmit = (e) => {
     e.preventDefault();
-
-    let data = e.target;
-    let formdata = new FormData(data);
-    let formentry = Object.fromEntries(formdata.entries());
-
-    if (
-      formentry.name === "" ||
-      formentry.email === "" ||
-      formentry.password === "" ||
-      formentry.phone === ""
-    ) {
-      seterrorobj((pre) => {
-        return [{ message: "Data Is Empty" }, ...pre];
-      });
-
-      return;
-    }
-
-    let datainfo = {
-      name: formentry.name,
-      email: formentry.email,
-      password: formentry.password,
-      phone: parseInt(formentry.phone),
-    };
-
-    if (formentry.password !== formentry.confirm) {
-      seterrorobj((pre) => [{ message: "Password Do Not Match" }, ...pre]);
-      setshowerror(true);
-
-      setTimeout(() => {
-        setshowerror(false);
-      }, 2000);
-    } else if (isNaN(datainfo.phone)) {
-      seterrorobj((pre) => [{ message: "Phone Must Be In Number" }, ...pre]);
-      setshowerror(true);
-
-      setTimeout(() => {
-        setshowerror(false);
-      }, 2000);
-    } else {
-      if (!isNaN(datainfo.phone) && formentry.password === formentry.confirm) {
-        try {
-          let response = await sendData(
-            datainfo,
-            "user/signup",
-            seterrorobj,
-            navigate,
-            setLoad
-          );
-
-          if (response === "Error While Sending Data To DB") {
-            location.reload();
-          }
-        } catch (error) {
-          console.log("Error While Sending Data To DB", error.message);
-        }
-      }
-    }
+    setError("Backend is curently unavailable");
+    setTimeout(() => {
+      setError(null);
+    }, 2000);
   };
 
   // =================== SHAKE ANIMAATION ==========================================
@@ -135,6 +81,7 @@ const SignUp = () => {
         animateArr={animateArr}
         load={load}
         currentdot={currentdot}
+        error={error}
       />
     </div>
   );

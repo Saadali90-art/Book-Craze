@@ -4,32 +4,16 @@ import empty from "../assets/DashBoard/EmptyFolder.png";
 import ChevronLeft from "lucide-react/dist/esm/icons/chevron-left";
 import DashboardCards from "./subcomponent/4.Dashboard/DashboardCards";
 import NoData from "./subcomponent/4.Dashboard/NoData";
-import specificBooks from "./Requests/DashBoard/SpecificDashBoard.js";
-import Marquee from "./Marquee.jsx";
+import dashboardInfo from "./db/Dashboard";
 
 const Dashboard = () => {
   // ======================== HOOKS OR DATA VARIABLE ================================
 
-  const [userData, setuserData] = useState([]);
+  let userData = dashboardInfo;
   const [loading, setloading] = useState(true);
   const navigate = useNavigate();
   let loadingdots = Array.from({ length: 4 });
   let [currentdot, setcurrentdot] = useState(0);
-
-  // ====================== GETTING DATA FROM DB =============================
-
-  useEffect(() => {
-    const fetchData = async (link) => {
-      try {
-        let data = await specificBooks(link);
-        setuserData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData("book/dashboard");
-  }, []);
 
   // ===================== FOR LOADING OR CREATE ONE ================================
 

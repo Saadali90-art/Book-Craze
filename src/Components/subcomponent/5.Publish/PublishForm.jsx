@@ -290,7 +290,7 @@ const PublishForm = ({
                 }}
                 className="text-red-500 mx-auto my-[5px] font-[500]"
               >
-                Data Not Present
+                Backend Not Available.
               </p>
             </div>
 

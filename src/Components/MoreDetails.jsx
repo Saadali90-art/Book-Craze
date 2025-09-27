@@ -2,15 +2,14 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navigation from "./subcomponent/1.Home/Navigation";
 import Cards from "./subcomponent/1.Home/subHome/Cards.jsx";
-import MoreDetail from "./Requests/MoreDetails/More.js";
 import NovelDetails from "./subcomponent/7.MoreDetails/NovelDetails.jsx";
 import Comments from "./subcomponent/7.MoreDetails/Comments.jsx";
 import Footer from "./subcomponent/1.Home/Footer.jsx";
-import cartsData from "./Requests/Cart/CartInfo.js";
+import discoverBooks from "./db/DicoverBooks.js";
 
 const MoreDetails = () => {
   const [moreInfo, setMoreInfo] = useState(null);
-  const [youLike, setYouLike] = useState([]);
+  let youLike = discoverBooks;
   const [comments, setComments] = useState([]);
   const [commentDiv, setCommentDiv] = useState(false);
   const [commentValue, setCommentValue] = useState("");
@@ -30,40 +29,6 @@ const MoreDetails = () => {
       }
     }, 100);
   }, [currentdot]);
-
-  // ========================== FINDING DATA IN DATA BASE ============================
-
-  useEffect(() => {
-    const fetchData = async (data, link) => {
-      try {
-        let moreDetails = await MoreDetail(data, link);
-        setMoreInfo(moreDetails);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData({ id: incomingData }, "more/getmoreinfo");
-  }, [incomingData]);
-
-  //======================== GETTING THE LIKED DATA  =============================
-
-  useEffect(() => {
-    const fetchData = async (data, link) => {
-      try {
-        let youLiked = await MoreDetail(data, link);
-        setYouLike(
-          youLiked.message
-            .filter((item) => item._id !== moreInfo._id)
-            .slice(0, 6)
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData({ category: moreInfo?.category }, "more/youlike");
-  }, [moreInfo]);
 
   // ============================= CHECKING THE USER IS AUTHORIZED =========================
 
@@ -116,7 +81,7 @@ const MoreDetails = () => {
   const handlemore = (item) => {
     if (item !== null) {
       location.reload;
-      navigate("/user/dashboard/more", { state: item._id });
+      navigate("/user/dashboard/more", { state: item });
     }
   };
 
@@ -142,10 +107,10 @@ const MoreDetails = () => {
       {/* ======================= SPECIFIC NOVEL DETAILS =========================== */}
 
       <NovelDetails
-        moreInfo={moreInfo}
         load={load}
         setLoad={setLoad}
         currentdot={currentdot}
+        incomingData={incomingData}
       />
 
       {/* ============================== YOU MAY ALSO LIKE ============================= */}

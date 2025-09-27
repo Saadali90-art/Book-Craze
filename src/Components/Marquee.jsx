@@ -3,11 +3,11 @@ const Marquee = () => {
     <marquee
       behavior="scroll"
       direction="left"
-      className="bg-[#222] text-white p-[5px] fixed top-0 z-[20]"
+      className="bg-[#222] text-white p-[5px] fixed top-0 z-[20] outline-none"
     >
       <a href="https://github.com/Saadali90-art/Book-Craze">
-        ⚡ This site is running on dummy data. Backend code is available on
-        GitHub for full functionality. Click here to see Full-Stack Code.
+        ⚡ This site currently uses sample data. The complete backend
+        implementation is available on GitHub. Click here to see.
       </a>
     </marquee>
   );
