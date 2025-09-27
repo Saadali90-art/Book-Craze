@@ -2,24 +2,11 @@ import { useEffect } from "react";
 import checkmark from "../../assets/Mission/checkmark.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../animation.css";
-import removeItem from "../Requests/Cart/RemoveCartItem.js";
 
 const Success = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-
-  useEffect(() => {
-    const removeCartItems = async (data, link) => {
-      try {
-        await removeItem(data, link);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    removeCartItems("cart/removecartauto", { userid: id });
-  }, []);
 
   return (
     <div className="w-[100%] h-screen bg-[#f5f5f5] flex  items-center justify-center">

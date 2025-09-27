@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import "../animation.css";
 import { useNavigate } from "react-router-dom";
 import { fanficTags, novelinfo } from "./db/data.js";
