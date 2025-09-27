@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Navigation from "../1.Home/Navigation";
 import discovering from "../../../assets/Discover/discover.png";
 import Cards from "../1.Home/subHome/Cards.jsx";
@@ -5,12 +6,25 @@ import { useNavigate } from "react-router-dom";
 import "../../../animation.css";
 import JoinUs from "../../../assets/Discover/JoinUs.png";
 import Footer from "../1.Home/Footer";
+import discoveritems from "./Requests/discoveritems.js";
 import ArrowRight from "lucide-react/dist/esm/icons/arrow-right";
-import dicoverBooks from "../../db/DicoverBooks.js";
 
 const Discover = () => {
-  let discover = dicoverBooks;
+  const [discover, setDiscover] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let data = await discoveritems("book/discover");
+        setDiscover(data.sort((a, b) => b.views - a.views).slice(0, 6));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handlemore = (item) => {
     if (item !== null) {
@@ -19,7 +33,13 @@ const Discover = () => {
   };
 
   const handlejoin = () => {
-    navigate("/signup");
+    let token = localStorage.getItem("tokenuserin");
+
+    if (token) {
+      navigate("/user/publish");
+    } else {
+      navigate("/signup");
+    }
   };
 
   return (

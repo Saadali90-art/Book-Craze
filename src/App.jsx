@@ -2,8 +2,10 @@ import React, { Suspense } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Spinner from "./Components/Spinner";
 import ScrollToTop from "./Components/ScrollToTop";
+import PrivateAccess from "./Components/PrivateAccess";
 import DeleteUser from "./Components/DeleteUser";
 import GoogleUserPassword from "./Components/GoogleUserPassword";
+import Marquee from "./Components/Marquee";
 
 // Lazy-loaded pages (only big pages)
 const Login = React.lazy(() => import("./Components/Login"));
@@ -92,7 +94,7 @@ const App = () => {
           }
         />
         <Route
-          path="/user"
+          path="/user/:id"
           element={
             <PrivateAccess>
               <Suspense fallback={<Spinner />}>
@@ -101,7 +103,14 @@ const App = () => {
             </PrivateAccess>
           }
         />
-        <Route path="/deleteuser" element={<DeleteUser />} />
+        <Route
+          path="/deleteuser/:id"
+          element={
+            <PrivateAccess>
+              <DeleteUser />
+            </PrivateAccess>
+          }
+        />
 
         <Route
           path="/user/dashboard/more"
@@ -131,6 +140,7 @@ const App = () => {
           path="/category/:id"
           element={
             <Suspense fallback={<Spinner />}>
+              <Marquee />
               <Categories />
             </Suspense>
           }
@@ -160,7 +170,7 @@ const App = () => {
           }
         />
         <Route
-          path="/emailverify"
+          path="/emailverify/:id"
           element={
             <Suspense fallback={<Spinner />}>
               <EmailVerify />

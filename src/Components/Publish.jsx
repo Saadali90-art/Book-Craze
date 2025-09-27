@@ -3,7 +3,9 @@ import ChevronLeft from "lucide-react/dist/esm/icons/chevron-left";
 import { useNavigate } from "react-router-dom";
 import "../animation.css";
 import PublishForm from "./subcomponent/5.Publish/PublishForm";
+import sendData from "./Requests/Publish/PublishData.js";
 import dummyBook from "../assets/Publish/dummybook.jpg";
+import Marquee from "./Marquee.jsx";
 
 const Publish = () => {
   // =========== HOOKS OR OTHER DATA =====================
@@ -38,13 +40,23 @@ const Publish = () => {
 
   // ============== FORM DATA TO OBJECT ======================
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
-    seterror("Backend Not Available");
+    setLoad(true);
 
-    setTimeout(() => {
-      seterror(null);
-    }, 2000);
+    let formData = new FormData(e.target);
+
+    if (file) {
+      // for the drop image option
+      formData.delete("bookImage");
+      formData.append("bookImage", file);
+    }
+
+    try {
+      await sendData(formData, "user/publish", seterror, navigate, setLoad);
+    } catch (error) {
+      console.log("Error While Giving Data To Books", error.message);
+    }
   };
 
   // ================== FOR BROWSING FILE FROM COMPUTER =======================
@@ -55,6 +67,7 @@ const Publish = () => {
     let data = e.target.files[0];
 
     if (data) {
+      setFile(data);
       setcurrentimage(URL.createObjectURL(data));
     }
   };
@@ -67,6 +80,7 @@ const Publish = () => {
     let data = e.dataTransfer.files[0];
 
     if (data) {
+      setFile(data);
       setcurrentimage(URL.createObjectURL(data));
     }
   };
@@ -74,7 +88,22 @@ const Publish = () => {
   // ================== DOWNLOADING IMAGE FROM URL ============================
 
   const urlToFile = async (url) => {
-    setcurrentimage(url);
+    let data = await fetch(url);
+    let blob = await data.blob();
+    let filename = url.split("/").pop().split("?")[0]; //"https://example.com/images/bookcover.jpg?size=large"
+
+    let ext = "";
+    if (filename.includes(".")) {
+      ext = filename.substring(filename.lastIndexOf("."));
+    } else {
+      ext = "." + blob.type.split("/")[1]; // "image/jpeg"
+      filename = filename + ext;
+    }
+
+    let fileinfo = new File([blob], filename, { type: blob.type });
+
+    setcurrentimage(URL.createObjectURL(fileinfo));
+    setFile(fileinfo);
   };
 
   return (
@@ -84,7 +113,7 @@ const Publish = () => {
     >
       {/* ============ Publish NAV BARR ==================*/}
 
-      <div className="container max-w-[100%]  h-[70px]  bg-gray-100 fixed z-20">
+      <div className="container max-w-[100%]  h-[70px]  bg-gray-100 fixed z-20 ">
         <div className="w-[80%] mx-auto h-[70px] flex items-center justify-center ">
           <button
             className="absolute my-auto left-[15px] p-2 rounded-[50%] bg-transparent cursor-pointer max-[395px]:left-[1px]"

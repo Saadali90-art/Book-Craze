@@ -41,13 +41,13 @@ const Footer = () => {
             >
               <img
                 src={WhatsApp}
-                className="w-[30px] h-[30px] max-[627px]:w-[30px] max-[627px]:h-[30px] mr-[10px] max-[1031px]:mr-[10px]"
+                className="w-[30px] h-[30px] max-[627px]:w-[30px] max-[627px]:h-[30px] mr-[10px] max-[1031px]:mr-[15px]"
               />
             </a>
             <a href="https://www.linkedin.com/in/saad-ali-b15413356?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
               <Linkedin
                 color="#2B7FFF"
-                className="w-[30px] h-[30px] max-[627px]:w-[30px] max-[627px]:h-[30px] max-[1031px]:mr-[10px]"
+                className="w-[30px] h-[30px] max-[627px]:w-[30px] max-[627px]:h-[30px] max-[1031px]:mr-[15px]"
                 target="_blank"
               />
             </a>
@@ -59,12 +59,12 @@ const Footer = () => {
                 loading="lazy"
                 src={mail}
                 alt=""
-                className="w-[45px] h-[45px] max-[1031px]:mr-[10px]"
+                className="w-[45px] h-[45px] max-[627px]:w-[30px] max-[627px]:h-[30px] max-[1031px]:mr-[15px]"
               />
             </a>
             <a href="https://github.com/Saadali90-art/Book-Craze">
               <Github
-                className="w-[30px] h-[30px] max-[1031px]:mr-[10px]"
+                className="w-[30px] h-[30px] max-[627px]:w-[30px] max-[627px]:h-[30px] max-[1031px]:mr-[15px]"
                 color="white"
               />
             </a>

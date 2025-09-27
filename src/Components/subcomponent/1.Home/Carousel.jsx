@@ -1,20 +1,41 @@
 import { useEffect, useState } from "react";
+import TopBooks from "../../Requests/Home Requests/TopBooks.js";
 import { useNavigate } from "react-router-dom";
-import carouselInfo from "../../db/Carousel";
 
 const Carousel = () => {
-  let weeklyTop = carouselInfo;
+  const [weeklyTop, setWeeklyTop] = useState([]);
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
   let arrButton = Array.from({ length: weeklyTop.length });
 
+  // ========================== GETTING THE WEEKLY TOP DATA ===================================
   useEffect(() => {
-    let timeout = setTimeout(() => {
-      setCurrent((current + 1) % weeklyTop.length);
+    const fetchData = async (link) => {
+      try {
+        let data = await TopBooks(link);
+        setWeeklyTop(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData("topbooks/weeklytop");
+  }, []);
+
+  // ======================= CHANGING THE CURRENT AFTER TIME ============================
+  useEffect(() => {
+    if (weeklyTop.length === 0) return;
+
+    let time = setTimeout(() => {
+      if (current === weeklyTop.length - 1) {
+        setCurrent(0);
+      } else {
+        setCurrent(current + 1);
+      }
     }, 2000);
 
-    return () => clearTimeout(timeout);
-  }, [current]);
+    return () => clearTimeout(time);
+  }, [current, weeklyTop]);
 
   return (
     <div className="container w-[55%] max-[1943px]:w-[50%] max-[1832px]:w-[50%] max-[1657px]:w-[40%] max-[1335px]:w-[50%] max-[1050px]:w-[45%] max-[823px]:w-[50%] max-[776px]:w-[100%]">

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import MoreDetail from "../../Requests/MoreDetails/More.js";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
@@ -21,7 +22,23 @@ const ForgotPassword = () => {
     e.preventDefault();
     setLoad(true);
 
-    navigate("/emailverify");
+    let formData = new FormData(e.target);
+    let formEntry = Object.fromEntries(formData.entries());
+
+    try {
+      let data = await MoreDetail(
+        { data: formEntry.email },
+        "forgot/checkemail"
+      );
+      if (data.message === "signup") {
+        navigate(`/${data.message}`);
+      }
+      if (data.message === "emailverify") {
+        navigate(`/emailverify/${formEntry.email}`);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (

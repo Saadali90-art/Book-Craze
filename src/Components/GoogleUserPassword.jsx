@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import MoreDetail from "./Requests/MoreDetails/More.js";
 
 const GoogleUserPassword = () => {
   let { id } = useParams();

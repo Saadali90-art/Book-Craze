@@ -1,9 +1,11 @@
 import React, { Suspense, useRef } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SignInData from "../../Requests/Home Requests/SignInData.js";
+import newBooks from "../../Requests/Home Requests/NewBooks.js";
+import MoreDetail from "../../Requests/MoreDetails/More.js";
 import NavBar from "./subHome/NavBar.jsx";
 import Spinner from "../../Spinner.jsx";
-import allTitles from "../../db/Titles.js";
 
 const SideBar = React.lazy(() => import("./subHome/SideBar.jsx"));
 const SearchData = React.lazy(() => import("./subHome/SearchData.jsx"));
@@ -13,7 +15,7 @@ const Navigation = () => {
   const [signout, setsignout] = useState(false);
   const [sideBar, setSideBar] = useState(false);
   const [search, setSearch] = useState(false);
-  let titles = allTitles;
+  const [titles, setTitles] = useState([]);
   const [searchInfo, setSearchInfo] = useState("");
   const [suggestion, setSuggestion] = useState(false);
   const [suggestArr, setSuggestArr] = useState([]);
@@ -21,9 +23,56 @@ const Navigation = () => {
 
   const navigate = useNavigate();
 
-  const handlesignout = () => {
-    location.reload();
-  };
+  // ======================= GETTING THE USER INFORMATION FOR SIGN UP ==========================
+
+  useEffect(() => {
+    const fetch = () => {
+      const googleLogIn = async (query) => {
+        try {
+          let result = await MoreDetail({ id: query }, "googlelogin");
+          localStorage.setItem("tokenuserin", result.token);
+          setUserInfo(result.message);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const fetchData = async (link1, link2) => {
+        try {
+          let result1 = await SignInData(link1);
+          let result2 = await newBooks(link2);
+
+          if (
+            result1 === "Invalid Token" ||
+            result1 === "Invalid or Expired Token"
+          ) {
+            localStorage.removeItem("tokenuserin");
+            location.reload();
+          } else {
+            setUserInfo(result1);
+          }
+
+          setTitles(result2);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      const query = window.location.href.split("?")[1];
+
+      if (query && query.length > 0) {
+        googleLogIn(query);
+      } else {
+        fetchData("user/signindata", "book/titles");
+      }
+    };
+
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(fetch);
+    } else {
+      setTimeout(fetch, 200);
+    }
+  }, []);
 
   const handleSearch = (e) => {
     setSearchInfo(e.target.value);
@@ -49,10 +98,24 @@ const Navigation = () => {
     navigate(`/search/${item}`);
   };
 
+  // =============================== HANDLING THE SIGN OUT ================================
+
+  const handlesignout = () => {
+    localStorage.removeItem("tokenuserin");
+
+    let data = window.location.href.split("?")[1];
+    if (data !== null || data !== undefined || data.length > 0) {
+      navigate("/");
+    }
+    location.reload();
+  };
+
   // =========================== DELETING POPUP=============================
 
   const deletepopup = () => {
-    navigate(`/deleteuser`);
+    if (localStorage.getItem("tokenuserin")) {
+      navigate(`/deleteuser/:${userInfo.name}`);
+    }
   };
 
   return (

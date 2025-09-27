@@ -6,13 +6,7 @@ import Eye from "lucide-react/dist/esm/icons/eye";
 
 import { useNavigate } from "react-router-dom";
 
-const NovelDetails = ({
-  moreInfo,
-  load,
-  currentdot,
-  setLoad,
-  incomingData,
-}) => {
+const NovelDetails = ({ moreInfo, load, currentdot, setLoad }) => {
   const [views, setViews] = useState("");
   const navigate = useNavigate();
   let loadingdots = Array.from({ length: 4 });
@@ -48,7 +42,7 @@ const NovelDetails = ({
     <>
       {/* ======================= NOVEL INFORAMTION ============================ */}
 
-      {incomingData !== null ? (
+      {moreInfo !== null ? (
         <div
           className="container w-[70%] max-[1170px]:w-[80%] max-[924px]:w-[90%] min-h-[380px] relative mx-auto mt-[100px] max-[813px]:mt-[70px] flex max-[496px]:flex-col max-[2108px]:gap-x-[20px]"
           style={{ fontFamily: "Roboto, sans-serif" }}
@@ -65,7 +59,7 @@ const NovelDetails = ({
               </p>
               <img
                 loading="eager"
-                src={incomingData.bookImage}
+                src={moreInfo.bookImage}
                 alt="Book Cover Image"
                 className="w-full h-full rounded-lg"
               />
@@ -85,27 +79,27 @@ const NovelDetails = ({
               }}
               className="w-full text-[25px] max-[743px]:text-[20px] font-[600] text-black capitalize"
             >
-              {incomingData.title}
+              {moreInfo.title}
             </p>
 
             <div className="w-[30%] max-[1558px]:w-[50%] max-[971px]:w-[70%] max-[495px]:w-[80%] max-[355px]:w-[95%] max-[742px]:text-[15px] flex justify-between my-[10px] ">
               <span className="capitalize flex items-center gap-x-[5px] font-[500] truncate overflow-hidden">
                 <Grip className="w-[18px] h-[18px]" />
-                <p>{incomingData.category}</p>
+                <p>{moreInfo.category}</p>
               </span>
 
               <span className="capitalize flex gap-x-[5px] items-center font-[500] truncate">
-                {incomingData.gender ? (
+                {moreInfo.gender ? (
                   <Mars className="w-[18px] h-[18px]" />
                 ) : (
                   <Venus className="w-[18px] h-[18px]" />
                 )}
-                <p>{incomingData.gender}</p>
+                <p>{moreInfo.gender}</p>
               </span>
 
               <span className=" flex items-center gap-x-[5px] font-[500]">
                 <Eye className="w-[18px] h-[18px]" />
-                <p>{incomingData.views}</p>
+                <p>{views}</p>
               </span>
             </div>
 
@@ -119,8 +113,8 @@ const NovelDetails = ({
               }}
               className="text-black/80 text-[15px] my-[5px]  w-full text-justify"
             >
-              {incomingData.description?.slice(0, 1).toUpperCase() +
-                incomingData.description?.slice(1)}
+              {moreInfo.description?.slice(0, 1).toUpperCase() +
+                moreInfo.description?.slice(1)}
             </p>
 
             {/* ==================== DOWNLOAD BUTTONS ========================= */}
@@ -153,7 +147,7 @@ const NovelDetails = ({
                 </div>
               ) : (
                 <button
-                  onClick={() => handleCart(incomingData)}
+                  onClick={() => handleCart(moreInfo)}
                   className="absolute bottom-0 bg-blue-500 px-[9px] py-[7px] font-[500] rounded-lg text-white hover:bg-white hover:text-black border-transparent border-[1px] hover:border-black tranistion-all duration-500 ease hover:font-[500] cursor-pointer "
                 >
                   Add To Cart

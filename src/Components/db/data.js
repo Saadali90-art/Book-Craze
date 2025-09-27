@@ -24,27 +24,21 @@ const novelinfo = [
 ];
 
 const fanficTags = [
-  "Romance",
-  "Comedy",
-  "Drama",
-  "Tragedy",
-  "Slice of Life",
-  "Supernatural",
-  "Adventure",
-  "Action",
-  "Thriller",
-  "Fantasy",
-  "Dark Fantasy",
-  "Science Fiction",
-
-  "Crime",
-  "Steampunk",
-  "Mythology",
-  "Cultivation",
-  "Reincarnation",
-  "Parody",
-  "One-Shot",
-  "Canon Divergence",
+  "Shonen",
+  "Shojo",
+  "Seinen",
+  "Josei",
+  "Isekai",
+  "Harem",
+  "Reverse Harem",
+  "Magical Girl",
+  "School",
+  "Mecha",
+  "Game",
+  "Demons",
+  "Vampires",
+  "Cyberpunk",
+  "Post-Apocalyptic",
 ];
 
 export { fanficTags, novelinfo };

@@ -1,42 +1,69 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "./subcomponent/1.Home/Navigation.jsx";
+import SignInData from "./Requests/Home Requests/SignInData.js";
+import specificBooks from "./Requests/DashBoard/SpecificDashBoard.js";
+import accountData from "./Requests/Account Info/AccountInfo.js";
 import Images from "./subcomponent/User Account/Images.jsx";
 import UserInfo from "./subcomponent/User Account/UserInfo.jsx";
 import Library from "./subcomponent/User Account/Library.jsx";
 import UpdateInfo from "./subcomponent/User Account/UpdateInfo.jsx";
-import dashboardInfo from "./db/Dashboard.js";
 
 const MyAccount = () => {
-  let accountInfo = {
-    userId: "usr123456",
-    name: "Alice Johnson",
-    email: "alice.johnson@example.com",
-    password: null,
-    phone: 923001234567,
-    date: "2025-09-26T03:15:00.000Z",
-    profileImage: null,
-    coverImage: null,
-    gender: "female",
-    location: "New York, USA",
-    about:
-      "Book enthusiast, aspiring writer, and coffee lover. Always curious to learn something new every day.",
-    resetPass: null,
-    resetPassExpiry: null,
-  };
-
-  let publisherBooks = dashboardInfo;
+  const [accountInfo, setAccountInfo] = useState(null);
+  const [publisherBooks, setPublisherBooks] = useState([]);
   const [edit, setEdit] = useState(false);
   const [updateInfo, setUpdateInfo] = useState(null);
   const [loading, setloading] = useState(true);
   const [error, setError] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [cover, setCover] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
 
+  const token = localStorage.getItem("tokenuserin");
   const navigate = useNavigate();
   let loadingdots = Array.from({ length: 4 });
   let [currentdot, setcurrentdot] = useState(0);
   const [load, setLoad] = useState(false);
+
+  if (token === undefined || token === null) {
+    navigate("/login");
+  }
+
+  // ================== FETCHING USER INF0  ================================
+
+  useEffect(() => {
+    const fetchData = async (link) => {
+      try {
+        let datainfo = await SignInData(link);
+        setAccountInfo(datainfo);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData("account/myaccount");
+  }, []);
+
+  // ====================== GETTING THE USER PUBLISHED BOOKS =====================
+
+  useEffect(() => {
+    const fetchData = async (link) => {
+      try {
+        let data = await specificBooks(link);
+        if (data === "Data Not Present") {
+          setPublisherBooks(null);
+        } else {
+          setPublisherBooks(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData("book/dashboard");
+  }, []);
 
   // ============================= FOR LOADING DOTS ===============================
 
@@ -54,7 +81,7 @@ const MyAccount = () => {
 
   const handlemore = (item) => {
     if (item !== null) {
-      navigate("/user/dashboard/more", { state: item });
+      navigate("/user/dashboard/more", { state: item._id });
     }
   };
 
@@ -63,6 +90,7 @@ const MyAccount = () => {
 
     if (file) {
       setCoverImage(URL.createObjectURL(file));
+      setCover(file);
     }
   };
 
@@ -70,12 +98,40 @@ const MyAccount = () => {
     let file = e.target.files[0];
 
     setProfileImage(URL.createObjectURL(file));
+    setProfile(file);
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    location.reload();
+    let formEntry = new FormData(e.target);
+    formEntry.append("profileImage", profile ?? accountInfo.profile);
+    formEntry.append("coverImage", cover ?? accountInfo.cover);
+
+    try {
+      if (formEntry !== null) {
+        setLoad(true);
+        const info = await accountData("account/changeinfo", formEntry);
+
+        if ((updateInfo?.name ?? accountInfo.name) !== accountInfo.name) {
+          if (info.token) {
+            localStorage.setItem("tokenuserin", info.token);
+          }
+        }
+
+        if (info.message === "Data Updated") {
+          location.reload();
+        } else {
+          setLoad(false);
+          setError(info.message);
+          setTimeout(() => {
+            setError(null);
+          }, 2000);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router-dom";
 import "../animation.css";
+import SignInData from "./Requests/Home Requests/SignInData.js";
+import cartsData from "./Requests/Cart/CartInfo.js";
+import removeItem from "./Requests/Cart/RemoveCartItem.js";
 import Navigation from "./subcomponent/Cart/Navigation.jsx";
 import CartList from "./subcomponent/Cart/CartList.jsx";
 import MoreDetail from "./Requests/MoreDetails/More.js";
 
 const Cart = () => {
-  let cartItems = dashboardInfo;
+  const [cartItems, setCartItems] = useState([]);
   const [filteredArray, setFilteredArray] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [search, setSearch] = useState("");
@@ -27,7 +30,36 @@ const Cart = () => {
     }, 100);
   }, [currentdot]);
 
-  const getCarts = () => {};
+  // ================== CARTS DATA FROM DB ===========================
+
+  const getCarts = async (link) => {
+    try {
+      let info = await SignInData(link);
+      let data = [...new Map(info.map((item) => [item.title, item])).values()];
+      setCartItems(data);
+      setFilteredArray(data);
+      handlePrices();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // =================== ENTRING CARTS DATA IN DB ========================
+
+  useEffect(() => {
+    const fetchData = async (link, dataobj) => {
+      try {
+        await cartsData(link, dataobj);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (incomingData !== "Only Show") {
+      fetchData("cart/saveitems", incomingData);
+      getCarts("cart/cartitems");
+    }
+  }, [incomingData]);
 
   // ================ GETTING CARTS ITEMS ----------------------
 
@@ -91,10 +123,33 @@ const Cart = () => {
     );
   };
 
-  const makePayment = async () => {};
+  const makePayment = async () => {
+    setLoad(true);
+
+    const stripe = await loadStripe(
+      import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+    );
+
+    try {
+      let responseInfo = await MoreDetail(
+        filteredArray,
+        "payment/cartcheckout"
+      );
+
+      const result = stripe.redirectToCheckout({
+        sessionId: responseInfo.id,
+      });
+
+      if (result.error) {
+        console.log(result.error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <main className="w-[100%] overflow-hidden ">
+    <main className="w-[100%] overflow-hidden">
       <Navigation search={search} setSearch={setSearch} />
 
       <section className="container w-[70%] mx-auto max-[1170px]:w-[80%] max-[924px]:w-[90%] my-[20px]">
@@ -108,7 +163,7 @@ const Cart = () => {
             Shopping Cart
           </h1>
           <p className="text-[23px] max-[536px]:text-[18px] font-[500]">
-            Items : {filteredArray.length}
+            Items : {cartItems.length}
           </p>
         </section>
 
@@ -138,9 +193,7 @@ const Cart = () => {
             />
           </div>
           <div style={{ fontFamily: "Montserrat, sans-serif" }}>
-            <p className="text-[16px] font-[600]">
-              Total Cost : $ {totalCost.toFixed(2)}
-            </p>
+            <p className="text-[16px] font-[600]">Total Cost : $ {totalCost}</p>
           </div>
         </section>
         <div className="flex w-full justify-end max-[696px]:justify-center max-[696px]:mt-[10px]">

@@ -3,7 +3,7 @@ const FanFic = ({ fanficTags, handleCategories }) => {
     <>
       {/* ================= RESPONSIBLE FOR GIVING CATEGORY TO CATEGORY PAGE ========================= */}
 
-      <div className="container max-w-[100%] mb-[40px] min-h-[220px] mt-[20px] ">
+      <div className="container max-w-[100%] mb-[20px] min-h-[220px] mt-[20px] ">
         <div className="container w-[70%] max-[1170px]:w-[80%]  max-[924px]:w-[90%] min-h-full mx-auto ">
           <p className="text-[24px] font-[700] py-[20px] pb-[15px]">
             Top Fanfic Tags

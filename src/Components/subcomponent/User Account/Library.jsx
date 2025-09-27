@@ -24,7 +24,7 @@ const Library = ({ edit, handlemore, publisherBooks }) => {
           className="text-[25px] max-[393px]:text-[22px] font-[600] capitalize"
           style={{ fontFamily: "Montserrat, sans-serif" }}
         >
-          Your Library
+          Your Libaray
         </h1>
 
         <div

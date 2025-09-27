@@ -1,0 +1,56 @@
+import Publish from "../../Model/PublishModel.js";
+import jsonwebtoken from "jsonwebtoken";
+
+const PublishOne = async (req, res) => {
+  try {
+    const { title, category, gender, description, price } = req.body;
+    const token = req.headers.tokenuser;
+
+    let tokenData;
+    try {
+      tokenData = jsonwebtoken.verify(token, process.env.secretkey);
+    } catch (err) {
+      return res.status(401).json({ message: "Invalid or Expired Token" });
+    }
+
+    // uploaded image path from Cloudinary
+    let fileimage = null;
+    if (req.file && req.file.path) {
+      fileimage = req.file.path; // this is the full Cloudinary URL (WebP)
+    }
+
+    // validation
+    if (
+      !title ||
+      !category ||
+      !gender ||
+      !description ||
+      !price ||
+      !fileimage
+    ) {
+      return res.status(400).json({ message: "Data Not Present" });
+    }
+
+    const data = {
+      userId: tokenData.userId,
+      title,
+      category,
+      gender,
+      description,
+      price,
+      bookImage: fileimage, // save the Cloudinary URL
+    };
+
+    // save to db
+    await Publish.insertOne(data);
+
+    res.status(200).json({
+      message: "Book published successfully",
+    });
+  } catch (error) {
+    console.log("Error While Saving Book:", error.message);
+    res.status(500).json({ message: "Error while saving book" });
+  }
+};
+
+export default PublishOne;

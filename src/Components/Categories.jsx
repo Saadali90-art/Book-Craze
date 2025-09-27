@@ -1,18 +1,36 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navigation from "./subcomponent/1.Home/Navigation";
-import dashboardInfo from "./db/Dashboard";
+import MoreDetail from "./Requests/MoreDetails/More.js";
 
 const Categories = () => {
   const { id } = useParams();
-  const [categoryData, setCategoryData] = useState(dashboardInfo);
+  const [categoryData, setCategoryData] = useState([]);
   const [selected, setSelected] = useState(0);
   const navigate = useNavigate();
 
   // ========================= FETCHING DATA FROM DB ======================
+
+  useEffect(() => {
+    const fetchData = async (data, link) => {
+      try {
+        let response = await MoreDetail(data, link);
+        setCategoryData(
+          [...response].sort((a, b) => new Date(b.date) - new Date(a.date))
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData({ category: id }, "book/category");
+  }, []);
+
+  // ================== POPULAR DATA WITH MOST VIEWS =====================
+
   const handlePopular = () => {
     setSelected(1);
-    setCategoryData([...categoryData].sort((a, b) => b.views - a.views));
+    setCategoryData(categoryData.sort((a, b) => b.views - a.views));
   };
 
   // ========================== NEW DATA ========================

@@ -73,7 +73,7 @@ const Comments = ({
                 transition: " opacity 700ms ease",
               }}
             >
-              <p className="text-[17px] font-[600] ">Backend not available.</p>
+              <p className="text-[17px] font-[600] ">No Recent Comments</p>
             </div>
           ) : (
             // ================= IF COMMENT PRESENT =================

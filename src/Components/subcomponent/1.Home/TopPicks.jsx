@@ -1,8 +1,22 @@
-import MontlyTop from "../../db/MontlyTop.js";
+import { useEffect, useState } from "react";
+import TopBooks from "../../Requests/Home Requests/TopBooks.js";
 import SmallCards from "./subHome/SmallCards.jsx";
 
 const TopPicks = ({ handlemore }) => {
-  let monthlyPicks = MontlyTop;
+  const [monthlyPicks, setMonthlyPicks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async (link) => {
+      try {
+        let data = await TopBooks(link);
+        setMonthlyPicks(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData("topbooks/monthlypicks");
+  }, []);
 
   return (
     <>

@@ -14,7 +14,6 @@ const SignUpContainer = ({
   animateArr,
   load,
   currentdot,
-  error,
 }) => {
   let loadingdots = Array.from({ length: 4 });
 
@@ -80,17 +79,6 @@ const SignUpContainer = ({
             }}
           >
             {animateArr[0]}
-          </p>
-
-          <p
-            className=" text-[13px]  mx-auto py-[3px] text-red-600 transition duration-1000 delay-70 "
-            style={{
-              opacity: error !== null ? 100 : 0,
-              height: error !== null ? "20px" : "0px",
-              transition: "opacity 500ms linear, height 500ms linear",
-            }}
-          >
-            {error}
           </p>
 
           {load ? (

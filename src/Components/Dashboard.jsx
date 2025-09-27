@@ -9,11 +9,26 @@ import specificBooks from "./Requests/DashBoard/SpecificDashBoard.js";
 const Dashboard = () => {
   // ======================== HOOKS OR DATA VARIABLE ================================
 
-  let userData = dashboardInfo;
+  const [userData, setuserData] = useState([]);
   const [loading, setloading] = useState(true);
   const navigate = useNavigate();
   let loadingdots = Array.from({ length: 4 });
   let [currentdot, setcurrentdot] = useState(0);
+
+  // ====================== GETTING DATA FROM DB =============================
+
+  useEffect(() => {
+    const fetchData = async (link) => {
+      try {
+        let data = await specificBooks(link);
+        setuserData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData("book/dashboard");
+  }, []);
 
   // ===================== FOR LOADING OR CREATE ONE ================================
 
@@ -43,7 +58,7 @@ const Dashboard = () => {
     <div style={{ fontFamily: "Montserrat, sans-serif", userSelect: "none" }}>
       {/* ======================== DASHBOARD NAVIGATION BAR  ============================= */}
 
-      <div className="container max-w-[100%]  h-[70px]  bg-gray-100 fixed z-20 ">
+      <div className="container max-w-[100%]  h-[70px]  bg-gray-100 fixed z-20">
         <div className="w-[70%] mx-auto h-[70px] flex items-center justify-center  ">
           <button
             className="absolute my-auto left-[15px] p-2 rounded-[50%] bg-transparent cursor-pointer max-[395px]:left-[1px]"
